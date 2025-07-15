@@ -1,0 +1,39 @@
+,context,question_type,choices,label,explanation
+0,There is a light rain today.,effect,The roots of many plants are not moistened by rain./Tourists have seen many ripples.,0,Precipitation reaches soil surfaces.
+1,Susan wants to buy a restricted pesticide.,effect,She bought rotenone./He decided to buy amylase.,0,Rotenone is a restricted-use pesticide.
+2,"def update_scores(scores, bonus_points, student, is_top_student):
+    if is_top_student:
+        scores[student] += (bonus_points * 2)
+    else:
+        scores[student] += bonus_points
+
+    return scores
+
+scores_dict = {'Alice': 90, 'Bob': 85, 'Charlie': 92}
+bonus = 5
+is_top = 'Alice'
+update_scores(scores_dict, bonus, is_top, is_top == 'Alice')"",
+
+If we manually set 'is_top_student' to True for all students and reevaluate 'update_scores', will this raise scores?",effect,Yes/No,Yes,Manually setting 'is_top_student' to True for all students results in all students receiving double the 'bonus_points' (due to the multiplicative factor of 2 in the score update operation specifically for top students). This intervention directly causes an increase in the scores of all students.
+3,"def update_scores(scores, bonus_points, student, is_top_student):
+    if is_top_student:
+        scores[student] += (bonus_points * 2)
+    else:
+        scores[student] += bonus_points
+
+    return scores
+
+scores_dict = {'Alice': 90, 'Bob': 85, 'Charlie': 92}
+bonus = 5
+is_top = 'Alice'
+update_scores(scores_dict, bonus, is_top, is_top == 'Alice')"",
+
+If we observe that a student's score increased significantly, can we conclude that this student was definitely designated as a top student?",cause,Yes/No,No,"A significant increase in a student's score could be due to them being a top student and thus receiving twice the bonus points, or it could simply be due to a high value of 'bonus_points'. Without knowing the exact 'bonus_points' or comparing it to changes in the scores of other students, we cannot definitively conclude their top student status."
+4,"Consider a control system where the dynamic behavior is governed by the differential equation \\(\\dot{x} = Mx + Nu\\), with \\(M\\) and \\(N\\) as constant matrices and \\(u\\) the control input. We test the impact of applying a linear transformation \\(T(v) = P v\\) where \\(P\\) is another constant matrix, on the control input \\(u(t)\\) over time \\(t\\).
+
+If the transformation \\(T(u)\\) is initially applied to the control input \\(u_0\\) and the system is then evolved under \\(\\dot{x} = Mx + Nu\\) with no further alterations to \\(u(t)\\), will \\(x(t)\\) at a later time \\(t = T\\) be affected solely by the transformation\\(T\\)?",effect,Yes/No,Yes,"The transformation \\(T\\) directly modifies the control input, which influences the state trajectory \\(x(t)\\) determined by the system's response to the input. This initial modification of the control input can alter the dynamic path and the subsequent evolution of the system."
+5,"Consider a control system where the dynamic behavior is governed by the differential equation \\(\\dot{x} = Mx + Nu\\), with \\(M\\) and \\(N\\) as constant matrices and \\(u\\) the control input. We test the impact of applying a linear transformation \\(T(v) = P v\\) where \\(P\\) is another constant matrix, on the control input \\(u(t)\\) over time \\(t\\).
+
+Given the system's state \\(x(T)\\) at time \\(T\\), can we conclusively deduce if the transformation \\(T\\) was applied only to the initial control input \\(u_0\\) without further modifications?",cause,Yes/No,No,"Even when observing \\(x(T)\\) under the influence of \\(M\\) and \\(N\\), the effect of the initial transformation on \\(u_0\\) might be convoluted with other dynamic interactions in the system, making it impossible to confidently assert the presence of the transformation \\(T\\) solely based on the final state."
+6,"Imagine a self-contained, hypothetical world with only the following conditions, and without any unmentioned factors or causal relationships: Gender has a direct effect on smoking and lung cancer. Smoking has a direct effect on tar deposit. Tar deposit has a direct effect on lung cancer. Gender is unobserved. For nonsmokers and with no tar deposit, the probability of lung cancer is 46%. For nonsmokers and with high tar deposit, the probability of lung cancer is 77%. For smokers and with no tar deposit, the probability of lung cancer is 17%. For smokers and with high tar deposit, the probability of lung cancer is 43%. For nonsmokers, the probability of high tar deposit is 18%. For smokers, the probability of high tar deposit is 64%. If a person has lung cancer, was it likely due to them being a nonsmoker?",cause,Yes/No,Yes,"Given the higher overall lung cancer rates in nonsmokers as compared to smokers, it is likely that if a person has lung cancer, it could be more due to them being a nonsmoker."
+7,"Imagine a self-contained, hypothetical world with only the following conditions, and without any unmentioned factors or causal relationships: Gender has a direct effect on smoking and lung cancer. Smoking has a direct effect on tar deposit. Tar deposit has a direct effect on lung cancer. Gender is unobserved. For nonsmokers and with no tar deposit, the probability of lung cancer is 46%. For nonsmokers and with high tar deposit, the probability of lung cancer is 77%. For smokers and with no tar deposit, the probability of lung cancer is 17%. For smokers and with high tar deposit, the probability of lung cancer is 43%. For nonsmokers, the probability of high tar deposit is 18%. For smokers, the probability of high tar deposit is 64%. Assuming an intervention increases the tar deposits in nonsmokers, will this lead to a likely increase in lung cancer rates among them?",cause,Yes/No,Yes,"Increasing tar deposits among nonsmokers from a lower likelihood (46% with no deposit) to a higher one (77% with high deposit) directly increases lung cancer probabilities, supporting the intervention's effect on outcomes."
