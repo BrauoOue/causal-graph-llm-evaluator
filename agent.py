@@ -137,7 +137,7 @@ Please provide your response in the exact JSON format specified above."""
         messages = self.chat_prompt.format_messages(**prompt_vars)
 
         with get_openai_callback() as cb:
-            response = self.llm(messages)
+            response = self.llm.invoke(messages)
             self.total_cost += cb.total_cost
 
         parsed_response = self._parse_response(response.content)
