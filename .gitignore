@@ -1,2 +1,6 @@
 **/.DS_Store
 .idea/
+venv/
+.env
+predictions.json
+__pycache__/
