@@ -4,3 +4,4 @@ venv/
 .env
 predictions.json
 __pycache__/
+predictions_parallel.json
