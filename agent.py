@@ -1,4 +1,7 @@
 import os
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
 import pandas as pd
 import json
 from typing import Dict, List, Optional, Any
@@ -166,6 +169,45 @@ Please provide your response in the exact JSON format specified above."""
 
         return result
 
+    def _predict_single_with_retry(self, row_data: tuple, max_retries: int = 3) -> Dict[str, Any]:
+        """
+        Make a prediction for a single row with retry logic for rate limiting
+
+        Args:
+            row_data: Tuple of (index, row) from DataFrame iteration
+            max_retries: Maximum number of retries for rate limiting
+
+        Returns:
+            Dictionary containing prediction results
+        """
+        idx, row = row_data
+
+        for attempt in range(max_retries):
+            try:
+                result = self.predict_single(row)
+                result["index"] = idx
+                return result
+            except Exception as e:
+                if "rate limit" in str(e).lower() and attempt < max_retries - 1:
+                    # Exponential backoff for rate limiting
+                    wait_time = (2 ** attempt) * 1
+                    print(f"Rate limit hit for row {idx}, waiting {wait_time}s before retry...")
+                    time.sleep(wait_time)
+                    continue
+                else:
+                    print(f"Error processing row {idx}: {str(e)}")
+                    return {
+                        "index": idx,
+                        "error": str(e),
+                        "question_type": row.get("question_type", "unknown")
+                    }
+
+        return {
+            "index": idx,
+            "error": "Max retries exceeded",
+            "question_type": row.get("question_type", "unknown")
+        }
+
     def predict_dataset(self,
                         data: pd.DataFrame,
                         save_results: bool = True,
@@ -208,6 +250,77 @@ Please provide your response in the exact JSON format specified above."""
 
         return results
 
+    def predict_dataset_parallel(self,
+                                 data: pd.DataFrame,
+                                 batch_size: int = 10,
+                                 max_workers: int = 5,
+                                 save_results: bool = True,
+                                 output_file: str = "predictions_parallel.json") -> List[Dict[str, Any]]:
+        """
+        Make predictions for an entire dataset using parallel processing
+
+        Args:
+            data: DataFrame containing the dataset
+            batch_size: Number of rows to process in each batch
+            max_workers: Maximum number of concurrent threads
+            save_results: Whether to save results to file
+            output_file: Output file name
+
+        Returns:
+            List of prediction results
+        """
+        print(f"Making predictions for {len(data)} rows with {max_workers} workers...")
+        print(f"Processing in batches of {batch_size}")
+
+        results = []
+
+        for batch_start in range(0, len(data), batch_size):
+            batch_end = min(batch_start + batch_size, len(data))
+            batch_data = data.iloc[batch_start:batch_end]
+
+            print(f"Processing batch {batch_start // batch_size + 1}/{(len(data) + batch_size - 1) // batch_size} "
+                  f"(rows {batch_start + 1}-{batch_end})")
+
+
+            with ThreadPoolExecutor(max_workers=max_workers) as executor:
+
+                future_to_row = {
+                    executor.submit(self._predict_single_with_retry, (idx, row)): idx
+                    for idx, row in batch_data.iterrows()
+                }
+
+
+                batch_results = []
+                for future in as_completed(future_to_row):
+                    try:
+                        result = future.result()
+                        batch_results.append(result)
+                    except Exception as e:
+                        row_idx = future_to_row[future]
+                        print(f"Error in thread for row {row_idx}: {str(e)}")
+                        batch_results.append({
+                            "index": row_idx,
+                            "error": str(e),
+                            "question_type": "unknown"
+                        })
+
+                batch_results.sort(key=lambda x: x.get("index", 0))
+                results.extend(batch_results)
+
+            print(f"Completed batch {batch_start // batch_size + 1}, "
+                  f"total processed: {len(results)}/{len(data)}")
+
+            if batch_end < len(data):
+                time.sleep(0.5)
+
+        self.predictions = results
+
+        if save_results:
+            self.save_results(output_file)
+
+        print(f"Parallel processing completed! Total cost: ${self.total_cost:.4f}")
+        return results
+
     def save_results(self, filename: str):
         """Save prediction results to JSON file"""
         with open(filename, 'w', encoding='utf-8') as f:
@@ -245,6 +358,8 @@ def main():
     if limit.isdigit():
         data = data.head(int(limit))
 
+    parallel_choice = input("Use parallel processing? (y/n): ").strip().lower()
+
     agent = CausalReasoningAgent(
         model_name=MODEL_NAME,
         temperature=TEMPERATURE,
@@ -252,8 +367,20 @@ def main():
         manual_prompt=manual_prompt
     )
 
-    #Ovie results ili dokolku se zacuvuva fo fajl podocna kje se koristat za presmetuvanje accuracy i evaluacija
-    results = agent.predict_dataset(data)
+    if parallel_choice == 'y':
+        batch_size = input("Enter batch size (default 10): ").strip()
+        batch_size = int(batch_size) if batch_size.isdigit() else 10
+
+        max_workers = input("Enter max workers (default 5): ").strip()
+        max_workers = int(max_workers) if max_workers.isdigit() else 5
+
+        results = agent.predict_dataset_parallel(
+            data,
+            batch_size=batch_size,
+            max_workers=max_workers
+        )
+    else:
+        results = agent.predict_dataset(data)
 
 
 if __name__ == "__main__":
