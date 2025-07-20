@@ -1,6 +1,7 @@
 import os
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from evaluate import evaluate
 
 import pandas as pd
 import json
@@ -32,7 +33,7 @@ class CausalReasoningAgent:
     """
 
     def __init__(self,
-                 model_name: str = "gpt-3.5-turbo",
+                 model_name: str = "gpt-4o-mini",
                  temperature: float = 0.1,
                  max_tokens: int = 500,
                  manual_prompt: Optional[str] = None):
@@ -150,10 +151,16 @@ Please provide your response in the exact JSON format specified above."""
         # is_valid_choice = any(choice.strip().lower() in parsed_response.chosen_answer.lower()
         #                       for choice in choices)
 
-        # correct_label = choices[row["label"]]
-        correct_label = row["label"]
-        # is_correct = correct_label.strip().lower() in parsed_response.chosen_answer.lower()
-        is_correct = parsed_response.chosen_answer == row["label"]
+        try:
+            # Try to use label as index (int)
+            label_index = int(row["label"])
+            correct_label = choices[label_index]
+        except (ValueError, IndexError):
+            # Use label as value (str)
+            label_value = str(row["label"]).strip()
+            correct_label = label_value if label_value in choices else choices[0]
+
+        is_correct = correct_label.strip().lower() in parsed_response.chosen_answer.lower()
 
         # Moze treba da se izbrisat nekoi sto ne se potrebni za evaluacija kako: question_type, context, cost
         result = {
@@ -258,7 +265,7 @@ Please provide your response in the exact JSON format specified above."""
                                  batch_size: int = 10,
                                  max_workers: int = 5,
                                  save_results: bool = True,
-                                 output_file: str = "predictions_parallel.json") -> List[Dict[str, Any]]:
+                                 output_file: str = "./output/predictions_parallel.json") -> List[Dict[str, Any]]:
         """
         Make predictions for an entire dataset using parallel processing
 
@@ -373,7 +380,7 @@ def main():
         max_tokens=MAX_TOKENS,
         manual_prompt=manual_prompt
     )
-
+    start_time = time.time()
     if parallel_choice == 'y':
         batch_size = input("Enter batch size (default 10): ").strip()
         batch_size = int(batch_size) if batch_size.isdigit() else 10
@@ -389,8 +396,14 @@ def main():
     else:
         results = agent.predict_dataset(data)
 
-    print(results)
+    end_time = time.time()
+    total_cost = agent.total_cost
+    print(f"Total cost: ${total_cost:.4f}")
+    print(f"Time elapsed: {end_time - start_time:.2f}s")
+
+    return parallel_choice
 
 
 if __name__ == "__main__":
-    main()
+    parallel_choice = main()
+    evaluate(parallel_choice)
