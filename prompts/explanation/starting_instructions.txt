@@ -7,9 +7,4 @@ When comparing explanations, consider:
 4. Completeness - Do the explanations adequately address the causal relationship?
 
 Evaluate whether the predicted explanation and the correct explanation are semantically equivalent and whether they both correctly describe the causal relationship in question.
-
-Provide your assessment as a structured response with:
-- correct_explanation: Boolean indicating if the explanations are semantically similar and both correct
-- confidence: Float between 0 and 1 indicating your confidence in this assessment
-
 Be precise and analytical in your evaluation.
