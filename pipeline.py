@@ -1,25 +1,16 @@
 import json
 import os
+import time
 from typing import List, Dict, Any, Optional
 
+import pandas as pd
 
-# Abstract Agent class for extensibility
-class AbstractAgent:
-    def predict(self, input_data: Dict[str, Any], template: str) -> Dict[str, str]:
-        raise NotImplementedError("Subclasses must implement the predict method.")
-
-
-class DummyAgent(AbstractAgent):
-    def predict(self, input_data: Dict[str, Any], template: str) -> Dict[str, str]:
-        return {
-            "input_data": input_data,
-            "template": template,
-            "predicted_explanation": "Dummy explanation"
-        }
+from agent import CausalReasoningAgent
+from conversion import Mapping, BuilderDataset
 
 
 # Load datasets from a folder
-def load_jsonl_files(folder: str) -> Dict[str, List[Dict[str, Any]]]:
+def load_pd_files(folder: str) -> dict[str,pd.DataFrame]:
     """
     Loads all .jsonl files from the specified folder.
 
@@ -27,24 +18,22 @@ def load_jsonl_files(folder: str) -> Dict[str, List[Dict[str, Any]]]:
         folder (str): Directory containing .jsonl dataset files.
 
     Returns:
-        Dict[str, List[Dict[str, Any]]]: A dictionary mapping filenames to their data entries.
+
     """
     datasets = {}
     for filename in os.listdir(folder):
         if filename.endswith(".jsonl"):
             path = os.path.join(folder, filename)
-            with open(path, 'r', encoding='utf-8') as file:
-                datasets[filename] = [json.loads(line) for line in file]
+            datasets[filename] = pd.read_json(path, lines=True)
+
     return datasets
 
 
-# Process datasets using the agent and a specific template
 def process_datasets(
-        datasets: Dict[str, List[Dict[str, Any]]],
-        agent: AbstractAgent,
-        manual_prompt: str,
-        template_type: str = "auto"
-) -> List[Dict[str, Any]]:
+        my_dic: dict[str,pd.DataFrame],
+        agent: CausalReasoningAgent,
+        manual_prompt: str
+):
     """
     Process datasets with the specified template type.
 
@@ -52,88 +41,86 @@ def process_datasets(
         datasets (Dict[str, List[Dict[str, Any]]]): Loaded datasets.
         agent (AbstractAgent): The agent to process data.
         manual_prompt (str): The manual prompt to use with "manual" mode.
-        template_type (str): Template type ("auto" or "manual").
 
     Returns:
         List[Dict[str, Any]]: Results including predictions.
     """
     results = []
-    for filename, entries in datasets.items():
-        print(f"Processing file: {filename}, Template Type: {template_type}")
-        for entry in entries:
-            if template_type == "manual":
-                template = manual_prompt
-            elif template_type == "auto":
-                template = generate_auto_prompt(entry)  # Generate a dynamic template
-            else:
-                raise ValueError(f"Invalid template_type: {template_type}")
 
-            prediction = agent.predict(input_data=entry, template=template)
-            results.append({
-                "filename": filename,
-                "input_data": entry,
-                "prediction": prediction
-            })
+    for dataframe_name in my_dic:
+        dic_data = dict()
+        dic_data["name"] = dataframe_name
+        split___ = dataframe_name.split('.')[0]
+        time_start = time.time()
+        cost = agent.predict_dataset_parallel(my_dic[dataframe_name], manual_prompt=manual_prompt, output_file = f"output/{split___}.json")
+        time_end = time.time()
+        dic_data["cost"] = cost
+        dic_data["time"] = time_end - time_start
+        results.append(dic_data)
+
     return results
 
 
-def generate_auto_prompt(data_entry: Dict[str, Any]) -> str:
-    """
-    Auto-generate a prompt for agents based on input data.
+def conversion(dataframes:dict[str,pd.DataFrame])->dict[str,pd.DataFrame]:
+    code_mapping = Mapping(context="Code", question="Question", question_type="Question Type", choices=None,
+                           label="Ground Truth", explanation="Explanation")
+    math_mapping = Mapping(context="Mathematical Scenario", question="Question", question_type="Question Type",
+                           choices=None,
+                           label="Ground Truth", explanation="Explanation")
 
-    Args:
-        data_entry (Dict[str, Any]): A single data entry from the dataset.
+    text_mapping = Mapping(context="Scenario and Question", question=None, question_type="Question Type",
+                           choices=None,
+                           label="Ground Truth", explanation="Explanation")
 
-    Returns:
-        str: The auto-generated template.
-    """
-    # Example logic to generate auto-prompt (can be customized)
-    return f"Provide an explanation for the question: {data_entry.get('question', 'N/A')}."
+    e_mapping = Mapping(context="premise", question=None, question_type="ask-for",
+                        choices=["hypothesis1", "hypothesis2"],
+                        label="label", explanation="conceptual_explanation")
 
+    mapping_mapping = {
+        "code.jsonl" : code_mapping,
+        "math.jsonl" : math_mapping,
+        "text.jsonl" : text_mapping,
+        "e.jsonl" : e_mapping,
+    }
 
-# Save processed results to file
-def save_results(results: List[Dict[str, Any]], output_file: str):
-    """
-    Save results to a .jsonl file.
-
-    Args:
-        results (List[Dict[str, Any]]): Processed dataset results.
-        output_file (str): Output file path.
-    """
-    with open(output_file, 'w', encoding='utf-8') as file:
-        for result in results:
-            file.write(json.dumps(result) + '\n')
-    print(f"Results saved to {output_file}")
-
+    results = {}
+    for dataframe_name in dataframes:
+        mapping = mapping_mapping[dataframe_name]
+        result = BuilderDataset.convert(dataframes[dataframe_name], mapping)
+        result['id'] = result.index
+        results[dataframe_name] = result.head(100)
+        
+    return results
 
 # Main function
-def main(template_type: str = "auto"):
+def main():
     """
     Main execution function.
 
     Args:
         template_type (str): Specify the template type ("auto" or "manual").
     """
-    # Configuration
     dataset_folder = "data/"
-    output_file = "output.jsonl"
-    manual_prompt = "Analyze the explanation and match it with the question."
 
-    # Load datasets
     print("Loading datasets...")
-    datasets = load_jsonl_files(dataset_folder)
+    datasets = load_pd_files(dataset_folder)
 
-    # Initialize an agent (replace with a real LLM agent when needed)
-    agent = DummyAgent()
+    agent = CausalReasoningAgent(max_tokens=10000)
 
-    # Process datasets
+    manual_prompt = input("Enter your custom prompt (or press Enter to use automatic prompt generation): ").strip()
+    if not manual_prompt:
+        manual_prompt = None
+
+    print("Standardizing datasets...")
+    converted_datasets = conversion(datasets)
+
+    import evaluate,time
+
     print("Processing datasets...")
-    results = process_datasets(datasets, agent, manual_prompt, template_type)
+    results = process_datasets(converted_datasets, agent, manual_prompt=manual_prompt)
 
-    # Save results
-    save_results(results, output_file)
+
 
 
 if __name__ == "__main__":
-    # Specify template type here (can be "auto" or "manual")
-    main(template_type="auto")
+    main()
