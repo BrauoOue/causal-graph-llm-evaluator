@@ -341,7 +341,7 @@ def main():
     MAX_TOKENS = 10000
 
     # file_path = input("Enter path to test CSV or JSONL (e.g., test/e_test.csv): ").strip()
-    file_path = "./test/code_test.csv"
+    file_path = "/Users/gorazdfilipovski/development/causal-graph-llm-evaluator/test/test_prompt_builder/sample_data_from_all_datasets.csv"
 
     if not os.path.exists(file_path):
         print(f"File not found: {file_path}")
@@ -355,17 +355,17 @@ def main():
         print("Unsupported file format. Please use .csv or .jsonl")
         return
 
-    # custom_prompt = input("Enter custom prompt (or press Enter for default): ").strip()
-    custom_prompt = None
+    custom_prompt = input("Enter custom prompt (or press Enter for default): ").strip()
+    # custom_prompt = None
     manual_prompt = custom_prompt if custom_prompt else None
 
-    # limit = input("Enter number of rows to process (or press Enter for all): ").strip()
-    limit = "10"
+    limit = input("Enter number of rows to process (or press Enter for all): ").strip()
+    # limit = "10"
     if limit.isdigit():
         data = data.head(int(limit))
 
-    # parallel_choice = input("Use parallel processing? (y/n): ").strip().lower()
-    parallel_choice = "n"
+    parallel_choice = input("Use parallel processing? (y/n): ").strip().lower()
+    # parallel_choice = "n"
 
     agent = CausalReasoningAgent(
         model_name=MODEL_NAME,
