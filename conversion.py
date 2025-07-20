@@ -90,4 +90,4 @@ if __name__ == '__main__':
 
     for df, mapping, name in zip(dfs, mappings, names):
         result = BuilderDataset.convert(df, mapping)
-        result.to_csv(f"./test/{name}_test.csv")
+        result.to_csv(f"./test/new/{name}_test.csv", index_label="id")
