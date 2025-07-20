@@ -1,0 +1,7 @@
+pandas
+python-dotenv
+langchain
+langchain-openai
+openai
+pydantic
+scikit-learn
