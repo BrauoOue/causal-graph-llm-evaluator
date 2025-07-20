@@ -265,7 +265,7 @@ Please provide your response in the exact JSON format specified above."""
                                  batch_size: int = 10,
                                  max_workers: int = 5,
                                  save_results: bool = True,
-                                 output_file: str = "predictions_parallel.json") -> List[Dict[str, Any]]:
+                                 output_file: str = "./output/predictions_parallel.json") -> List[Dict[str, Any]]:
         """
         Make predictions for an entire dataset using parallel processing
 
@@ -376,7 +376,7 @@ def main():
         max_tokens=MAX_TOKENS,
         manual_prompt=manual_prompt
     )
-
+    start_time = time.time()
     if parallel_choice == 'y':
         batch_size = input("Enter batch size (default 10): ").strip()
         batch_size = int(batch_size) if batch_size.isdigit() else 10
@@ -392,8 +392,12 @@ def main():
     else:
         results = agent.predict_dataset(data)
 
-    return parallel_choice
+    end_time = time.time()
+    total_cost = agent.total_cost
+    print(f"Total cost: ${total_cost:.4f}")
+    print(f"Time elapsed: {end_time - start_time:.2f}s")
 
+    return parallel_choice
 
 if __name__ == "__main__":
     parallel_choice = main()
