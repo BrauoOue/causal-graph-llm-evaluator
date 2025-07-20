@@ -5,7 +5,8 @@ import time
 from difflib import SequenceMatcher
 
 def load_predictions(path):
-    with open(path, "r", encoding="utf-8") as f:
+    file_path = os.path.join("output", path)
+    with open(file_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 def exact_match(a, b):
@@ -14,7 +15,7 @@ def exact_match(a, b):
 def fuzzy_match(a, b):
     return SequenceMatcher(None, a.strip().lower(), b.strip().lower()).ratio()
 
-def evaluate(model:str,time:str,cost:float, file_name : str):
+def evaluate(model:str, time:str, cost:float, file_name : str):
     predictions = load_predictions(file_name)
 
     exact_matches = 0
@@ -81,9 +82,9 @@ def evaluate(model:str,time:str,cost:float, file_name : str):
         'Total_Predictions': total
     }
 
-    file_exists = os.path.isfile('evaluation_results.csv')
+    file_exists = os.path.isfile('results/evaluation_results.csv')
 
-    with open('evaluation_results.csv', 'a', newline='') as f:
+    with open('results/evaluation_results.csv', 'a', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=results.keys())
         if not file_exists:
             writer.writeheader()

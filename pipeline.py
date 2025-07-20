@@ -1,16 +1,15 @@
-import json
+import pandas as pd
 import os
 import time
-from typing import List, Dict, Any, Optional
 
-import pandas as pd
+from evaluate import evaluate
+from typing import List, Dict, Any, Optional
 
 from agent import CausalReasoningAgent
 from conversion import Mapping, BuilderDataset
 
-
 # Load datasets from a folder
-def load_pd_files(folder: str) -> dict[str,pd.DataFrame]:
+def load_pd_files(folder: str) -> Dict[str,pd.DataFrame]:
     """
     Loads all .jsonl files from the specified folder.
 
@@ -30,7 +29,7 @@ def load_pd_files(folder: str) -> dict[str,pd.DataFrame]:
 
 
 def process_datasets(
-        my_dic: dict[str,pd.DataFrame],
+        my_dic: Dict[str,pd.DataFrame],
         agent: CausalReasoningAgent,
         manual_prompt: str
 ):
@@ -50,18 +49,24 @@ def process_datasets(
     for dataframe_name in my_dic:
         dic_data = dict()
         dic_data["name"] = dataframe_name
+
         split___ = dataframe_name.split('.')[0]
+
         time_start = time.time()
+
         cost = agent.predict_dataset_parallel(my_dic[dataframe_name], manual_prompt=manual_prompt, output_file = f"output/{split___}.json")
+
         time_end = time.time()
+
         dic_data["cost"] = cost
         dic_data["time"] = time_end - time_start
+
         results.append(dic_data)
 
     return results
 
 
-def conversion(dataframes:dict[str,pd.DataFrame])->dict[str,pd.DataFrame]:
+def conversion(dataframes: Dict[str,pd.DataFrame])-> Dict[str,pd.DataFrame]:
     code_mapping = Mapping(context="Code", question="Question", question_type="Question Type", choices=None,
                            label="Ground Truth", explanation="Explanation")
     math_mapping = Mapping(context="Mathematical Scenario", question="Question", question_type="Question Type",
@@ -77,10 +82,10 @@ def conversion(dataframes:dict[str,pd.DataFrame])->dict[str,pd.DataFrame]:
                         label="label", explanation="conceptual_explanation")
 
     mapping_mapping = {
-        "code.jsonl" : code_mapping,
-        "math.jsonl" : math_mapping,
-        "text.jsonl" : text_mapping,
-        "e.jsonl" : e_mapping,
+        "code.jsonl": code_mapping,
+        "math.jsonl": math_mapping,
+        "text.jsonl": text_mapping,
+        "e.jsonl": e_mapping,
     }
 
     results = {}
@@ -114,13 +119,11 @@ def main():
     print("Standardizing datasets...")
     converted_datasets = conversion(datasets)
 
-    import evaluate,time
-
     print("Processing datasets...")
     results = process_datasets(converted_datasets, agent, manual_prompt=manual_prompt)
 
-
-
+    for result in results:
+        evaluate(model=agent.model_name, time=result["time"], cost=result["cost"], file_name=str(result["name"]).replace(".jsonl", ".json"))
 
 if __name__ == "__main__":
     main()

@@ -149,8 +149,8 @@ Please provide your response in the exact JSON format specified above."""
 
         choices = row["choices"].split("/") if row["choices"] != "Yes/No" else ["Yes", "No"]
 
-        # is_valid_choice = any(choice.strip().lower() in parsed_response.chosen_answer.lower()
-        #                       for choice in choices)
+        is_valid_choice = any(choice.strip().lower() in parsed_response.chosen_answer.lower()
+                              for choice in choices)
 
         try:
             # Try to use label as index (int)
@@ -178,12 +178,12 @@ Please provide your response in the exact JSON format specified above."""
             "predicted_answer": parsed_response.chosen_answer,
             "correct_answer": correct_label,
             "is_correct": is_correct,
-            # "is_valid_choice": is_valid_choice,
+            "is_valid_choice": is_valid_choice,
             "explanation": parsed_response.explanation,
             "correct_explanation": row.get("explanation", "unknown"),
             "confidence": parsed_response.confidence,
             "question_type": row.get("question_type", "unknown"),
-            # "context": row["context"][:100] + "..." if len(row["context"]) > 100 else row["context"],
+            "context": row["context"][:100] + "..." if len(row["context"]) > 100 else row["context"],
             "cost": cb.total_cost if 'cb' in locals() else 0.0
         }
 
@@ -371,7 +371,7 @@ def main():
     MAX_TOKENS = 10000
 
     # file_path = input("Enter path to test CSV or JSONL (e.g., test/e_test.csv): ").strip()
-    file_path = "/Users/gorazdfilipovski/development/causal-graph-llm-evaluator/test/test_prompt_builder/sample_data_from_all_datasets.csv"
+    file_path = "./test/test_prompt_builder/sample_data_from_all_datasets.csv"
 
     if not os.path.exists(file_path):
         print(f"File not found: {file_path}")
@@ -425,7 +425,3 @@ def main():
     print(f"Time elapsed: {end_time - start_time:.2f}s")
 
     return parallel_choice
-
-if __name__ == "__main__":
-    parallel_choice = main()
-    evaluate(parallel_choice)
