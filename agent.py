@@ -35,8 +35,8 @@ class CausalReasoningAgent:
     def __init__(self,
                  model_name: str = "gpt-4o-mini",
                  temperature: float = 0.1,
-                 max_tokens: int = 500,
-                 manual_prompt: Optional[str] = None):
+                 max_tokens: int = 500
+                 ):
         """
         Initialize the causal reasoning agent
 
@@ -44,7 +44,6 @@ class CausalReasoningAgent:
             model_name: Name of the LLM model to use
             temperature: Temperature for response generation
             max_tokens: Maximum tokens for response
-            manual_prompt: Optional manual prompt override
         """
         self.model_name = model_name
         self.temperature = temperature
@@ -56,8 +55,6 @@ class CausalReasoningAgent:
             max_tokens=max_tokens,
             api_key=os.getenv("OPENAI_API_KEY")
         )
-
-        self.prompt_builder = PromptBuilder(manual_prompt=manual_prompt)
         self.output_parser = PydanticOutputParser(pydantic_object=PredictionResponse)
 
         self._create_prompt_template()
@@ -124,7 +121,7 @@ Please provide your response in the exact JSON format specified above."""
                 confidence=0.0
             )
 
-    def predict_single(self, row: pd.Series) -> Dict[str, Any]:
+    def predict_single(self, row: pd.Series,manual_prompt: Optional[str] = None) -> Dict[str, Any]:
         """
         Make a prediction for a single row
 
@@ -133,8 +130,12 @@ Please provide your response in the exact JSON format specified above."""
 
         Returns:
             Dictionary containing prediction results
+            :param row:
+            :param manual_prompt:
         """
-        prompt_vars = self.prompt_builder.get_prompt_variables(row)
+
+        prompt_builder = PromptBuilder(manual_prompt=manual_prompt)
+        prompt_vars = prompt_builder.get_prompt_variables(row)
 
         prompt_vars["format_instructions"] = self.output_parser.get_format_instructions()
 
@@ -150,6 +151,15 @@ Please provide your response in the exact JSON format specified above."""
 
         # is_valid_choice = any(choice.strip().lower() in parsed_response.chosen_answer.lower()
         #                       for choice in choices)
+
+        try:
+            # Try to use label as index (int)
+            label_index = int(row["label"])
+            correct_label = choices[label_index]
+        except (ValueError, IndexError):
+            # Use label as value (str)
+            label_value = str(row["label"]).strip()
+            correct_label = label_value if label_value in choices else choices[0]
 
         try:
             # Try to use label as index (int)
@@ -179,7 +189,7 @@ Please provide your response in the exact JSON format specified above."""
 
         return result
 
-    def _predict_single_with_retry(self, row_data: tuple, max_retries: int = 3) -> Dict[str, Any]:
+    def _predict_single_with_retry(self, row_data: tuple, max_retries: int = 3, manual_prompt: Optional[str] = None) -> Dict[str, Any]:
         """
         Make a prediction for a single row with retry logic for rate limiting
 
@@ -194,7 +204,7 @@ Please provide your response in the exact JSON format specified above."""
 
         for attempt in range(max_retries):
             try:
-                result = self.predict_single(row)
+                result = self.predict_single(row,manual_prompt)
                 result["index"] = idx
                 return result
             except Exception as e:
@@ -221,7 +231,9 @@ Please provide your response in the exact JSON format specified above."""
     def predict_dataset(self,
                         data: pd.DataFrame,
                         save_results: bool = True,
-                        output_file: str = "./output/predictions.json") -> List[Dict[str, Any]]:
+                        output_file: str = "./output/predictions.json",
+                        manual_prompt: Optional[str] = None
+        ) -> List[Dict[str, Any]]:
         """
         Make predictions for an entire dataset
 
@@ -232,6 +244,10 @@ Please provide your response in the exact JSON format specified above."""
 
         Returns:
             List of prediction results
+            :param data:
+            :param save_results:
+            :param output_file:
+            :param manual_prompt:
         """
         results = []
 
@@ -239,7 +255,7 @@ Please provide your response in the exact JSON format specified above."""
 
         for idx, row in data.iterrows():
             try:
-                result = self.predict_single(row)
+                result = self.predict_single(row,manual_prompt=manual_prompt)
                 results.append(result)
 
                 if (idx + 1) % 10 == 0:
@@ -262,10 +278,11 @@ Please provide your response in the exact JSON format specified above."""
 
     def predict_dataset_parallel(self,
                                  data: pd.DataFrame,
-                                 batch_size: int = 10,
-                                 max_workers: int = 5,
+                                 batch_size: int = 15,
+                                 max_workers: int = 10,
                                  save_results: bool = True,
-                                 output_file: str = "./output/predictions_parallel.json") -> List[Dict[str, Any]]:
+                                 output_file: str = "./output/predictions_parallel.json",
+                                 manual_prompt: Optional[str] = None) -> List[Dict[str, Any]]:
         """
         Make predictions for an entire dataset using parallel processing
 
@@ -278,6 +295,12 @@ Please provide your response in the exact JSON format specified above."""
 
         Returns:
             List of prediction results
+            :param data:
+            :param batch_size:
+            :param max_workers:
+            :param save_results:
+            :param output_file:
+            :param manual_prompt:
         """
         print(f"Making predictions for {len(data)} rows with {max_workers} workers...")
         print(f"Processing in batches of {batch_size}")
@@ -295,7 +318,7 @@ Please provide your response in the exact JSON format specified above."""
             with ThreadPoolExecutor(max_workers=max_workers) as executor:
 
                 future_to_row = {
-                    executor.submit(self._predict_single_with_retry, (idx, row)): idx
+                    executor.submit(self._predict_single_with_retry, (idx, row), 3, manual_prompt): idx
                     for idx, row in batch_data.iterrows()
                 }
 
@@ -329,7 +352,7 @@ Please provide your response in the exact JSON format specified above."""
             self.save_results(output_file)
 
         print(f"Parallel processing completed! Total cost: ${self.total_cost:.4f}")
-        return results
+        return self.total_cost
 
     def save_results(self, filename: str):
         """Save prediction results to JSON file"""
@@ -402,7 +425,6 @@ def main():
     print(f"Time elapsed: {end_time - start_time:.2f}s")
 
     return parallel_choice
-
 
 if __name__ == "__main__":
     parallel_choice = main()
