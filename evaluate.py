@@ -14,7 +14,7 @@ def fuzzy_match(a, b):
     return SequenceMatcher(None, a.strip().lower(), b.strip().lower()).ratio()
 
 def evaluate(parallel_choice):
-    path = "predictions_parallel.json" if parallel_choice.lower() == "y" else "predictions.json"
+    path = "output/predictions_parallel.json" if parallel_choice.lower() == "y" else "output/predictions.json"
     predictions = load_predictions(path)
 
     exact_matches = 0
@@ -67,23 +67,6 @@ def evaluate(parallel_choice):
     print(f"  Valid Choices (% valid):     {valid_ratio:.2f}")
     print(f"  Avg. Response Time (s):      {avg_response_time:.2f}")
     print(f"  Total Predictions:           {total}")
-
-    # Save to CSV (append mode)
-    output_path = "test/results/evaluation_results.csv"
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
-    fieldnames = sorted(set().union(*(row.keys() for row in csv_rows)))
-    file_exists = os.path.isfile(output_path)
-
-    with open(output_path, "a", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-
-        if not file_exists:
-            writer.writeheader()
-
-        writer.writerows(csv_rows)
-
-    print(f"\n  ✅ Results appended to '{output_path}'")
 
 if __name__ == "__main__":
     choice = input("Use parallel predictions? (y/n): ")
