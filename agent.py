@@ -22,7 +22,7 @@ load_dotenv()
 class PredictionResponse(BaseModel):
     """Structured response model for causal reasoning predictions"""
     chosen_answer: str = Field(description="The selected option from the given choices")
-    explanation: str = Field(description="Short explanation of the reasoning (max 10 words).")
+    explanation: str = Field(description="Short explanation of the reasoning (max 50 words).")
     confidence: float = Field(description="Confidence level (0-1)", ge=0, le=1, default=0.5)
 
 
@@ -147,23 +147,26 @@ Please provide your response in the exact JSON format specified above."""
 
         choices = row["choices"].split("/") if row["choices"] != "Yes/No" else ["Yes", "No"]
 
-        is_valid_choice = any(choice.strip().lower() in parsed_response.chosen_answer.lower()
-                              for choice in choices)
+        # is_valid_choice = any(choice.strip().lower() in parsed_response.chosen_answer.lower()
+        #                       for choice in choices)
 
-        correct_label = choices[row["label"]]
-        is_correct = correct_label.strip().lower() in parsed_response.chosen_answer.lower()
+        # correct_label = choices[row["label"]]
+        correct_label = row["label"]
+        # is_correct = correct_label.strip().lower() in parsed_response.chosen_answer.lower()
+        is_correct = parsed_response.chosen_answer == row["label"]
 
         # Moze treba da se izbrisat nekoi sto ne se potrebni za evaluacija kako: question_type, context, cost
         result = {
+            "id": row.get("id", -1),
             "predicted_answer": parsed_response.chosen_answer,
             "correct_answer": correct_label,
             "is_correct": is_correct,
-            "is_valid_choice": is_valid_choice,
+            # "is_valid_choice": is_valid_choice,
             "explanation": parsed_response.explanation,
             "correct_explanation": row.get("explanation", "unknown"),
             "confidence": parsed_response.confidence,
             "question_type": row.get("question_type", "unknown"),
-            "context": row["context"][:100] + "..." if len(row["context"]) > 100 else row["context"],
+            # "context": row["context"][:100] + "..." if len(row["context"]) > 100 else row["context"],
             "cost": cb.total_cost if 'cb' in locals() else 0.0
         }
 
@@ -211,7 +214,7 @@ Please provide your response in the exact JSON format specified above."""
     def predict_dataset(self,
                         data: pd.DataFrame,
                         save_results: bool = True,
-                        output_file: str = "predictions.json") -> List[Dict[str, Any]]:
+                        output_file: str = "./output/predictions.json") -> List[Dict[str, Any]]:
         """
         Make predictions for an entire dataset
 
@@ -333,11 +336,12 @@ def main():
     Main function to run the causal reasoning agent
     """
 
-    MODEL_NAME = "gpt-3.5-turbo"
+    MODEL_NAME = "gpt-4o-mini"
     TEMPERATURE = 0.1
-    MAX_TOKENS = 500
+    MAX_TOKENS = 10000
 
-    file_path = input("Enter path to test CSV or JSONL (e.g., test/e_test.csv): ").strip()
+    # file_path = input("Enter path to test CSV or JSONL (e.g., test/e_test.csv): ").strip()
+    file_path = "/Users/gorazdfilipovski/development/causal-graph-llm-evaluator/test/test_prompt_builder/sample_data_from_all_datasets.csv"
 
     if not os.path.exists(file_path):
         print(f"File not found: {file_path}")
@@ -352,13 +356,16 @@ def main():
         return
 
     custom_prompt = input("Enter custom prompt (or press Enter for default): ").strip()
+    # custom_prompt = None
     manual_prompt = custom_prompt if custom_prompt else None
 
     limit = input("Enter number of rows to process (or press Enter for all): ").strip()
+    # limit = "10"
     if limit.isdigit():
         data = data.head(int(limit))
 
     parallel_choice = input("Use parallel processing? (y/n): ").strip().lower()
+    # parallel_choice = "n"
 
     agent = CausalReasoningAgent(
         model_name=MODEL_NAME,
@@ -381,6 +388,8 @@ def main():
         )
     else:
         results = agent.predict_dataset(data)
+
+    print(results)
 
 
 if __name__ == "__main__":
