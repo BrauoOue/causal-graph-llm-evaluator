@@ -23,7 +23,7 @@ load_dotenv()
 class PredictionResponse(BaseModel):
     """Structured response model for causal reasoning predictions"""
     chosen_answer: str = Field(description="The selected option from the given choices")
-    explanation: str = Field(description="Short explanation of the reasoning (max 10 words).")
+    explanation: str = Field(description="Short explanation of the reasoning (max 50 words).")
     confidence: float = Field(description="Confidence level (0-1)", ge=0, le=1, default=0.5)
 
 
@@ -164,6 +164,7 @@ Please provide your response in the exact JSON format specified above."""
 
         # Moze treba da se izbrisat nekoi sto ne se potrebni za evaluacija kako: question_type, context, cost
         result = {
+            "id": row.get("id", -1),
             "predicted_answer": parsed_response.chosen_answer,
             "correct_answer": correct_label,
             "is_correct": is_correct,
@@ -220,7 +221,7 @@ Please provide your response in the exact JSON format specified above."""
     def predict_dataset(self,
                         data: pd.DataFrame,
                         save_results: bool = True,
-                        output_file: str = "predictions.json") -> List[Dict[str, Any]]:
+                        output_file: str = "./output/predictions.json") -> List[Dict[str, Any]]:
         """
         Make predictions for an entire dataset
 
@@ -344,7 +345,7 @@ def main():
 
     MODEL_NAME = "gpt-4o-mini"
     TEMPERATURE = 0.1
-    MAX_TOKENS = 1000
+    MAX_TOKENS = 10000
 
     file_path = input("Enter path to test CSV or JSONL (e.g., test/e_test.csv): ").strip()
 
