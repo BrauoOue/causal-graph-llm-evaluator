@@ -1,6 +1,7 @@
 import os
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from evaluate import evaluate
 
 import pandas as pd
 import json
@@ -32,7 +33,7 @@ class CausalReasoningAgent:
     """
 
     def __init__(self,
-                 model_name: str = "gpt-3.5-turbo",
+                 model_name: str = "gpt-4o-mini",
                  temperature: float = 0.1,
                  max_tokens: int = 500,
                  manual_prompt: Optional[str] = None):
@@ -150,7 +151,15 @@ Please provide your response in the exact JSON format specified above."""
         is_valid_choice = any(choice.strip().lower() in parsed_response.chosen_answer.lower()
                               for choice in choices)
 
-        correct_label = choices[row["label"]]
+        try:
+            # Try to use label as index (int)
+            label_index = int(row["label"])
+            correct_label = choices[label_index]
+        except (ValueError, IndexError):
+            # Use label as value (str)
+            label_value = str(row["label"]).strip()
+            correct_label = label_value if label_value in choices else choices[0]
+
         is_correct = correct_label.strip().lower() in parsed_response.chosen_answer.lower()
 
         # Moze treba da se izbrisat nekoi sto ne se potrebni za evaluacija kako: question_type, context, cost
@@ -333,9 +342,9 @@ def main():
     Main function to run the causal reasoning agent
     """
 
-    MODEL_NAME = "gpt-3.5-turbo"
+    MODEL_NAME = "gpt-4o-mini"
     TEMPERATURE = 0.1
-    MAX_TOKENS = 500
+    MAX_TOKENS = 1000
 
     file_path = input("Enter path to test CSV or JSONL (e.g., test/e_test.csv): ").strip()
 
@@ -382,6 +391,9 @@ def main():
     else:
         results = agent.predict_dataset(data)
 
+    return parallel_choice
+
 
 if __name__ == "__main__":
-    main()
+    parallel_choice = main()
+    evaluate(parallel_choice)
