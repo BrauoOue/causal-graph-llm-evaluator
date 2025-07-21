@@ -1,10 +1,12 @@
 import json
 import csv
 import os
+import time
 from difflib import SequenceMatcher
 
 def load_predictions(path):
-    with open(path, "r", encoding="utf-8") as f:
+    file_path = os.path.join("output", path)
+    with open(file_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 def exact_match(a, b):
@@ -13,9 +15,8 @@ def exact_match(a, b):
 def fuzzy_match(a, b):
     return SequenceMatcher(None, a.strip().lower(), b.strip().lower()).ratio()
 
-def evaluate(parallel_choice):
-    path = "output/predictions_parallel.json" if parallel_choice.lower() == "y" else "output/predictions.json"
-    predictions = load_predictions(path)
+def evaluate(model:str, time:str, cost:float, file_name : str):
+    predictions = load_predictions(file_name)
 
     exact_matches = 0
     fuzzy_scores = []
@@ -68,6 +69,23 @@ def evaluate(parallel_choice):
     print(f"  Avg. Response Time (s):      {avg_response_time:.2f}")
     print(f"  Total Predictions:           {total}")
 
-if __name__ == "__main__":
-    choice = input("Use parallel predictions? (y/n): ")
-    evaluate(choice)
+    results = {
+        'File': file_name,
+        'Model': model,
+        'Time_taken': time,
+        'Cost': f"{cost:.4f}",
+        'Accuracy': f"{accuracy:.2f}",
+        'Exact_Match_Accuracy': f"{exact_acc:.2f}",
+        'Avg_Fuzzy_Match_Score': f"{avg_fuzzy:.2f}",
+        'Valid_Choices': f"{valid_ratio:.2f}",
+        'Avg_Response_Time': f"{avg_response_time:.2f}",
+        'Total_Predictions': total
+    }
+
+    file_exists = os.path.isfile('results/evaluation_results.csv')
+
+    with open('results/evaluation_results.csv', 'a', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=results.keys())
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow(results)
