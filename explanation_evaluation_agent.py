@@ -263,7 +263,8 @@ Please provide your evaluation in the exact JSON format specified above."""
                                   batch_size: int = 10,
                                   max_workers: int = 5,
                                   save_results: bool = True,
-                                  output_file: str = "./output/explanation_parallel.json") -> List[Dict[str, Any]]:
+                                  output_folder:str= "./output/explanations",
+                                  dataset_name: str = "explanation_parallel") -> float:
         """
         Evaluate explanations for an entire dataset using parallel processing
 
@@ -273,7 +274,7 @@ Please provide your evaluation in the exact JSON format specified above."""
             batch_size: Number of entries to process in each batch
             max_workers: Maximum number of concurrent threads
             save_results: Whether to save results to file
-            output_file: Output file name
+            dataset_name: Output file name
 
         Returns:
             List of evaluation results
@@ -325,11 +326,13 @@ Please provide your evaluation in the exact JSON format specified above."""
 
         self.evaluations = results
 
+
         if save_results:
-            self.save_results(output_file)
+            path = os.path.join(output_folder,f"{dataset_name}.json")
+            self.save_results(path)
 
         print(f"Parallel processing completed! Total cost: ${self.total_cost:.4f}")
-        return results
+        return self.total_cost
 
     def save_results(self, filename: str):
         """Save evaluation results to JSON file"""
@@ -339,9 +342,10 @@ Please provide your evaluation in the exact JSON format specified above."""
         print(f"Results saved to {filename}")
 
     @staticmethod
-    def load_predictions(file_path: str) -> pd.DataFrame:
+    def load_predictions(predictions_folder="./output/predictions",dataset_name: str="predictions") -> pd.DataFrame:
         """Load predictions from JSON file and return as DataFrame"""
-        with open(file_path, 'r', encoding='utf-8') as f:
+        filename = os.path.join(predictions_folder, dataset_name)
+        with open(filename, 'r', encoding='utf-8') as f:
             data = json.load(f)
         return pd.DataFrame(data)
 

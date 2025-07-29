@@ -172,7 +172,6 @@ Please provide your response in the exact JSON format specified above."""
 
         is_correct = correct_label.strip().lower() in parsed_response.chosen_answer.lower()
 
-        # Moze treba da se izbrisat nekoi sto ne se potrebni za evaluacija kako: question_type, context, cost
         result = {
             "id": row.get("id", -1),
             "predicted_answer": parsed_response.chosen_answer,
@@ -183,7 +182,6 @@ Please provide your response in the exact JSON format specified above."""
             "correct_explanation": row.get("explanation", "unknown"),
             "confidence": parsed_response.confidence,
             "question_type": row.get("question_type", "unknown"),
-            "context": row["context"][:100] + "..." if len(row["context"]) > 100 else row["context"],
             "cost": cb.total_cost if 'cb' in locals() else 0.0
         }
 
@@ -281,8 +279,9 @@ Please provide your response in the exact JSON format specified above."""
                                  batch_size: int = 15,
                                  max_workers: int = 10,
                                  save_results: bool = True,
-                                 output_file: str = "./output/predictions_parallel.json",
-                                 manual_prompt: Optional[str] = None) -> List[Dict[str, Any]]:
+                                 output_folder: str = "./output",
+                                 dataset_name='predictions_parallel',
+                                 manual_prompt: Optional[str] = None) -> float:
         """
         Make predictions for an entire dataset using parallel processing
 
@@ -299,11 +298,13 @@ Please provide your response in the exact JSON format specified above."""
             :param batch_size:
             :param max_workers:
             :param save_results:
-            :param output_file:
+            :param output_folder:
             :param manual_prompt:
         """
         print(f"Making predictions for {len(data)} rows with {max_workers} workers...")
         print(f"Processing in batches of {batch_size}")
+
+        output_path = os.path.join(output_folder, f"{dataset_name}.json")
 
         results = []
 
@@ -349,9 +350,10 @@ Please provide your response in the exact JSON format specified above."""
         self.predictions = results
 
         if save_results:
-            self.save_results(output_file)
+            self.save_results(output_path)
 
         print(f"Parallel processing completed! Total cost: ${self.total_cost:.4f}")
+
         return self.total_cost
 
     def save_results(self, filename: str):
