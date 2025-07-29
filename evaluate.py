@@ -1,91 +1,94 @@
 import json
-import csv
 import os
-import time
-from difflib import SequenceMatcher
+from typing import Dict, Any, List
 
-def load_predictions(path):
-    file_path = os.path.join("output", path)
+
+def load(predictions_folder: str, dataset_name: str) -> List[Dict[str, Any]]:
+    file_path = os.path.join(predictions_folder, f"{dataset_name}.json")
     with open(file_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
-def exact_match(a, b):
-    return a.strip().lower() == b.strip().lower()
 
-def fuzzy_match(a, b):
-    return SequenceMatcher(None, a.strip().lower(), b.strip().lower()).ratio()
+def save_results(result: Dict[str, float], results_folder: str, dataset_name: str) -> None:
+    file_path = os.path.join(results_folder, f"{dataset_name}.json")
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(result, f)
 
-def evaluate(model:str, time:str, cost:float, file_name : str):
-    predictions = load_predictions(file_name)
 
-    exact_matches = 0
-    fuzzy_scores = []
+def evaluate(prediction_result: Dict[str, Any],
+             explanation_result: Dict[str, Any],
+             save_result=True,
+             predictions_folder="./output/predictions",
+             explanations_folder="./output/explanations",
+             results_folder="./output/results"
+             ):
+    dataset_name = prediction_result["name"]
+
+    predictions = load(predictions_folder, dataset_name)
+    explanations = load(explanations_folder, dataset_name)
+
+    prediction_model = prediction_result["model"]
+    prediction_time = prediction_result["time"]
+    prediction_cost = prediction_result["cost"]
+
+    explanation_model = explanation_result["model"]
+    explanation_time = explanation_result["time"]
+    explanation_cost = explanation_result["cost"],
+
     valid_choice_count = 0
-    correct_count = 0
-    response_times = []
+    correct_predictions_count = 0
 
-    csv_rows = []
+    correct_explanations_count = 0
+    average_confidence = 0
 
-    for item in predictions:
-        pred_ans = item.get("predicted_answer", "")
-        true_ans = item.get("correct_answer", "")
-        is_correct = item.get("is_correct", False)
-        is_valid = item.get("is_valid_choice", False)
-        response_time = item.get("response_time", None)
+    for prediction, explanation in zip(predictions, explanations):
+        is_correct_prediction = prediction.get("is_correct", False)
+        is_valid = prediction.get("is_valid_choice", False)
 
-        exact = exact_match(pred_ans, true_ans)
-        fuzzy = fuzzy_match(pred_ans, true_ans)
-
-        correct_count += int(is_correct)
+        correct_predictions_count += int(is_correct_prediction)
         valid_choice_count += int(is_valid)
-        if exact:
-            exact_matches += 1
 
-        if response_time is not None:
-            try:
-                response_time = float(response_time)
-                response_times.append(response_time)
-            except:
-                pass
+        is_correct_explanation = explanation.get("correct_explanation")
+        confidence = explanation.get("confidence")
 
-        csv_rows.append({
-            **item,
-            "exact_match": exact,
-            "fuzzy_score": fuzzy,
-        })
+        correct_explanations_count += int(is_correct_explanation)
+        average_confidence += confidence
 
-    total = len(predictions)
-    accuracy = correct_count / total
-    exact_acc = exact_matches / total
-    avg_fuzzy = sum(fuzzy_scores) / total if fuzzy_scores else 0.0
-    valid_ratio = valid_choice_count / total
-    avg_response_time = sum(response_times) / len(response_times) if response_times else 0.0
+    total_predictions = len(predictions)
+    prediction_accuracy = correct_predictions_count / total_predictions
+    valid_ratio = valid_choice_count / total_predictions
 
-    print(f"\n  Evaluation Results:")
-    print(f"  Accuracy (is_correct):       {accuracy:.2f}")
-    print(f"  Exact Match Accuracy:        {exact_acc:.2f}")
-    print(f"  Avg. Fuzzy Match Score:      {avg_fuzzy:.2f}")
-    print(f"  Valid Choices (% valid):     {valid_ratio:.2f}")
-    print(f"  Avg. Response Time (s):      {avg_response_time:.2f}")
-    print(f"  Total Predictions:           {total}")
+    total_explanations = len(explanations)
+    explanation_accuracy = correct_explanations_count / total_explanations
+    average_confidence = average_confidence / total_explanations
 
-    results = {
-        'File': file_name,
-        'Model': model,
-        'Time_taken': time,
-        'Cost': f"{cost:.4f}",
-        'Accuracy': f"{accuracy:.2f}",
-        'Exact_Match_Accuracy': f"{exact_acc:.2f}",
-        'Avg_Fuzzy_Match_Score': f"{avg_fuzzy:.2f}",
-        'Valid_Choices': f"{valid_ratio:.2f}",
-        'Avg_Response_Time': f"{avg_response_time:.2f}",
-        'Total_Predictions': total
+    evaluation_result = {
+        "dataset": dataset_name,
+
+        "predictions_model": prediction_model,
+        "total_predictions": total_predictions,
+        "correct_predictions": correct_predictions_count,
+        "valid_choice_predictions": valid_choice_count,
+        "prediction_accuracy": prediction_accuracy,
+
+        "predictions_execution_time": prediction_time,
+        "predictions_total_cost": prediction_cost,
+
+        "explanations_model": explanation_model,
+        "total_explanations": total_explanations,
+        "correct_explanations": correct_explanations_count,
+        "explanations_accuracy": explanation_accuracy,
+        "average_explanation_confidence": average_confidence,
+
+        "explanations_execution_time": explanation_time,
+        "explanations_total_cost": explanation_cost,
     }
 
-    file_exists = os.path.isfile('results/evaluation_results.csv')
+    print(f"\nEvaluation Results:")
+    print(f"Accuracy (is_correct):\t{prediction_accuracy:.2f}")
+    print(f"Valid Choices (% valid):\t{valid_ratio:.2f}")
+    print(f"Execution Time :\t{prediction_time:.2f}")
+    print(f" Total Predictions:\t{total_predictions}")
 
-    with open('results/evaluation_results.csv', 'a', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=results.keys())
-        if not file_exists:
-            writer.writeheader()
-        writer.writerow(results)
+    if save_result:
+        save_results(evaluation_result, results_folder, dataset_name)
