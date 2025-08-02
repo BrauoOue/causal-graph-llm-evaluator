@@ -9,7 +9,7 @@ import os
 import traceback
 from typing import Dict, Any, List, Tuple
 
-from logger import get_logger
+from modules.logger import get_logger
 
 # Initialize logger
 logger = get_logger(filename=__file__,console_color="cyan")

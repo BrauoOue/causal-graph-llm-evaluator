@@ -22,7 +22,7 @@ Usage:
 import pandas as pd
 import os
 from typing import Dict, List
-from logger import get_logger
+from modules.logger import get_logger
 
 # Initialize logger
 logger = get_logger(filename=__file__, console_color="cyan")

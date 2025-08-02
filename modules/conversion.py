@@ -23,7 +23,7 @@ from __future__ import annotations
 import os.path
 
 import pandas as pd
-from logger import get_logger
+from modules.logger import get_logger
 
 # Configure pandas display options
 pd.set_option('display.max_rows', None)
@@ -195,10 +195,10 @@ if __name__ == '__main__':
                                label="label", explanation="conceptual_explanation")
 
     logger.info("Loading datasets")
-    e_df = pd.read_json("./data/raw/e.jsonl", lines=True)
-    code_df = pd.read_json("./data/raw/code.jsonl", lines=True)
-    math_df = pd.read_json("./data/raw/math.jsonl", lines=True)
-    text_df = pd.read_json("./data/raw/text.jsonl", lines=True)
+    e_df = pd.read_json("../data/raw/e.jsonl", lines=True)
+    code_df = pd.read_json("../data/raw/code.jsonl", lines=True)
+    math_df = pd.read_json("../data/raw/math.jsonl", lines=True)
+    text_df = pd.read_json("../data/raw/text.jsonl", lines=True)
 
     dfs = [code_df, math_df, text_df, e_df]
     mappings = [code_mapping, math_mapping, text_mapping, e_mapping]

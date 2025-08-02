@@ -34,7 +34,7 @@ from langchain_community.callbacks.manager import get_openai_callback
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from pydantic import BaseModel, Field
-from logger import get_logger
+from modules.logger import get_logger
 
 # Initialize logger
 logger = get_logger(filename=__file__,console_color="magenta")
@@ -85,7 +85,7 @@ class ExplanationEvaluationAgent:
 
     def _load_system_prompt(self):
         """Load system prompt from file"""
-        prompt_file = "./prompts/explanation/starting_instructions.txt"
+        prompt_file = "../prompts/explanation/starting_instructions.txt"
         try:
             with open(prompt_file, 'r', encoding='utf-8') as f:
                 self.system_prompt = f.read().strip()

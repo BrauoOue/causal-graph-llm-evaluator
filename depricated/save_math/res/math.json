@@ -1,0 +1,17 @@
+{
+  "dataset": "math",
+  "predictions_model": "gpt-4o-mini",
+  "total_predictions": 100,
+  "correct_predictions": 73,
+  "valid_choice_predictions": 89,
+  "prediction_accuracy": 0.73,
+  "predictions_execution_time": 32.68123149871826,
+  "predictions_total_cost": 0.031185450000000003,
+  "explanations_model": "gpt-4o-mini",
+  "total_explanations": 100,
+  "correct_explanations": 46,
+  "explanations_accuracy": 0.46,
+  "average_explanation_confidence": 0.8295000000000001,
+  "explanations_execution_time": 24.597046852111816,
+  "explanations_total_cost": 0.01759589999999999
+}

@@ -37,8 +37,8 @@ from langchain_core.prompts import  ChatPromptTemplate, SystemMessagePromptTempl
 from langchain_core.output_parsers import PydanticOutputParser
 from pydantic import BaseModel, Field
 
-from prompt_builder import PromptBuilder
-from logger import get_logger
+from modules.prompt_builder import PromptBuilder
+from modules.logger import get_logger
 
 # Initialize logger
 logger = get_logger(filename=__file__,console_color="green")
@@ -411,7 +411,7 @@ def main():
     max_tokens = 10000
 
     # file_path = input("Enter path to test CSV or JSONL (e.g., test/e_test.csv): ").strip()
-    file_path = "./data/datasets/e_dataset.csv"
+    file_path = "../data/datasets/e_dataset.csv"
 
     if not os.path.exists(file_path):
         logger.error(f"File not found: {file_path}")

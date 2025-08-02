@@ -18,24 +18,29 @@ limits, custom prompts, and extensive logging of execution metrics.
 Usage:
     # Run the full pipeline with default settings
     python pipeline.py
+
+    # Run with custom settings (all options)
+    python pipeline.py --limit 5 --use_manual_prompt --model_predictions gpt-4o --model_explanations gpt-4o \
+        --max_tokens_predictions 2000 --max_tokens_explanations 5000 --log_level DEBUG
 """
 
 import json
 import os
 import time
 import traceback
+import argparse
 from typing import List, Dict, Any
 
 import pandas as pd
 
-from agent import CausalReasoningAgent
-from conversion import DatasetMapping, BuilderDataset
-from evaluate import evaluate
-from explanation_evaluation_agent import ExplanationEvaluationAgent
-from logger import get_logger
+from modules.agent import CausalReasoningAgent
+from modules.conversion import DatasetMapping, BuilderDataset
+from modules.evaluate import evaluate
+from modules.explanation_evaluation_agent import ExplanationEvaluationAgent
+from modules.logger import get_logger, set_log_level
 
 # Initialize logger
-logger = get_logger(filename=__file__,console_color="blue")
+logger = get_logger(filename=__file__, console_color="blue")
 
 
 def save_metadata(metadata: Dict[str, Any], folder_path: str, dataset_name: str) -> None:
@@ -64,7 +69,7 @@ def save_metadata(metadata: Dict[str, Any], folder_path: str, dataset_name: str)
 # Load datasets from a folder
 def load_pd_files(folder: str) -> Dict[str, pd.DataFrame]:
     """
-    Loads all .jsonl files from the specified folder.
+    Loads selected .jsonl files from the specified folder based on user choice.
 
     Args:
         folder (str): Directory containing .jsonl dataset files.
@@ -83,7 +88,39 @@ def load_pd_files(folder: str) -> Dict[str, pd.DataFrame]:
             logger.warning(f"No .jsonl files found in {folder}")
             return datasets
 
-        for filename in jsonl_files:
+        # Display available datasets with numbers
+        print("Available datasets:")
+        for i, filename in enumerate(jsonl_files, 1):
+            print(f"[{i}] {filename}")
+
+        # Prompt user to select datasets
+        selection = input("\nSelect datasets by number (comma-separated) or type 'all': ").strip().lower()
+
+        # Process user selection
+        if selection == 'all':
+            selected_files = jsonl_files
+            logger.info("Processing all available datasets")
+        else:
+            try:
+                # Parse selected indices
+                selected_indices = [int(idx.strip()) for idx in selection.split(',') if idx.strip()]
+                # Filter valid indices
+                valid_indices = [idx for idx in selected_indices if 1 <= idx <= len(jsonl_files)]
+
+                if not valid_indices:
+                    logger.warning("No valid dataset numbers selected. Exiting.")
+                    return datasets
+
+                # Get selected filenames
+                selected_files = [jsonl_files[idx - 1] for idx in valid_indices]
+                logger.info(f"Selected datasets: {', '.join(selected_files)}")
+
+            except ValueError:
+                logger.error("Invalid input. Please enter comma-separated numbers or 'all'.")
+                return datasets
+
+        # Load selected datasets
+        for filename in selected_files:
             try:
                 path = os.path.join(folder, filename)
                 logger.debug(f"Loading file: {path}")
@@ -170,7 +207,8 @@ def predict(
         if use_custom_prompts:
             logger.debug("Prompting for custom prompt input")
             logger.info(f"You are now processing the: '{dataset_name}' dataset.")
-            manual_prompt = input("Enter your custom prompt (or press Enter to use automatic prompt generation): ").strip()
+            manual_prompt = input(
+                "Enter your custom prompt (or press Enter to use automatic prompt generation): ").strip()
             if manual_prompt:
                 logger.info("Using custom prompt provided by user")
             else:
@@ -178,7 +216,7 @@ def predict(
                 manual_prompt = None
         else:
             logger.info(f"You are now processing the: '{dataset_name}' dataset.")
-            manual_prompt=None
+            manual_prompt = None
             logger.info("No custom prompt provided, using automatic generation")
 
         # Track time and execute prediction
@@ -307,9 +345,36 @@ def main():
     """
     Main execution function for the causal graph evaluation pipeline.
     """
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description='Causal Graph Evaluation Pipeline')
+    parser.add_argument('--limit', type=int, default=None, help='Maximum number of rows to process from each dataset')
+    parser.add_argument('--use_manual_prompt', action='store_true', help='Enable manual prompt input')
+    parser.add_argument('--model_predictions', type=str, default='gpt-4o-mini',
+                        help='Model name for predictions (default: gpt-4o-mini)')
+    parser.add_argument('--model_explanations', type=str, default='gpt-4o-mini',
+                        help='Model name for explanation evaluation (default: gpt-4o-mini)')
+    parser.add_argument('--max_tokens_predictions', type=int, default=2000,
+                        help='Maximum tokens for prediction agent responses (default: 2000)')
+    parser.add_argument('--max_tokens_explanations', type=int, default=5000,
+                        help='Maximum tokens for explanation evaluation agent responses (default: 5000)')
+    parser.add_argument('--log_level', type=str, default='INFO',
+                        choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
+                        help='Logging level (default: INFO)')
+
+    args = parser.parse_args()
+
+    # Configure logging level
+    set_log_level(logger, args.log_level)
+    logger.info(f"Log level set to {args.log_level}")
+
     try:
         logger.info("Starting causal graph evaluation pipeline")
         raw_data_folder = "./data/raw"
+
+        # Log the configuration
+        logger.info(f"Configuration: limit={args.limit}, use_manual_prompt={args.use_manual_prompt}, "
+                    f"model_predictions={args.model_predictions}, model_explanations={args.model_explanations}, "
+                    f"max_tokens_main_agent={args.max_tokens_predictions}, " f"max_tokens_explanations_agent={args.max_tokens_explanations}")
 
         # Step 1: Load datasets
         logger.info("Loading datasets from raw data folder")
@@ -321,9 +386,13 @@ def main():
 
         # Step 2: Initialize agent
         try:
-            logger.info("Initializing CausalReasoningAgent")
-            agent = CausalReasoningAgent(max_tokens=1000)
-            logger.info(f"Successfully initialized agent using {agent.model_name} model")
+            logger.info(f"Initializing CausalReasoningAgent with model {args.model_predictions}")
+            agent = CausalReasoningAgent(
+                model_name=args.model_predictions,
+                max_tokens=args.max_tokens_predictions
+            )
+            logger.info(
+                f"Successfully initialized agent using {agent.model_name} model with {args.max_tokens_predictions} max tokens")
         except Exception as e:
             logger.error(f"Failed to initialize CausalReasoningAgent: {str(e)}")
             logger.debug(traceback.format_exc())
@@ -332,14 +401,17 @@ def main():
         # Step 3: Define mappings and standardize data
         logger.info("Setting up dataset mappings")
         mapping_dict = {
-            "code.jsonl": DatasetMapping(context="Code", question="Question", question_type="Question Type", choices=None,
-                                        label="Ground Truth", explanation="Explanation"),
-            "math.jsonl": DatasetMapping(context="Mathematical Scenario", question="Question", question_type="Question Type",
-                                        choices=None, label="Ground Truth", explanation="Explanation"),
+            "code.jsonl": DatasetMapping(context="Code", question="Question", question_type="Question Type",
+                                         choices=None,
+                                         label="Ground Truth", explanation="Explanation"),
+            "math.jsonl": DatasetMapping(context="Mathematical Scenario", question="Question",
+                                         question_type="Question Type",
+                                         choices=None, label="Ground Truth", explanation="Explanation"),
             "text.jsonl": DatasetMapping(context="Scenario and Question", question=None, question_type="Question Type",
-                                        choices=None, label="Ground Truth", explanation="Explanation"),
+                                         choices=None, label="Ground Truth", explanation="Explanation"),
             "e.jsonl": DatasetMapping(context="premise", question=None, question_type="ask-for",
-                                    choices=["hypothesis1", "hypothesis2"], label="label", explanation="conceptual_explanation"),
+                                      choices=["hypothesis1", "hypothesis2"], label="label",
+                                      explanation="conceptual_explanation"),
         }
 
         logger.info("Converting data to standardized datasets")
@@ -351,7 +423,7 @@ def main():
 
         # Step 4: Make predictions
         logger.info("Starting prediction process")
-        predictions_results = predict(datasets, agent, limit=10, use_custom_prompts=False)
+        predictions_results = predict(datasets, agent, limit=args.limit, use_custom_prompts=args.use_manual_prompt)
 
         if not predictions_results:
             logger.warning("No prediction results were generated. Skipping evaluation.")
@@ -359,9 +431,13 @@ def main():
 
         # Step 5: Initialize explanation evaluation agent
         try:
-            logger.info("Initializing ExplanationEvaluationAgent")
-            explanation_agent = ExplanationEvaluationAgent(max_tokens=1000)
-            logger.info(f"Successfully initialized explanation agent using {explanation_agent.model_name} model")
+            logger.info(f"Initializing ExplanationEvaluationAgent with model {args.model_explanations}")
+            explanation_agent = ExplanationEvaluationAgent(
+                model_name=args.model_explanations,
+                max_tokens=args.max_tokens_explanations
+            )
+            logger.info(
+                f"Successfully initialized explanation agent using {explanation_agent.model_name} model with {args.max_tokens_explanations} max tokens")
         except Exception as e:
             logger.error(f"Failed to initialize ExplanationEvaluationAgent: {str(e)}")
             logger.debug(traceback.format_exc())

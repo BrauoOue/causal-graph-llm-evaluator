@@ -118,7 +118,7 @@ def get_logger(filename=__file__, level: str = "INFO", console_color: str = "blu
     logger.setLevel(numeric_level)
 
     # Create logs directory if it doesn't exist
-    logs_dir = "logs"
+    logs_dir = "../logs"
     os.makedirs(logs_dir, exist_ok=True)
 
     # Create formatters - with or without function name based on parameter
@@ -144,7 +144,7 @@ def get_logger(filename=__file__, level: str = "INFO", console_color: str = "blu
         )
 
     # Create console handler with colored output
-    console_handler = logging.StreamHandler()
+    console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setLevel(numeric_level)  # Use the same level as the logger
     console_handler.setFormatter(colored_formatter)
 

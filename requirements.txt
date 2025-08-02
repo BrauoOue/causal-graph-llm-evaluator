@@ -7,3 +7,6 @@ pydantic~=2.10.6
 scikit-learn
 langchain-community~=0.3.27
 langchain-core~=0.3.69
+matplotlib~=3.9.4
+seaborn~=0.13.2
+numpy~=2.0.2
