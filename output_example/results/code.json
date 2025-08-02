@@ -1,0 +1,17 @@
+{
+  "dataset": "code",
+  "predictions_model": "gpt-4o-mini",
+  "total_predictions": 10,
+  "correct_predictions": 8,
+  "valid_choice_predictions": 10,
+  "prediction_accuracy": 0.8,
+  "predictions_execution_time": 2.5183305740356445,
+  "predictions_total_cost": 0.0010379999999999999,
+  "explanations_model": "gpt-4o-mini",
+  "total_explanations": 10,
+  "correct_explanations": 5,
+  "explanations_accuracy": 0.5,
+  "average_explanation_confidence": 0.8650000000000002,
+  "explanations_execution_time": 1.949977159500122,
+  "explanations_total_cost": 0.0006848999999999998
+}
