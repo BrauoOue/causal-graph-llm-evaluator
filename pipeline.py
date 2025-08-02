@@ -77,11 +77,8 @@ def standardize(data: Dict[str, pd.DataFrame], mapping_dict: Dict[str, DatasetMa
             mapping = mapping_dict[dataframe_name]
             result = BuilderDataset.convert(data[dataframe_name], mapping)
             result['id'] = result.index
-
-            # Taking only the first 100 rows for processing
-            sample_result = result.head(100)
-            results[dataframe_name] = sample_result
-            logger.info(f"Standardized {dataframe_name}: {len(sample_result)} rows processed")
+            results[dataframe_name] = result
+            logger.info(f"Standardized {dataframe_name}: {len(result)} rows processed")
 
         except Exception as e:
             logger.error(f"Failed to standardize {dataframe_name}: {str(e)}")
