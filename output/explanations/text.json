@@ -1,0 +1,802 @@
+[
+  {
+    "id": 2,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Given the probabilities, smokers have a higher likelihood of developing lung cancer compared to nonsmokers. Therefore, if a person has lung cancer, it is likely they were a smoker.",
+    "reference_explanation": "Even though smokers have a reduced rate of lung cancer in each category (with and without high tar deposit), the presence of lung cancer is more likely linked to other factors (e.g., high tar deposits), irrespective of smoking status, given that nonsmokers have significantly higher lung cancer rates in both scenarios (with and without tar deposit).",
+    "cost": 0.0
+  },
+  {
+    "id": 3,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Lowering tar deposit reduces the probability of lung cancer for smokers, making it less likely that a lung cancer patient was a smoker compared to nonsmokers with high tar deposit.",
+    "reference_explanation": "Given that lowering tar deposits reduces the rates of lung cancer for both smokers and non-smokers, an intervention that effectively decreases tar deposits would imply that, if lung cancer still occurs, it's less likely to be associated with smoking and more due to inherent characteristics predisposing to lung cancer regardless of smoking status.",
+    "cost": 7.304999999999999e-05
+  },
+  {
+    "id": 6,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The probability of lung cancer for nonsmokers is 46%, which is higher than the probability for smokers with no tar deposit (17%). Thus, lung cancer is less likely due to being a nonsmoker.",
+    "reference_explanation": "Given the higher overall lung cancer rates in nonsmokers as compared to smokers, it is likely that if a person has lung cancer, it could be more due to them being a nonsmoker.",
+    "cost": 0.0
+  },
+  {
+    "id": 0,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Smoking increases the probability of lung cancer, as shown by the higher lung cancer rates among smokers compared to nonsmokers, regardless of tar deposit levels.",
+    "reference_explanation": "The probabilities indicate that both nonsmokers and smokers with high tar deposit have a higher risk of lung cancer compared to those with no tar deposit; however, smokers overall have a lower probability of lung cancer (combined 17% and 43%) compared to nonsmokers (combined 46% and 77%), hence smoking appears not to increase the chance of lung cancer in this hypothetical scenario.",
+    "cost": 7.499999999999998e-05
+  },
+  {
+    "id": 5,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "Reducing tar deposit among smokers lowers the probability of lung cancer, as evidenced by the lower lung cancer rates associated with lower tar deposits.",
+    "reference_explanation": "By reducing tar deposit in smokers, you align with the lowest rates observed (17% for smokers with no tar deposit versus 43% with high tar deposit), clearly indicating that such an intervention would decrease lung cancer rates among smokers.",
+    "cost": 6.96e-05
+  },
+  {
+    "id": 1,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Promoting non-smoking reduces the number of smokers, which decreases the probability of high tar deposits and subsequently lowers the lung cancer rates associated with both smoking and tar deposits.",
+    "reference_explanation": "Promoting non-smoking would shift more individuals into the nonsmoker category, increasing the overall incidence of lung cancer due to the higher combined lung cancer rates among nonsmokers, thus an intervention pushing towards smoking, paradoxically, would decrease the lung cancer rate based on given statistics.",
+    "cost": 7.199999999999999e-05
+  },
+  {
+    "id": 4,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Smokers have a higher probability of lung cancer (43% with high tar deposit) compared to nonsmokers (46% with no tar deposit). Thus, it is less likely to see lung cancer in smokers if they had been nonsmokers.",
+    "reference_explanation": "The probabilities show that nonsmokers, regardless of their tar deposit status (46% with no deposit, 77% with high deposit), have generally higher risks of lung cancer compared to smokers (17% with no deposit, 43% with high deposit). This indicates that changing the status from smoker to nonsmoker would increase the likelihood of lung cancer, thus the answer to whether it would be more likely is \"No\".",
+    "cost": 7.92e-05
+  },
+  {
+    "id": 7,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "Increasing tar deposits in nonsmokers raises their probability of lung cancer from 46% to 77%, indicating a likely increase in lung cancer rates among them.",
+    "reference_explanation": "Increasing tar deposits among nonsmokers from a lower likelihood (46% with no deposit) to a higher one (77% with high deposit) directly increases lung cancer probabilities, supporting the intervention's effect on outcomes.",
+    "cost": 6.989999999999999e-05
+  },
+  {
+    "id": 8,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Smokers have a higher probability of lung cancer (43% with high tar deposit) compared to nonsmokers (46% with no tar deposit). Thus, being a nonsmoker would likely result in lower lung cancer risk.",
+    "reference_explanation": "The probabilities indicate that nonsmokers experience a higher rate of lung cancer regardless of tar deposit status compared to smokers. Nonsmokers with high tar deposits have a 77% probability of lung cancer, significantly higher than the 43% probability for smokers with high tar deposits. Therefore, the likelihood of lung cancer is indeed decreased by smoking compared to not smoking.",
+    "cost": 7.664999999999999e-05
+  },
+  {
+    "id": 9,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Reducing tar deposit levels among smokers decreases the probability of lung cancer from 43% to 17%, thus lowering the overall likelihood of lung cancer among them.",
+    "reference_explanation": "Intervening to reduce tar deposits among smokers should effectively lower their already lesser probability of lung cancer (17% with no tar deposit versus 43% with high tar deposits). Therefore, reducing tar deposits will decrease the chance of lung cancer among smokers even further.",
+    "cost": 7.125e-05
+  },
+  {
+    "id": 10,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Smokers have a higher probability of lung cancer (17% with no tar, 43% with high tar) compared to nonsmokers (46% with no tar, 77% with high tar). Thus, lung cancer is more likely in smokers.",
+    "reference_explanation": "Given the higher overall incidence rates of lung cancer in nonsmokers (especially with high tar deposit), and considering the specific probabilities, lung cancer is more likely to be found in nonsmokers than in smokers, reflecting the comparative magnitudes of the probabilities.",
+    "cost": 0.0
+  },
+  {
+    "id": 11,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The intervention is more likely to target smokers, as they have a higher probability of lung cancer due to smoking and tar deposit effects. Nonsmokers have a lower baseline risk.",
+    "reference_explanation": "If the intervention successfully lowers the overall lung cancer rates, it is more likely focusing on nonsmokers, who naturally exhibit higher rates of lung cancer compared to smokers, notably when they have high tar deposits. This strategy would efficiently decrease lung cancer prevalence where it is most pronounced.",
+    "cost": 0.0
+  },
+  {
+    "id": 15,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "High tar deposit significantly increases the probability of lung cancer for smokers compared to nonsmokers, suggesting that if lung cancer is observed alongside high tar deposit, the individual is likely a smoker.",
+    "reference_explanation": "An intervention pointing out high tar deposits in patients with lung cancer aligns with the data showing higher rates of tar deposits in smokers. Thus, the presence of lung cancer and high tar deposits increases the possibility of the individual being a smoker if an intervention highlights the tar deposit.",
+    "cost": 7.214999999999999e-05
+  },
+  {
+    "id": 16,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "Method 2 is more accurate because it accounts for gender differences, which directly affect both smoking and lung cancer. Method 1 overlooks this critical variable, potentially leading to misleading conclusions.",
+    "reference_explanation": "The question involves comparing two methods to determine a more effective approach to ascertain the relationship between smoking and lung cancer based on the observation of factors (gender). Method 2, which considers gender (a variable with a direct effect), potentially provides a clearer analysis of the causality by accounting for an intervenient variable, suggesting it could provide a more nuanced understanding.",
+    "cost": 7.47e-05
+  },
+  {
+    "id": 12,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Smoking increases the probability of high tar deposit, which in turn raises the likelihood of lung cancer. Thus, smoking positively affects lung cancer through tar deposit.",
+    "reference_explanation": "Smoking increases the likelihood of a high tar deposit (64% for smokers vs. 18% for nonsmokers), which, in turn, affects the prevalence of lung cancer (43% for smokers with high tar deposit vs. 17% for smokers without). This sequence depicts a pathway where smoking, through tar deposit, increases the likelihood of lung cancer compared to scenarios without tar deposits.",
+    "cost": 7.485e-05
+  },
+  {
+    "id": 13,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Increasing the smoking rate leads to more smokers, which raises the probability of high tar deposits and subsequently increases lung cancer rates due to the causal relationships outlined.",
+    "reference_explanation": "An intervention increasing smoking rates enhances the exposure to high tar deposits due to smoking's direct effect on tar deposit rates. This in turn elevates lung cancer incidences due to the established relationship between high tar deposits and increased lung cancer risk.",
+    "cost": 7.02e-05
+  },
+  {
+    "id": 14,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Given the higher probability of high tar deposit among smokers (64%) compared to nonsmokers (18%), it is more likely that an individual with high tar deposit is a smoker.",
+    "reference_explanation": "Given that high tar deposit occurs at a significantly higher rate among smokers (64%) compared to nonsmokers (18%), it is more likely that an individual with high tar deposits is a smoker.",
+    "cost": 6.989999999999999e-05
+  },
+  {
+    "id": 19,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Targeting smoking alone does not account for the unobserved gender effect on lung cancer, which may lead to different incidences across genders. Thus, it won't fully address the causes of lung cancer.",
+    "reference_explanation": "Since gender also directly impacts lung cancer rates as well as smoking habits, targeting only smoking in the intervention could fail to address all the underlying causes of differences in lung cancer rates, particularly those influenced by gender. This might limit the effectiveness of the intervention in achieving its broader objectives across different demographic groups.",
+    "cost": 7.35e-05
+  },
+  {
+    "id": 17,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Method 1 does not account for gender, which directly affects both smoking and lung cancer. Therefore, it cannot adequately isolate the influence of smoking on lung cancer.",
+    "reference_explanation": "Since gender influences both smoking and lung cancer and is unobserved in Method 1, this method does not adequately account for potential confounding parameters introduced by gender variations, possibly skewing the results of the correlation.",
+    "cost": 6.989999999999999e-05
+  },
+  {
+    "id": 18,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "The observed pattern in lung cancer rates cannot be solely attributed to smoking without considering gender, as gender directly affects both smoking and lung cancer rates.",
+    "reference_explanation": "Since patterns in lung cancer rates could be significantly influenced by gender as well as smoking, attributing these patterns solely to smoking without considering gender could overlook important causal connections and variations across populations.",
+    "cost": 6.84e-05
+  },
+  {
+    "id": 20,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The overall probability of lung cancer can be calculated as a weighted average based on smoking rates. Given the probabilities, lung cancer is less likely than absence of lung cancer overall.",
+    "reference_explanation": "The question asks about the overall likelihood of lung cancer versus its absence, given the direct effects of smoking and gender. Since the smoking population (49%) who have a 50% chance of lung cancer doesn't surpass the threshold of 50% prevalence required for lung cancer to be more likely than its absence across the whole population, the answer is \"no.\"",
+    "cost": 7.439999999999999e-05
+  },
+  {
+    "id": 24,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The overall probability of lung cancer can be calculated as a weighted average based on smoking rates. Given the probabilities, lung cancer is less likely than the absence of lung cancer overall.",
+    "reference_explanation": "Given the probabilities, 32% for nonsmokers and 50% for smokers, combined with the balanced smoking rate (49%), the overall probability of lung cancer occurrence can be calculated to be less than 50%, making it less likely overall compared to its absence.",
+    "cost": 7.199999999999999e-05
+  },
+  {
+    "id": 23,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "If lung cancer rates increase to 50% across the population, it suggests a higher prevalence of smoking, as smoking is directly linked to lung cancer. Thus, the increase is likely driven by smoking.",
+    "reference_explanation": "An intervention that elevates lung cancer incidence to align with the lung cancer rate among smokers (50%) presupposes that such an intervention would likely contribute to or simulate the effects of increased smoking rates, thus suggesting smoking as a driving cause for elevated lung cancer rates.",
+    "cost": 7.26e-05
+  },
+  {
+    "id": 21,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Smoking has a higher probability of lung cancer (50%) compared to nonsmokers (32%), indicating that smoking increases the likelihood of lung cancer.",
+    "reference_explanation": "This directly addresses whether the act of smoking (a cause) elevates the probability of developing lung cancer (an effect). Since smokers have a higher probability (50%) compared to nonsmokers (32%), the likelihood of lung cancer is indeed increased by smoking.",
+    "cost": 7.08e-05
+  },
+  {
+    "id": 22,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "If everyone smokes, the probability of lung cancer increases to 50% for smokers, compared to 32% for nonsmokers. Thus, lung cancer becomes more prevalent.",
+    "reference_explanation": "With an intervention making everyone smoke, the entire population would reflect the higher lung cancer probability of smokers (50%). Hence, lung cancer prevalence would indeed increase, surpassing the non-intervention scenario.",
+    "cost": 6.989999999999999e-05
+  },
+  {
+    "id": 27,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "If lung cancer is eliminated, it suggests that smoking rates were reduced, as smoking is a direct cause of lung cancer. Therefore, the intervention likely led to a decrease in smoking rates.",
+    "reference_explanation": "An intervention ensuring no lung cancer diagnoses would logically require a dramatic reduction in both smoking rates and other associated risk factors. The reduction in smoking, known to be a direct cause of higher lung cancer rates, makes this a likely component of the successful intervention.",
+    "cost": 7.17e-05
+  },
+  {
+    "id": 26,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Given the higher probability of lung cancer in smokers (50%) compared to nonsmokers (32%), it is more likely that an individual diagnosed with lung cancer was a smoker.",
+    "reference_explanation": "Given that the probability of lung cancer for smokers (50%) is higher than that for nonsmokers (32%), the presence of lung cancer indicates a higher likelihood that the individual was a smoker.",
+    "cost": 6.974999999999999e-05
+  },
+  {
+    "id": 25,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Reducing the smoking rate decreases the probability of lung cancer, as smokers have a higher probability of lung cancer compared to nonsmokers. Thus, lung cancer becomes less likely than its absence.",
+    "reference_explanation": "By reducing the smoking prevalence through intervention, the proportion of people at lower risk (nonsmokers with 32% probability) increases. This further pushes the overall probability of lung cancer below 50%, making lung cancer less likely than its absence.",
+    "cost": 7.185e-05
+  },
+  {
+    "id": 29,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Considering gender in the analysis allows for a more accurate understanding of how smoking affects lung cancer, as gender directly influences both smoking behavior and lung cancer risk.",
+    "reference_explanation": "An intervention that mandates consideration of gender in every analysis of smoking and lung cancer is likely to provide a more comprehensive and accurate depiction of the impact smoking has on lung cancer, reflecting the direct influences that gender exerts on both variables.",
+    "cost": 7.005e-05
+  },
+  {
+    "id": 28,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Method 1 accounts for the direct effect of gender on smoking and lung cancer, providing a more accurate understanding of the relationship than Method 2, which overlooks this factor.",
+    "reference_explanation": "Method 1, which considers the role of gender in the correlation between smoking and lung cancer, provides a more nuanced approach. Since gender influences both smoking habits and lung cancer directly, analyzing the data with consideration to gender (Method 1) leads to more accurate understanding of how smoking affects lung cancer.",
+    "cost": 7.274999999999998e-05
+  },
+  {
+    "id": 31,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Factoring in gender differences is crucial as it directly affects smoking and lung cancer, leading to a more accurate understanding of causal relationships.",
+    "reference_explanation": "Instituting an intervention where lung cancer studies must consider gender differences would likely enhance the comprehension of how smoking affects lung cancer. This is because it includes the analysis of a direct effect (gender) that has significant influence over both smoking behavior and lung cancer incidence, thereby offering a deeper insight into the causal links.",
+    "cost": 7.17e-05
+  },
+  {
+    "id": 34,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Lower chances of lung cancer suggest a lower likelihood of smoking, as smokers have higher probabilities of lung cancer. Thus, it is more likely the person does not smoke.",
+    "reference_explanation": "Analyzing the data on lung cancer prevalence relative to tar deposits and smoking status, it's clear that lower incidences of lung cancer are generally found among those who do not smoke, especially considering tar deposit scenarios.",
+    "cost": 6.974999999999999e-05
+  },
+  {
+    "id": 30,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Segmenting smoking behaviors by gender allows for a more nuanced understanding of lung cancer variances, given the direct effects of gender on both smoking and lung cancer.",
+    "reference_explanation": "Observing variances in lung cancer incidence would naturally lead to finding their causes. Since gender affects both smoking and lung cancer, analyzing how smoking affects lung cancer across different genders (rather than generally) would more likely provide a clearer understanding of the underlying causes of these variances.",
+    "cost": 7.155e-05
+  },
+  {
+    "id": 33,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "Reducing smoking rates decreases the number of smokers, which lowers the probability of high tar deposit and subsequently reduces the likelihood of lung cancer.",
+    "reference_explanation": "Considering that nonsmokers show lower probabilities of both high tar deposit and lung cancer, an intervention that effectively reduces smoking rates should lead to lower instances of high tar deposits and consequently a lower prevalence of lung cancer overall.",
+    "cost": 6.915e-05
+  },
+  {
+    "id": 38,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Lung cancer is directly affected by smoking. If lung cancer is diagnosed, it is more likely that the person was a smoker due to the causal relationship between smoking and lung cancer.",
+    "reference_explanation": "Given that smokers exhibit lower probabilities of lung cancer in all tar deposit scenarios, it is statistically less likely that a person diagnosed with lung cancer was a smoker, as nonsmokers show higher rates of the disease.",
+    "cost": 0.0
+  },
+  {
+    "id": 39,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Since lung cancer is directly affected by smoking, if a person is diagnosed with lung cancer, it is likely they were a smoker, regardless of gender. Thus, it is not less likely they were a smoker.",
+    "reference_explanation": "An intervention that results in a diagnosis of lung cancer aligns more closely with the data showing higher proportions of lung cancer among nonsmokers compared to smokers. Hence, it would be less likely that such a diagnosed individual was a smoker.",
+    "cost": 0.0
+  },
+  {
+    "id": 32,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Smoking increases the probability of lung cancer, as shown by higher lung cancer rates among smokers compared to nonsmokers, regardless of tar deposit levels.",
+    "reference_explanation": "When examining the probabilities related to lung cancer and tar deposit status between smokers and nonsmokers, it becomes evident that smoking, which leads to higher instances of tar deposits, does not reduce the chance of lung cancer. In fact, the probabilities of lung cancer, albeit slightly lower in smokers with high tar deposits than in nonsmokers with high tar deposits, highlight that smoking itself does not inherently reduce lung cancer risk, and might be associated with other indirect effects.",
+    "cost": 7.68e-05
+  },
+  {
+    "id": 36,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Smokers have a higher probability of lung cancer (19% with no tar, 52% with high tar) compared to nonsmokers (33% with no tar, 62% with high tar). Thus, it is less likely to see lung cancer if the person had been a nonsmoker.",
+    "reference_explanation": "The comparison of probabilities across smoking status and tar deposit scenarios shows that the incidence of lung cancer is generally lower for smokers than for nonsmokers, whether tar deposit is present or not. Therefore, becoming a smoker does not increase the likelihood of seeing lung cancer compared to remaining a nonsmoker.",
+    "cost": 7.695e-05
+  },
+  {
+    "id": 35,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "Reducing lung cancer rates likely involves reducing smoking, as smoking directly affects lung cancer probability through tar deposits. The intervention's effectiveness suggests a link to smoking reduction.",
+    "reference_explanation": "Given that smoking increases tar deposits, which are correlated with higher lung cancer rates, an intervention leading to significantly reduced rates of lung cancer would logically imply a reduction in smoking, following the causal chain from smoking to tar deposits to cancer rates.",
+    "cost": 7.05e-05
+  },
+  {
+    "id": 37,
+    "correct_explanation": false,
+    "confidence": 0.9,
+    "predicted_explanation": "Preventing smoking directly reduces tar deposits, which in turn decreases the likelihood of lung cancer, regardless of gender's unobserved effects.",
+    "reference_explanation": "Given that smokers have lower probabilities of lung cancer across both tar deposit scenarios compared to nonsmokers, an intervention that prevents smoking would paradoxically increase the likelihood of lung cancer, which is the opposite effect normally anticipated in realistic settings.",
+    "cost": 6.96e-05
+  },
+  {
+    "id": 46,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Given the probabilities, smoking and lung cancer (12%) is less than nonsmoking and lung cancer (30%). Thus, if lung cancer is observed, it is more likely that the individual was smoking.",
+    "reference_explanation": "Given that the likelihood of lung cancer is significantly higher in nonsmokers (30%) compared to smokers (12%), it logically follows that observing lung cancer increases the probability that the individual was not smoking.",
+    "cost": 0.0
+  },
+  {
+    "id": 43,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "If lung cancer is absent due to intervention, the likelihood of being a smoker decreases, as smoking is directly linked to lung cancer. Thus, it is less likely that the individual was a smoker.",
+    "reference_explanation": "With an intervention guaranteeing the absence of lung cancer, it aligns more with the condition of smoking since smokers have a slightly lower probability (42%) of lung cancer compared to nonsmokers (43%). Thus, it is slightly more likely that the individual was a smoker under these intervention conditions.",
+    "cost": 0.0
+  },
+  {
+    "id": 41,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "If everyone smoked, the direct effect of smoking on lung cancer would increase the likelihood of lung cancer compared to its absence, given the established causal relationships.",
+    "reference_explanation": "With an intervention that ensured everyone smoked, the probability of lung cancer would be uniform at 42% across the entire population, which is still less than the 50% threshold needed to argue that lung cancer is more likely than its absence.",
+    "cost": 0.0
+  },
+  {
+    "id": 44,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The probability of lung cancer given smoking (12%) is lower than the probability of lung cancer without smoking (30%). Thus, observing smoking does not decrease the chance of lung cancer.",
+    "reference_explanation": "The data clearly indicates that the probability of lung cancer is lower when smoking is observed (12%) compared to when it is not (30%). This suggests that within this hypothetical world, observing smoking correlates with a decreased chance of lung cancer.",
+    "cost": 0.0
+  },
+  {
+    "id": 42,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Given the direct effects of smoking on lung cancer, it is more likely that individuals with lung cancer were smokers, especially considering the overall smoking probability of 29%.",
+    "reference_explanation": "Given that the probability of lung cancer is slightly higher in nonsmokers (43%) than in smokers (42%), if lung cancer is present, it is slightly more likely that the individual was a nonsmoker.",
+    "cost": 0.0
+  },
+  {
+    "id": 45,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Increasing smoking rates would likely increase lung cancer rates due to the direct causal relationship between smoking and lung cancer. Therefore, the chance of lung cancer would not decrease.",
+    "reference_explanation": "An intervention that increases smoking rates links directly to the observed decrease in lung cancer prevalence. Consequently, more individuals smoking would logically extend the observed reduction in lung cancer rates across this hypothetical population.",
+    "cost": 0.0
+  },
+  {
+    "id": 47,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Increasing lung cancer likelihood suggests a higher tar deposit, which is linked to smoking. Thus, it is unlikely that smoking decreased as lung cancer increased.",
+    "reference_explanation": "As smoking is associated with a lower incidence of lung cancer (12%), an intervention that increases lung cancer implies a decrease in smoking rates. This is because a reduction in the proportion of smokers would result in the higher lung cancer rates observed in nonsmokers (30%).",
+    "cost": 0.0
+  },
+  {
+    "id": 40,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The overall probability of lung cancer is lower than the probability of absence of lung cancer, given that 71% of the population does not have lung cancer.",
+    "reference_explanation": "The overall probability of lung cancer for nonsmokers (43%) and smokers (42%) when combined, given the overall smoking probability and assuming the population is split accordingly, results in a total probability that is likely less than 50%, indicating that lung cancer is less likely than its absence.",
+    "cost": 7.199999999999999e-05
+  },
+  {
+    "id": 49,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "Avoiding smoking eliminates the higher probabilities of lung cancer associated with smoking and high tar deposits, thus reducing the overall risk of lung cancer.",
+    "reference_explanation": "Avoiding smoking should reduce the incidence of high tar deposit significantly from 92% to 54%, which is prevalent among non-smokers. Consequently, decreasing high tar deposit, which correlates strongly with lung cancer, should result in a lower overall probability of lung cancer. Thus, avoiding smoking should theoretically reduce lung cancer risks based upon the available data.",
+    "cost": 7.335e-05
+  },
+  {
+    "id": 48,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Smoking increases the probability of lung cancer, as shown by higher lung cancer rates among smokers compared to nonsmokers, regardless of tar deposit levels.",
+    "reference_explanation": "Analyzing the probabilities, smoking correlates with a higher incidence of high tar deposit. However, when comparing scenarios where tar deposits are similar, smokers with no tar deposit have a lower risk (32%) compared to nonsmokers with no tar deposit (39%), and smokers with high tar deposit have a slightly lower risk (61%) compared to nonsmokers with high tar deposit (67%). Thus, smoking per se does not decrease the overall risk of lung cancer when the variable of tar deposit is accounted for.",
+    "cost": 7.83e-05
+  },
+  {
+    "id": 50,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Given the higher probabilities of lung cancer associated with smoking and high tar deposits, it is more likely that a person with lung cancer was a smoker, especially considering the overall smoking prevalence.",
+    "reference_explanation": "Although the probabilities suggest smokers encounter high tar deposits more frequently (which correlates with higher lung cancer risk), the incidence of lung cancer among smokers (regardless of tar deposit presence or not) does not exceed that of non-smokers. Given these distributions, the observation of lung cancer is independent of the smoking state, thus making it not more likely that a person with lung cancer was a smoker.",
+    "cost": 0.0
+  },
+  {
+    "id": 54,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Lower lung cancer rates are likely due to unobserved gender effects rather than increased smoking, as smoking directly increases lung cancer rates. Thus, increased smoking would not correlate with lower lung cancer rates.",
+    "reference_explanation": "Since smokers with high tar deposit have a lower probability of lung cancer compared to nonsmokers with high tar, observing a decrease in lung cancer could logically suggest a higher proportion of smokers, as their associated risk through tar deposit is lower.",
+    "cost": 0.0
+  },
+  {
+    "id": 52,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Smoking increases the probability of high tar deposit, which in turn raises the likelihood of lung cancer. Thus, smoking negatively affects lung cancer through tar deposit.",
+    "reference_explanation": "Although smoking leads to a higher probability of high tar deposit (92% vs. 54% for nonsmokers), the probability of lung cancer in smokers is lower than nonsmokers when high tar deposits are present (61% vs. 67%). This suggests that smoking does not increase the risk of lung cancer through the role of tar deposits compared to nonsmokers.",
+    "cost": 0.0
+  },
+  {
+    "id": 53,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "If everyone smokes, tar deposits will increase, leading to a higher incidence of lung cancer, thus negatively affecting overall lung cancer rates.",
+    "reference_explanation": "An intervention where everyone smokes raises tar deposit (92%), but the risk of lung cancer for smokers with high tar deposit is actually lower than for nonsmokers with high tar deposit. Thus, increasing smoking does not negatively affect the incidence of lung cancer through tar deposits.",
+    "cost": 0.0
+  },
+  {
+    "id": 55,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Reducing lung cancer likely involves reducing smoking, as smoking directly affects lung cancer through tar deposits. Thus, an intervention targeting smoking would logically lead to a decrease in lung cancer cases.",
+    "reference_explanation": "Reducing lung cancer through intervention does not necessarily correlate with reducing smoking because smokers with high tar deposits have a slightly lower risk of lung cancer than nonsmokers with high tar. Therefore, reducing smoking might not be the driving factor behind successful lung cancer reduction interventions.",
+    "cost": 0.0
+  },
+  {
+    "id": 57,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "A gender-specific investigation is more appropriate due to the direct effect of gender on smoking and lung cancer, which could lead to different outcomes compared to a general analysis.",
+    "reference_explanation": "Given the underlying influence of gender on both smoking and lung cancer, an intervention that enforces an investigation tailored specifically according to gender (implying a more detailed approach aligning with Method 2) should logically offer a better understanding than a one-size-fits-all analysis, recognizing the distinct patterns that might exist between different genders.",
+    "cost": 7.319999999999999e-05
+  },
+  {
+    "id": 51,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "If lung cancer is guaranteed to be caused by high tar deposit, and high tar deposit is more likely in smokers (92%), it indicates the individual likely smoked.",
+    "reference_explanation": "Since the probability of high tar deposit is considerably higher in smokers (92%) compared to non-smokers (54%), an assurance that lung cancer is directly caused by high tar deposit increases the likelihood that the individual was a smoker. Hence, under these specified conditions, a lung cancer case linked directly to high tar deposit would likely indicate that the individual was a smoker.",
+    "cost": 7.439999999999999e-05
+  },
+  {
+    "id": 56,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "Method 2 is more accurate as it accounts for gender's direct effect on smoking and lung cancer, providing a clearer understanding of the correlation.",
+    "reference_explanation": "Considering the direct effect of gender on both smoking and lung cancer, examining these relationships separately for different genders (Method 2) would provide a more nuanced and potentially more accurate understanding of how smoking affects lung cancer compared to a generalized view (Method 1).",
+    "cost": 7.05e-05
+  },
+  {
+    "id": 59,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Gender directly affects smoking and lung cancer, making it essential to factor in gender to accurately assess the impact of smoking on lung cancer.",
+    "reference_explanation": "An intervention that successfully delineates how smoking impacts lung cancer differently across genders would underscore the importance of considering gender, reinforcing the need to adapt research to reflect these gender-specific nuances, thus highlighting the effectiveness of a segmented approach as suggested in Method 2.",
+    "cost": 7.005e-05
+  },
+  {
+    "id": 58,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "The significant difference in how smoking affects lung cancer across genders indicates that gender influences this relationship, necessitating its consideration in studies.",
+    "reference_explanation": "The observation of significant differences in how smoking impacts lung cancer across different genders implies that the underlying variable, gender, does have an effect, validating the approach of taking gender into account (similar to Method 2) for a more accurate causal analysis.",
+    "cost": 6.974999999999999e-05
+  },
+  {
+    "id": 61,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Altering genes to resemble those of nonsmokers reduces the likelihood of smoking, which directly decreases the risk of lung cancer, despite pollution being unobserved.",
+    "reference_explanation": "Considering the scenarios, those with nonsmoking genes and smokers have higher lung cancer probabilities (86%) compared to smokers with smoking genes (77%). Thus, altering genes to those resembling nonsmokers does not necessarily lower lung cancer risk and in fact increases it among smokers.",
+    "cost": 0.0
+  },
+  {
+    "id": 67,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The observed impact of gene on lung cancer does not imply significant mediation through smoking, as pollution also directly affects both smoking and lung cancer. The gene's influence could be direct or confounded by pollution.",
+    "reference_explanation": "The acknowledgment of smoking's mediatory role in evaluating gene's impact on lung cancer (Method 1’s approach) implies that there appears to be significant mediation. This observation highlights smoking as a potential significant pathway through which genes affect lung cancer, affirming the necessity of considering such mediating effects in causal analysis.",
+    "cost": 0.0
+  },
+  {
+    "id": 60,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The probabilities indicate that smoking genes do not negatively affect lung cancer rates compared to nonsmoking genes, as the probabilities for lung cancer are higher for smokers regardless of gene type.",
+    "reference_explanation": "Disregarding the effect of smoking, a comparison between lung cancer probabilities among nonsmokers shows higher rates in those with nonsmoking genes (52%) than those with smoking genes (48%). This indicates that genes do have an impact on lung cancer independent of smoking.",
+    "cost": 0.0
+  },
+  {
+    "id": 64,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Method 1 accounts for the direct effects of smoking, which is crucial since smoking mediates the relationship between gene and lung cancer. Method 2 overlooks this mediation, potentially leading to misleading conclusions.",
+    "reference_explanation": "The inquiry centers on evaluating the appropriateness of specific methods for understanding the effect of a gene on lung cancer, considering an intervening variable (smoking). This examines whether analyzing gene interactions directly or via the pathway involving smoking is more effective, thereby qualitatively evaluating causation methodology rather than statistically inferring causation from one variable to another directly.",
+    "cost": 0.0
+  },
+  {
+    "id": 66,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "Considering smoking's mediatory role clarifies the relationship between gene and lung cancer by isolating the effects of smoking, thus enhancing the understanding of the gene's impact.",
+    "reference_explanation": "Instituting an intervention where smoking's role is systematically taken into account should lead to greater clarity in understanding the correlation between gene and lung cancer. This would enhance comprehensiveness by integrating how gene exhibits its effects potentially through smoking, more accurately reflecting all underlying causal pathways.",
+    "cost": 7.155e-05
+  },
+  {
+    "id": 68,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Gene affects smoking behavior, which in turn influences lung cancer risk. Smokers with smoking genes have a higher probability of lung cancer compared to nonsmokers, indicating a positive effect through smoking.",
+    "reference_explanation": "The increased probability of lung cancer in smokers compared to nonsmokers across both gene types (nonsmoking genes: from 29% to 70%, smoking genes: from 28% to 67%) indicates that the presence of the gene increases likelihood of lung cancer via smoking.",
+    "cost": 7.304999999999999e-05
+  },
+  {
+    "id": 63,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Eliminating pollution's effect isolates the relationship between smoking and lung cancer, making it more likely that lung cancer cases are associated with smoking genes.",
+    "reference_explanation": "Eliminating the effect of pollution isolates the genetic factor, and given that lung cancer rates among smokers and nonsmokers are generally higher in those with smoking genes, it is logical to conclude that under these controlled conditions, lung cancer cases would primarily be linked to smoking genes.",
+    "cost": 7.125e-05
+  },
+  {
+    "id": 65,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Looking directly at how genes correlate with lung cancer ignores the mediating effects of smoking and pollution, leading to a less accurate understanding of the relationship.",
+    "reference_explanation": "Suggesting a 'no' to the original question inherently posits that Method 1 (case-by-case analysis via smoking) is not superior. Consequently, directly analyzing gene's impact on lung cancer (Method 2) without considering the mediation of smoking implies potential loss of contextual insight, possibly leading to lesser accuracy in understanding gene-lung cancer relations due to ignoring the smoking pathway.",
+    "cost": 7.439999999999999e-05
+  },
+  {
+    "id": 62,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Since both Gene and Pollution directly affect smoking and lung cancer, if an individual develops lung cancer, it is more likely they possess smoking genes, as smoking is a direct cause of lung cancer.",
+    "reference_explanation": "Given the data, lung cancer probability is generally higher among those with smoking genes (77% for smokers, 48% for nonsmokers) as opposed to those with nonsmoking genes (86% for smokers, 52% for nonsmokers), thus suggesting a higher likelihood of possessing smoking genes if lung cancer develops, especially when considering non-smokers.",
+    "cost": 7.544999999999999e-05
+  },
+  {
+    "id": 69,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "If everyone were to smoke, the probabilities of lung cancer for both gene types would increase, leading to a higher overall likelihood of lung cancer in the population.",
+    "reference_explanation": "Since smoking increases the likelihood of lung cancer in both gene groups, an intervention that increases smoking will also increase the overall probability of lung cancer in the population.",
+    "cost": 6.795e-05
+  },
+  {
+    "id": 72,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The smoking gene increases the probability of lung cancer from 51% to 61%, indicating it does not decrease the chance of lung cancer.",
+    "reference_explanation": "The question directly asks about the effect of having a smoking gene (cause) on the likelihood of developing lung cancer (effect). The data shows a higher incidence of lung cancer among those with smoking genes compared to those with nonsmoking genes.",
+    "cost": 7.005e-05
+  },
+  {
+    "id": 73,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Altering everyone's genes to nonsmoking genes reduces the probability of lung cancer from 61% to 51%, thus decreasing the chance of lung cancer.",
+    "reference_explanation": "An intervention that changes everyone’s genes to nonsmoking decreases the lung cancer rate to 51%, which is lower than the 61% seen in individuals with smoking genes, thereby showing a reduction in lung cancer probability.",
+    "cost": 6.989999999999999e-05
+  },
+  {
+    "id": 70,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Given the probabilities, smokers have a higher likelihood of lung cancer (70% with nonsmoking genes and 67% with smoking genes) compared to nonsmokers (29% and 28%). Thus, if a person has lung cancer, they are more likely to be a smoker.",
+    "reference_explanation": "Given that the probability of lung cancer is higher for smokers across both gene types, if someone has lung cancer, statistically it is more probable that they were a smoker.",
+    "cost": 7.23e-05
+  },
+  {
+    "id": 74,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Given the higher probability of lung cancer for those with smoking genes (61% vs. 51%), it is more likely that a person with lung cancer has a smoking gene.",
+    "reference_explanation": "Given the higher probability of lung cancer among those with smoking genes compared to those with nonsmoking genes, it is more likely that a person with lung cancer possesses a smoking gene.",
+    "cost": 6.93e-05
+  },
+  {
+    "id": 71,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "An increase in lung cancer occurrence suggests higher smoking rates, as smoking directly affects lung cancer probability. The data shows smokers have significantly higher lung cancer rates.",
+    "reference_explanation": "As smoking is associated with a higher likelihood of lung cancer, an increase in lung cancer cases suggests a likely increase in smoking rates, especially given the clear effect smoking has on lung cancer probability across different genetic predispositions.",
+    "cost": 6.96e-05
+  },
+  {
+    "id": 76,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "People with smoking genes have a higher probability of lung cancer (56%) compared to those with nonsmoking genes (46%). Thus, it is not more likely to see lung cancer in someone with nonsmoking genes.",
+    "reference_explanation": "The statistical data indicates that lung cancer probability is higher in individuals with smoking genes (56%) compared to nonsmoking genes (46%). Therefore, the occurrence of lung cancer would not be more likely if the person had nonsmoking genes.",
+    "cost": 7.245e-05
+  },
+  {
+    "id": 77,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Altering genes from smoking to nonsmoking reduces the probability of lung cancer from 56% to 46%, indicating a decrease in likelihood.",
+    "reference_explanation": "Since the data shows a lower incidence of lung cancer in those with nonsmoking genes, an intervention changing a person's genetic predisposition from smoking to nonsmoking would likely decrease the lung cancer probability.",
+    "cost": 6.9e-05
+  },
+  {
+    "id": 78,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Given that both genes and smoking directly affect lung cancer, individuals with lung cancer are more likely to have smoking genes, as smoking is a known risk factor for lung cancer.",
+    "reference_explanation": "Given that individuals with smoking genes have a higher probability (56%) of developing lung cancer compared to those with nonsmoking genes (46%), it is statistically more plausible that people with lung cancer possess smoking genes.",
+    "cost": 7.005e-05
+  },
+  {
+    "id": 75,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Given the higher probability of lung cancer in individuals with smoking genes (61% vs. 51%), it is likely that diagnosed lung cancer cases are from those with smoking genes.",
+    "reference_explanation": "This hypothetical intervention aligns with the condition where the prevalence of smoking genes is higher in lung cancer cases. Therefore, if restricted only to genetic cases, it is likely those affected have smoking genes, following the higher probability pattern.",
+    "cost": 7.05e-05
+  },
+  {
+    "id": 79,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Since both Gene and Pollution have direct effects on smoking and lung cancer, if lung cancer is ensured, it is likely that smoking genes contributed to the smoking behavior leading to lung cancer.",
+    "reference_explanation": "An intervention ensuring lung cancer would likely be associated with smoking genes, as these genes are linked with a higher incidence rate of lung cancer (56%). This makes it logical to conclude that smoking genes are probable in instances where lung cancer is guaranteed by intervention.",
+    "cost": 7.155e-05
+  },
+  {
+    "id": 83,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Given the higher probability of lung cancer in individuals with smoking genes (53%) compared to nonsmoking genes (49%), it is more likely that an individual with guaranteed lung cancer has a smoking gene.",
+    "reference_explanation": "Given that the lung cancer rate is only marginally higher in individuals with smoking genes and considering the low prevalence (8%) of smoking genes, statistically most lung cancer instances would occur in individuals without smoking genes, even with an intervention guaranteeing cancer. Thus, it's unlikely the cancer was predominantly caused by smoking genes.",
+    "cost": 0.0
+  },
+  {
+    "id": 82,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Given the probabilities, lung cancer is more likely in individuals with smoking genes (53%) compared to nonsmoking genes (49%). Thus, if lung cancer is present, it is more likely that the individual has a smoking gene.",
+    "reference_explanation": "The difference in lung cancer probability between those with smoking genes (53%) and nonsmoking genes (49%) is minimal. Given that only 8% have smoking genes, the majority of lung cancer cases would statistically be among those without smoking genes, hence it's not more likely the cancer is due to a smoking gene.",
+    "cost": 0.0
+  },
+  {
+    "id": 84,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "For people with smoking genes, the probability of lung cancer is higher (67%) compared to those with nonsmoking genes (56%). Thus, having a nonsmoking gene would not make lung cancer less likely for someone with smoking genes.",
+    "reference_explanation": "The probability of lung cancer is lower for individuals with nonsmoking genes (56%) compared to those with smoking genes (67%). This demonstrates that having a nonsmoking gene is associated with a lower likelihood of lung cancer compared to a smoking gene.",
+    "cost": 0.0
+  },
+  {
+    "id": 81,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "If everyone has smoking genes, the probability of lung cancer increases to 53%, making lung cancer more likely than its absence (0%).",
+    "reference_explanation": "Introducing an intervention where everyone has the smoking gene (with a lung cancer occurrence of 53%) would slightly increase the overall likelihood of having lung cancer compared to its absence, because the probability associated with smoking genes exceeds 50%.",
+    "cost": 6.945e-05
+  },
+  {
+    "id": 87,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The probability of lung cancer is higher for those with smoking genes (67%) compared to nonsmoking genes (56%). Thus, if lung cancer is ensured, it is more likely that the individual has a smoking gene.",
+    "reference_explanation": "With an intervention resulting in lung cancer, it follows that the condition is most probable under the scenario where individuals have a higher predisposition (smoking genes at 67%) to develop the disease, suggesting it’s likely they possess a smoking gene.",
+    "cost": 7.26e-05
+  },
+  {
+    "id": 80,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The overall probability of lung cancer is lower than the probability of absence of lung cancer when considering the given probabilities for both smoking and nonsmoking genes.",
+    "reference_explanation": "The incidence rates of lung cancer (53% for smoking genes and 49% for nonsmoking genes) suggest that regardless of the genetic predisposition to smoke, lung cancer is not more likely than its absence overall (combining probabilities gives a mean value below 50%).",
+    "cost": 7.14e-05
+  },
+  {
+    "id": 86,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Given the higher probability of lung cancer for those with smoking genes (67% vs 56%), it is more likely that a person with lung cancer has a smoking gene.",
+    "reference_explanation": "Given that the probability of lung cancer is higher in people with smoking genes compared to those with nonsmoking genes, a person diagnosed with lung cancer is statistically more likely to possess a smoking gene.",
+    "cost": 6.96e-05
+  },
+  {
+    "id": 85,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Changing a person's gene from smoking to nonsmoking reduces their probability of lung cancer from 67% to 56%, indicating a decrease in risk.",
+    "reference_explanation": "Intervention that shifts a person's gene from smoking to nonsmoking aligns with reduced statistical likelihood of lung cancer (from 67% to 56%), indicating such a change indeed decreases the risk of lung cancer.",
+    "cost": 6.945e-05
+  },
+  {
+    "id": 89,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Aligning individuals towards smoking behavior increases smoking rates, which directly raises lung cancer incidence regardless of genetic disposition. Thus, lung cancer incidence will increase for everyone.",
+    "reference_explanation": "Given the data showing increased lung cancer rates among smokers regardless of genetic disposition, enforcing a smoking behavior across the population would logically raise lung cancer incidence.",
+    "cost": 6.764999999999999e-05
+  },
+  {
+    "id": 88,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The presence of smoking genes correlates with higher lung cancer probabilities, indicating that genes do not negatively affect lung cancer through smoking. Instead, they appear to increase the risk.",
+    "reference_explanation": "The statistics for lung cancer incidence increase when comparing nonsmokers to smokers across both genetic predispositions, suggesting that smoking increases lung cancer risk, not decreases it, irrespective of genetic background.",
+    "cost": 6.93e-05
+  },
+  {
+    "id": 90,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Given that smoking has a direct effect on lung cancer, it is more likely that individuals with lung cancer were smokers, despite the influence of gene and pollution.",
+    "reference_explanation": "The likelihood of lung cancer is high for both smokers and nonsmokers within each genetic category, which means lung cancer presence alone does not make it significantly more likely that an individual was a smoker.",
+    "cost": 0.0
+  },
+  {
+    "id": 96,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The probabilities indicate that smoking genes lead to a higher likelihood of lung cancer, suggesting a positive effect rather than a negative one when disregarding smoking as a mediator.",
+    "reference_explanation": "The data provided suggests that nonsmokers with smoking genes have a lower probability of lung cancer (33%) compared to nonsmokers with nonsmoking genes (45%). This indicates that, in the absence of smoking, the presence of genes associated with smoking behavior actually decreases the chance of lung cancer.",
+    "cost": 0.0
+  },
+  {
+    "id": 91,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "If an intervention ensures everyone has lung cancer, it suggests increased smoking levels, as smoking directly affects lung cancer. Pollution's unobserved effect may also contribute, but smoking is a clear factor.",
+    "reference_explanation": "Since lung cancer rates are relatively high even for nonsmokers across genetic dispositions, an intervention leading to universal lung cancer diagnosis does not logically imply that there has been an increase in smoking among the population.",
+    "cost": 0.0
+  },
+  {
+    "id": 97,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Genetically modifying all individuals to carry nonsmoking genes would eliminate the higher lung cancer probabilities associated with smoking genes, thus lowering the overall rate of lung cancer.",
+    "reference_explanation": "Given that nonsmokers with nonsmoking genes still have a higher lung cancer rate (45%) compared to that of smokers with smoking genes who do not smoke (33%), genetically modifying all individuals to carry nonsmoking genes will not necessarily lower the rate of lung cancer overall.",
+    "cost": 0.0
+  },
+  {
+    "id": 98,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "A low probability of lung cancer is more likely associated with nonsmoking genes, as those with smoking genes have higher lung cancer probabilities. Thus, it's less likely they have smoking genes.",
+    "reference_explanation": "Since the probability of lung cancer is lower for nonsmokers with smoking genes (33%) compared to nonsmokers with nonsmoking genes (45%), we can infer that individuals with a lower probability of lung cancer are more likely to have smoking genes.",
+    "cost": 0.0
+  },
+  {
+    "id": 94,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Given the higher probability of lung cancer in people with smoking genes (77%) compared to nonsmoking genes (64%), it is more likely that a person with lung cancer has a smoking gene.",
+    "reference_explanation": "Given the higher probability of lung cancer in people with the smoking gene than those without, it suggests a correlation where the presence of lung cancer more likely indicates the presence of a smoking gene.",
+    "cost": 7.005e-05
+  },
+  {
+    "id": 92,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "The overall probability of lung cancer is higher than the absence of lung cancer due to the significant probabilities associated with smoking genes (77%) and nonsmoking genes (64%).",
+    "reference_explanation": "The probabilities given for lung cancer, both with smoking and nonsmoking genes (64% and 77% respectively), suggest that lung cancer is quite likely in this hypothetical world. The question essentially asks if the total probability of lung cancer is under 50%, which it is not according to the data.",
+    "cost": 7.289999999999998e-05
+  },
+  {
+    "id": 93,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "Eliminating the smoking gene reduces the probability of lung cancer since individuals with smoking genes have a higher likelihood of developing lung cancer compared to those without. This intervention would lower the overall risk.",
+    "reference_explanation": "Removing the gene associated with smoking would theoretically reduce the proportion of people with the higher risk (77%), theoretically reducing the overall lung cancer rates, assuming a direct causal relationship between the genes, smoking, and lung cancer, and given the nonsmoking gene people have a lower probability of lung cancer.",
+    "cost": 7.319999999999999e-05
+  },
+  {
+    "id": 99,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Reducing lung cancer rates does not imply a greater prevalence of smoking genes; it may indicate effective interventions regardless of genetic predisposition.",
+    "reference_explanation": "Even with an intervention that effectively reduces lung cancer rates, it wouldn’t necessarily suggest a greater prevalence of smoking genes. This is because the presence of smoking genes coupled with smoking behavior increases lung cancer risk, and without considering changes in smoking behavior, the genetic aspect alone does not conclusively determine lower lung cancer rates.",
+    "cost": 7.185e-05
+  },
+  {
+    "id": 95,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "The intervention targets lung cancer, which is more prevalent among those with smoking genes (77% vs. 64%). Thus, it is likely that the treatment will focus on individuals with smoking genes.",
+    "reference_explanation": "Given the higher incidence of lung cancer in individuals with smoking genes, an intervention aimed at treating lung cancer with anti-smoking measures would likely target this group more frequently, implying a higher probability of affecting those with smoking genes.",
+    "cost": 7.094999999999999e-05
+  }
+]
