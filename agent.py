@@ -276,6 +276,7 @@ Please provide your response in the exact JSON format specified above."""
 
     def predict_dataset_parallel(self,
                                  data: pd.DataFrame,
+                                 limit:int=None,
                                  batch_size: int = 15,
                                  max_workers: int = 10,
                                  save_results: bool = True,
@@ -287,6 +288,7 @@ Please provide your response in the exact JSON format specified above."""
 
         Args:
             data: DataFrame containing the dataset
+            limit: Limit for the amount of data to be processed
             batch_size: Number of rows to process in each batch
             max_workers: Maximum number of concurrent threads
             save_results: Whether to save results to file
@@ -294,6 +296,7 @@ Please provide your response in the exact JSON format specified above."""
 
         Returns:
             List of prediction results
+            :param limit:
             :param data:
             :param batch_size:
             :param max_workers:
@@ -304,6 +307,10 @@ Please provide your response in the exact JSON format specified above."""
         print(f"Making predictions for {len(data)} rows with {max_workers} workers...")
         print(f"Processing in batches of {batch_size}")
 
+        if limit:
+            data = data.head(limit)
+
+        os.makedirs(output_folder, exist_ok=True)
         output_path = os.path.join(output_folder, f"{dataset_name}.json")
 
         results = []
