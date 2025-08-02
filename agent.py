@@ -16,6 +16,10 @@ from langchain_core.output_parsers import PydanticOutputParser
 from pydantic import BaseModel, Field
 
 from prompt_builder import PromptBuilder
+from logger import get_logger
+
+# Initialize logger
+logger = get_logger(filename=__file__,console_color="green")
 
 load_dotenv()
 
@@ -209,11 +213,11 @@ Please provide your response in the exact JSON format specified above."""
                 if "rate limit" in str(e).lower() and attempt < max_retries - 1:
                     # Exponential backoff for rate limiting
                     wait_time = (2 ** attempt) * 1
-                    print(f"Rate limit hit for row {idx}, waiting {wait_time}s before retry...")
+                    logger.warning(f"Rate limit hit for row {idx}, waiting {wait_time}s before retry...")
                     time.sleep(wait_time)
                     continue
                 else:
-                    print(f"Error processing row {idx}: {str(e)}")
+                    logger.error(f"Error processing row {idx}: {str(e)}")
                     return {
                         "index": idx,
                         "error": str(e),
@@ -249,7 +253,7 @@ Please provide your response in the exact JSON format specified above."""
         """
         results = []
 
-        print(f"Making predictions for {len(data)} rows...")
+        logger.info(f"Making predictions for {len(data)} rows...")
 
         for idx, row in data.iterrows():
             try:
@@ -257,10 +261,10 @@ Please provide your response in the exact JSON format specified above."""
                 results.append(result)
 
                 if (idx + 1) % 10 == 0:
-                    print(f"Processed {idx + 1}/{len(data)} rows")
+                    logger.info(f"Processed {idx + 1}/{len(data)} rows")
 
             except Exception as e:
-                print(f"Error processing row {idx}: {str(e)}")
+                logger.error(f"Error processing row {idx}: {str(e)}")
                 results.append({
                     "index": row.get("index", idx),
                     "error": str(e),
@@ -304,8 +308,8 @@ Please provide your response in the exact JSON format specified above."""
             :param output_folder:
             :param manual_prompt:
         """
-        print(f"Making predictions for {len(data)} rows with {max_workers} workers...")
-        print(f"Processing in batches of {batch_size}")
+        logger.info(f"Making predictions for {len(data)} rows with {max_workers} workers...")
+        logger.info(f"Processing in batches of {batch_size}")
 
         if limit:
             data = data.head(limit)
@@ -319,7 +323,7 @@ Please provide your response in the exact JSON format specified above."""
             batch_end = min(batch_start + batch_size, len(data))
             batch_data = data.iloc[batch_start:batch_end]
 
-            print(f"Processing batch {batch_start // batch_size + 1}/{(len(data) + batch_size - 1) // batch_size} "
+            logger.info(f"Processing batch {batch_start // batch_size + 1}/{(len(data) + batch_size - 1) // batch_size} "
                   f"(rows {batch_start + 1}-{batch_end})")
 
 
@@ -338,7 +342,7 @@ Please provide your response in the exact JSON format specified above."""
                         batch_results.append(result)
                     except Exception as e:
                         row_idx = future_to_row[future]
-                        print(f"Error in thread for row {row_idx}: {str(e)}")
+                        logger.error(f"Error in thread for row {row_idx}: {str(e)}")
                         batch_results.append({
                             "index": row_idx,
                             "error": str(e),
@@ -348,7 +352,7 @@ Please provide your response in the exact JSON format specified above."""
                 batch_results.sort(key=lambda x: x.get("index", 0))
                 results.extend(batch_results)
 
-            print(f"Completed batch {batch_start // batch_size + 1}, "
+            logger.info(f"Completed batch {batch_start // batch_size + 1}, "
                   f"total processed: {len(results)}/{len(data)}")
 
             if batch_end < len(data):
@@ -359,7 +363,7 @@ Please provide your response in the exact JSON format specified above."""
         if save_results:
             self.save_results(output_path)
 
-        print(f"Parallel processing completed! Total cost: ${self.total_cost:.4f}")
+        logger.info(f"Parallel processing completed! Total cost: ${self.total_cost:.4f}")
 
         return self.total_cost
 
@@ -367,7 +371,7 @@ Please provide your response in the exact JSON format specified above."""
         """Save prediction results to JSON file"""
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(self.predictions, f, indent=2, ensure_ascii=False)
-        print(f"Results saved to {filename}")
+        logger.info(f"Results saved to {filename}")
 
 
 def main():
@@ -383,7 +387,7 @@ def main():
     file_path = "./test/test_prompt_builder/sample_data_from_all_datasets.csv"
 
     if not os.path.exists(file_path):
-        print(f"File not found: {file_path}")
+        logger.error(f"File not found: {file_path}")
         return
 
     if file_path.endswith(".jsonl"):
@@ -391,7 +395,7 @@ def main():
     elif file_path.endswith(".csv"):
         data = pd.read_csv(file_path)
     else:
-        print("Unsupported file format. Please use .csv or .jsonl")
+        logger.error("Unsupported file format. Please use .csv or .jsonl")
         return
 
     custom_prompt = input("Enter custom prompt (or press Enter for default): ").strip()
@@ -430,7 +434,7 @@ def main():
 
     end_time = time.time()
     total_cost = agent.total_cost
-    print(f"Total cost: ${total_cost:.4f}")
-    print(f"Time elapsed: {end_time - start_time:.2f}s")
+    logger.info(f"Total cost: ${total_cost:.4f}")
+    logger.info(f"Time elapsed: {end_time - start_time:.2f}s")
 
     return parallel_choice

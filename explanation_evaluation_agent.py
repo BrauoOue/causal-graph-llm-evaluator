@@ -12,6 +12,10 @@ from langchain_community.callbacks.manager import get_openai_callback
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from pydantic import BaseModel, Field
+from logger import get_logger
+
+# Initialize logger
+logger = get_logger(filename=__file__,console_color="magenta")
 
 load_dotenv()
 
@@ -191,11 +195,11 @@ Please provide your evaluation in the exact JSON format specified above."""
                 if "rate limit" in str(e).lower() and attempt < max_retries - 1:
                     # Exponential backoff for rate limiting
                     wait_time = (2 ** attempt) * 1
-                    print(f"Rate limit hit for entry {idx}, waiting {wait_time}s before retry...")
+                    logger.warning(f"Rate limit hit for entry {idx}, waiting {wait_time}s before retry...")
                     time.sleep(wait_time)
                     continue
                 else:
-                    print(f"Error processing entry {idx}: {str(e)}")
+                    logger.error(f"Error processing entry {idx}: {str(e)}")
                     return {
                         "index": idx,
                         "error": str(e),
@@ -231,7 +235,7 @@ Please provide your evaluation in the exact JSON format specified above."""
             df = df.head(limit)
 
         results = []
-        print(f"Evaluating explanations for {len(df)} entries...")
+        logger.info(f"Evaluating explanations for {len(df)} entries...")
 
         for idx, row in df.iterrows():
             try:
@@ -239,10 +243,10 @@ Please provide your evaluation in the exact JSON format specified above."""
                 results.append(result)
 
                 if (len(results)) % 10 == 0:
-                    print(f"Processed {len(results)}/{len(df)} entries")
+                    logger.info(f"Processed {len(results)}/{len(df)} entries")
 
             except Exception as e:
-                print(f"Error processing entry {idx}: {str(e)}")
+                logger.error(f"Error processing entry {idx}: {str(e)}")
                 results.append({
                     "index": idx,
                     "error": str(e),
@@ -282,8 +286,8 @@ Please provide your evaluation in the exact JSON format specified above."""
         if limit:
             df = df.head(limit)
 
-        print(f"Evaluating explanations for {len(df)} entries with {max_workers} workers...")
-        print(f"Processing in batches of {batch_size}")
+        logger.info(f"Evaluating explanations for {len(df)} entries with {max_workers} workers...")
+        logger.info(f"Processing in batches of {batch_size}")
 
         results = []
 
@@ -291,7 +295,7 @@ Please provide your evaluation in the exact JSON format specified above."""
             batch_end = min(batch_start + batch_size, len(df))
             batch_df = df.iloc[batch_start:batch_end]
 
-            print(f"Processing batch {batch_start // batch_size + 1}/{(len(df) + batch_size - 1) // batch_size} "
+            logger.info(f"Processing batch {batch_start // batch_size + 1}/{(len(df) + batch_size - 1) // batch_size} "
                   f"(entries {batch_start + 1}-{batch_end})")
 
             with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -307,7 +311,7 @@ Please provide your evaluation in the exact JSON format specified above."""
                         batch_results.append(result)
                     except Exception as e:
                         entry_idx = future_to_entry[future]
-                        print(f"Error in thread for entry {entry_idx}: {str(e)}")
+                        logger.error(f"Error in thread for entry {entry_idx}: {str(e)}")
                         batch_results.append({
                             "index": entry_idx,
                             "error": str(e),
@@ -318,7 +322,7 @@ Please provide your evaluation in the exact JSON format specified above."""
                 batch_results.sort(key=lambda x: x.get("index", 0))
                 results.extend(batch_results)
 
-            print(f"Completed batch {batch_start // batch_size + 1}, "
+            logger.info(f"Completed batch {batch_start // batch_size + 1}, "
                   f"total processed: {len(results)}/{len(df)}")
 
             if batch_end < len(df):
@@ -331,7 +335,7 @@ Please provide your evaluation in the exact JSON format specified above."""
             path = os.path.join(output_folder,f"{dataset_name}.json")
             self.save_results(path)
 
-        print(f"Parallel processing completed! Total cost: ${self.total_cost:.4f}")
+        logger.info(f"Parallel processing completed! Total cost: ${self.total_cost:.4f}")
         return self.total_cost
 
     def save_results(self, filename: str):
@@ -339,7 +343,7 @@ Please provide your evaluation in the exact JSON format specified above."""
         os.makedirs(os.path.dirname(filename), exist_ok=True)
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(self.evaluations, f, indent=2, ensure_ascii=False)
-        print(f"Results saved to {filename}")
+        logger.info(f"Results saved to {filename}")
 
     @staticmethod
     def load_predictions(predictions_folder="./output/predictions",dataset_name: str="predictions") -> pd.DataFrame:
@@ -366,12 +370,12 @@ def main():
     # Load predictions data
     predictions_file = "./output/predictions.json"
     if not os.path.exists(predictions_file):
-        print(f"Predictions file not found: {predictions_file}")
+        logger.error(f"Predictions file not found: {predictions_file}")
         return
 
     df = ExplanationEvaluationAgent.load_predictions(predictions_file)
-    print(f"Loaded {len(df)} prediction entries")
-    print(f"DataFrame columns: {list(df.columns)}")
+    logger.info(f"Loaded {len(df)} prediction entries")
+    logger.info(f"DataFrame columns: {list(df.columns)}")
 
     # Get user preferences (or set defaults for testing)
     limit = input("Enter number of entries to process (or press Enter for all): ").strip()
@@ -406,12 +410,12 @@ def main():
     total_count = len(results)
     avg_confidence = sum(r.get("confidence", 0) for r in results) / total_count if total_count > 0 else 0
 
-    print(f"\nEvaluation Summary:")
-    print(f"Total entries: {total_count}")
-    print(f"Correct explanations: {correct_count}")
-    print(f"Accuracy: {correct_count/total_count:.2%}" if total_count > 0 else "N/A")
-    print(f"Average confidence: {avg_confidence:.3f}")
-    print(f"Total cost: ${agent.total_cost:.4f}")
+    logger.info(f"\nEvaluation Summary:")
+    logger.info(f"Total entries: {total_count}")
+    logger.info(f"Correct explanations: {correct_count}")
+    logger.info(f"Accuracy: {correct_count/total_count:.2%}" if total_count > 0 else "N/A")
+    logger.info(f"Average confidence: {avg_confidence:.3f}")
+    logger.info(f"Total cost: ${agent.total_cost:.4f}")
 
 
 if __name__ == "__main__":
