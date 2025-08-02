@@ -1,3 +1,23 @@
+"""
+Dataset Conversion Module
+
+This module provides functionality for standardizing diverse datasets into a unified format
+for causal reasoning evaluation. It transforms various input formats into a consistent
+structure that can be processed by the evaluation pipeline.
+
+Main Components:
+- DatasetMapping: Class that defines how to map source dataset columns to standardized format
+- BuilderDataset: Class that handles the actual conversion process
+- Standardization functions for different dataset types and structures
+
+The module handles different types of causal reasoning data including code, math, text,
+and general explanation tasks, ensuring consistent structure for downstream processing.
+
+Usage:
+    mapping = DatasetMapping(context="Premise", question="Question", question_type="Type", ...)
+    result = BuilderDataset.convert(dataframe, mapping)
+"""
+
 from __future__ import annotations
 
 import os.path

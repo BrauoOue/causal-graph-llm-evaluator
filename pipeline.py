@@ -1,18 +1,64 @@
-import pandas as pd
+"""
+Causal Graph Evaluation Pipeline
+
+This module implements the main evaluation pipeline for testing and benchmarking
+causal reasoning capabilities of large language models. It orchestrates the complete
+workflow from data loading to final evaluation.
+
+Main components:
+- Data loading and standardization from various dataset formats
+- Causal reasoning prediction generation using LLMs
+- Explanation evaluation of model predictions
+- Result aggregation and metric calculation
+- Error handling and logging throughout the process
+
+The pipeline supports processing multiple datasets in sequence, with configurable
+limits, custom prompts, and extensive logging of execution metrics.
+
+Usage:
+    # Run the full pipeline with default settings
+    python pipeline.py
+"""
+
+import json
 import os
 import time
-import sys
 import traceback
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 
-from evaluate import evaluate
+import pandas as pd
+
 from agent import CausalReasoningAgent
 from conversion import DatasetMapping, BuilderDataset
+from evaluate import evaluate
 from explanation_evaluation_agent import ExplanationEvaluationAgent
 from logger import get_logger
 
 # Initialize logger
 logger = get_logger(filename=__file__,console_color="blue")
+
+
+def save_metadata(metadata: Dict[str, Any], folder_path: str, dataset_name: str) -> None:
+    """
+    Save metadata information to a JSON file.
+
+    Args:
+        metadata: Dictionary containing metadata to save
+        folder_path: Path to the folder where metadata will be saved
+        dataset_name: Name of the dataset used for filename
+    """
+    try:
+        os.makedirs(folder_path, exist_ok=True)
+        file_path = os.path.join(folder_path, f"{dataset_name}.json")
+
+        logger.debug(f"Saving metadata to {file_path}")
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(metadata, f, indent=2, ensure_ascii=False)
+
+        logger.info(f"Metadata saved to {file_path}")
+    except Exception as e:
+        logger.error(f"Failed to save metadata for {dataset_name}: {str(e)}")
+        logger.debug(traceback.format_exc())
 
 
 # Load datasets from a folder
@@ -91,20 +137,20 @@ def predict(
         datasets: Dict[str, pd.DataFrame],
         agent: CausalReasoningAgent,
         limit: int,
-        use_custom_prompts:bool,
-):
+        use_custom_prompts: bool,
+) -> List[Dict[str, Any]]:
     """
-    Process datasets with the specified template type.
+    Process datasets with causal reasoning agent to generate predictions.
 
     Args:
-        datasets (Dict[str, pd.DataFrame]): Loaded datasets.
-        agent (CausalReasoningAgent): The agent to process data.
-        limit (int): Limit for the amount of data to be processed
-        use_custom_prompts (bool): Weather to use custom prompts
+        datasets: Dictionary mapping dataset names to DataFrame objects
+        agent: CausalReasoningAgent instance for generating predictions
+        limit: Maximum number of rows to process from each dataset
+        use_custom_prompts: Whether to prompt for manual prompt input
 
     Returns:
-        List[Dict[str, Any]]: Results including predictions.
-        :param use_custom_prompts:
+        List[Dict[str, Any]]: List of dictionaries containing prediction results and metadata
+                             for each dataset, including cost, execution time, and model info
     """
     result = []
     logger.info(f"Starting prediction process using {agent.model_name} model with limit {limit}")
@@ -154,6 +200,13 @@ def predict(
             dataset_info["time"] = duration
             dataset_info["model"] = agent.model_name
 
+            # Save prediction metadata to metadata folder
+            save_metadata(
+                dataset_info,
+                "./output/metadata/predictions",
+                dataset_name
+            )
+
             logger.info(f"Dataset {dataset_name} processed in {duration:.2f} seconds, cost: {cost}")
             result.append(dataset_info)
 
@@ -167,16 +220,20 @@ def predict(
 
 
 def evaluate_explanation(dataset_names: List[str],
-                         agent: ExplanationEvaluationAgent):
+                         agent: ExplanationEvaluationAgent) -> List[Dict[str, Any]]:
     """
     Evaluate explanations for predictions across multiple datasets.
 
+    This function loads prediction results for each dataset, evaluates the quality
+    of explanations using the provided agent, and saves evaluation metadata.
+
     Args:
-        dataset_names: List of dataset names to evaluate
-        agent: ExplanationEvaluationAgent to use for evaluation
+        dataset_names: List of dataset names (without file extensions) to evaluate
+        agent: ExplanationEvaluationAgent instance to use for evaluation
 
     Returns:
-        List of evaluation results per dataset
+        List[Dict[str, Any]]: List of dictionaries containing evaluation results and metadata
+                             for each dataset, including cost, execution time, and model info
     """
     evaluation_results = []
     logger.info(f"Starting explanation evaluation process using {agent.model_name} model")
@@ -221,6 +278,13 @@ def evaluate_explanation(dataset_names: List[str],
             dataset_eval_info["cost"] = cost
             dataset_eval_info["time"] = duration
             dataset_eval_info["model"] = agent.model_name
+
+            # Save explanation metadata to metadata folder
+            save_metadata(
+                dataset_eval_info,
+                "./output/metadata/explanations",
+                dataset_name
+            )
 
             logger.info(f"Dataset {dataset_name} evaluated in {duration:.2f} seconds, cost: {cost}")
             evaluation_results.append(dataset_eval_info)

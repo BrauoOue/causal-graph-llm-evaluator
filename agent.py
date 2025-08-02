@@ -1,7 +1,29 @@
+"""
+Causal Reasoning Agent Module
+
+This module provides functionality for performing causal reasoning predictions using LLMs.
+It leverages LangChain and OpenAI's API to process datasets, generate predictions,
+and evaluate causal relationships in various types of data.
+
+Main Components:
+- CausalReasoningAgent: Core class that handles prediction generation
+- PredictionResponse: Structured data model for prediction outputs
+- Parallel and sequential processing capabilities for dataset predictions
+- Error handling and retry mechanisms for API rate limiting
+
+The module supports custom prompts, batched parallel processing, and detailed
+logging of prediction results, costs, and performance metrics.
+
+Usage:
+    agent = CausalReasoningAgent(model_name="gpt-4o-mini")
+    results = agent.predict_dataset(data_frame)
+    # or
+    cost = agent.predict_dataset_parallel(data_frame, dataset_name="my_dataset")
+"""
+
 import os
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from evaluate import evaluate
 
 import pandas as pd
 import json
@@ -111,12 +133,12 @@ Please provide your response in the exact JSON format specified above."""
         except Exception as e:
             try:
                 import re
-                json_match = re.search(r'\{.*\}', response_text, re.DOTALL)
+                json_match = re.search(r'\{.*}', response_text, re.DOTALL)
                 if json_match:
                     json_str = json_match.group()
                     data = json.loads(json_str)
                     return PredictionResponse(**data)
-            except:
+            except Exception as e:
                 pass
 
             return PredictionResponse(
@@ -125,17 +147,17 @@ Please provide your response in the exact JSON format specified above."""
                 confidence=0.0
             )
 
-    def predict_single(self, row: pd.Series,manual_prompt: Optional[str] = None) -> Dict[str, Any]:
+    def predict_single(self, row: pd.Series, manual_prompt: Optional[str] = None) -> Dict[str, Any]:
         """
-        Make a prediction for a single row
+        Make a prediction for a single row of data
 
         Args:
-            row: DataFrame row to predict
+            row: DataFrame row to predict on
+            manual_prompt: Optional custom prompt to use instead of the auto-generated prompt
 
         Returns:
-            Dictionary containing prediction results
-            :param row:
-            :param manual_prompt:
+            Dict[str, Any]: Dictionary containing prediction results, including answer, explanation,
+                          correctness evaluation, and cost information
         """
 
         prompt_builder = PromptBuilder(manual_prompt=manual_prompt)
@@ -198,9 +220,10 @@ Please provide your response in the exact JSON format specified above."""
         Args:
             row_data: Tuple of (index, row) from DataFrame iteration
             max_retries: Maximum number of retries for rate limiting
+            manual_prompt: Optional custom prompt to use for the prediction
 
         Returns:
-            Dictionary containing prediction results
+            Dict[str, Any]: Dictionary containing prediction results or error information
         """
         idx, row = row_data
 
@@ -237,15 +260,16 @@ Please provide your response in the exact JSON format specified above."""
                         manual_prompt: Optional[str] = None
         ) -> List[Dict[str, Any]]:
         """
-        Make predictions for an entire dataset
+        Make predictions for an entire dataset sequentially (not in parallel)
 
         Args:
-            data: DataFrame containing the dataset
-            save_results: Whether to save results to file
-            output_file: Output file name
+            data: DataFrame containing the dataset to process
+            save_results: Whether to save results to a JSON file
+            output_file: Path to the output JSON file
+            manual_prompt: Optional custom prompt to use for predictions
 
         Returns:
-            List of prediction results
+            List[Dict[str, Any]]: List of prediction results for each row
             :param data:
             :param save_results:
             :param output_file:
@@ -296,10 +320,13 @@ Please provide your response in the exact JSON format specified above."""
             batch_size: Number of rows to process in each batch
             max_workers: Maximum number of concurrent threads
             save_results: Whether to save results to file
-            output_file: Output file name
+            output_folder: Folder path to save prediction results
+            dataset_name: Name of the dataset used for output filename
+            manual_prompt: Optional custom prompt to use for predictions
 
         Returns:
-            List of prediction results
+            float: Total cost of predictions
+            :param dataset_name:
             :param limit:
             :param data:
             :param batch_size:
@@ -308,11 +335,11 @@ Please provide your response in the exact JSON format specified above."""
             :param output_folder:
             :param manual_prompt:
         """
-        logger.info(f"Making predictions for {len(data)} rows with {max_workers} workers...")
-        logger.info(f"Processing in batches of {batch_size}")
-
         if limit:
             data = data.head(limit)
+        
+        logger.info(f"Making predictions for {len(data)} rows with {max_workers} workers...")
+        logger.info(f"Processing in batches of {batch_size}")
 
         os.makedirs(output_folder, exist_ok=True)
         output_path = os.path.join(output_folder, f"{dataset_name}.json")
@@ -379,16 +406,16 @@ def main():
     Main function to run the causal reasoning agent
     """
 
-    MODEL_NAME = "gpt-4o-mini"
-    TEMPERATURE = 0.1
-    MAX_TOKENS = 10000
+    model_name = "gpt-4o-mini"
+    temperature = 0.1
+    max_tokens = 10000
 
     # file_path = input("Enter path to test CSV or JSONL (e.g., test/e_test.csv): ").strip()
-    file_path = "./test/test_prompt_builder/sample_data_from_all_datasets.csv"
+    file_path = "./data/datasets/e_dataset.csv"
 
     if not os.path.exists(file_path):
         logger.error(f"File not found: {file_path}")
-        return
+        return None
 
     if file_path.endswith(".jsonl"):
         data = pd.read_json(file_path, lines=True)
@@ -396,10 +423,10 @@ def main():
         data = pd.read_csv(file_path)
     else:
         logger.error("Unsupported file format. Please use .csv or .jsonl")
-        return
+        return None
 
-    custom_prompt = input("Enter custom prompt (or press Enter for default): ").strip()
-    # custom_prompt = None
+    # custom_prompt = input("Enter custom prompt (or press Enter for default): ").strip()
+    custom_prompt = None
     manual_prompt = custom_prompt if custom_prompt else None
 
     limit = input("Enter number of rows to process (or press Enter for all): ").strip()
@@ -411,11 +438,10 @@ def main():
     # parallel_choice = "n"
 
     agent = CausalReasoningAgent(
-        model_name=MODEL_NAME,
-        temperature=TEMPERATURE,
-        max_tokens=MAX_TOKENS,
-        manual_prompt=manual_prompt
-    )
+        model_name=model_name,
+        temperature=temperature,
+        max_tokens=max_tokens)
+    
     start_time = time.time()
     if parallel_choice == 'y':
         batch_size = input("Enter batch size (default 10): ").strip()
@@ -427,7 +453,8 @@ def main():
         results = agent.predict_dataset_parallel(
             data,
             batch_size=batch_size,
-            max_workers=max_workers
+            max_workers=max_workers,
+            manual_prompt=manual_prompt
         )
     else:
         results = agent.predict_dataset(data)
@@ -436,5 +463,8 @@ def main():
     total_cost = agent.total_cost
     logger.info(f"Total cost: ${total_cost:.4f}")
     logger.info(f"Time elapsed: {end_time - start_time:.2f}s")
+    return results
 
-    return parallel_choice
+
+if __name__ == '__main__':
+    main()

@@ -1,3 +1,25 @@
+"""
+Logger Module
+
+This module provides custom logging functionality for the causal-graph-llm-evaluator project.
+It includes:
+- Colored console output with custom formatting
+- File logging with both general and error-specific log files
+- Configuration options for log levels and output destinations
+- Automatic log file rotation with date-based filenames
+
+Usage:
+    from logger import get_logger
+
+    # Get a logger instance
+    logger = get_logger(filename=__file__, console_color="green")
+
+    # Use the logger
+    logger.info("Processing started")
+    logger.warning("Resource usage high")
+    logger.error("An error occurred")
+"""
+
 import logging
 import os
 import sys
@@ -164,7 +186,7 @@ def set_log_level(logger: logging.Logger, level: str) -> None:
 
 
 # Default logger instance
-default_logger = get_logger("causal_graph_evaluator")
+default_logger = get_logger(custom_name="logger", console_color="blue")
 
 if __name__ == '__main__':
     default_logger.info("Info Message")

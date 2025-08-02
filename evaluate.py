@@ -7,12 +7,12 @@ calculate metrics, and save evaluation results.
 import json
 import os
 import traceback
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Dict, Any, List, Tuple
 
 from logger import get_logger
 
 # Initialize logger
-logger = get_logger(console_color="cyan")
+logger = get_logger(filename=__file__,console_color="cyan")
 
 
 def load_json_file(file_path: str) -> List[Dict[str, Any]]:
@@ -274,7 +274,8 @@ def evaluate(
 def evaluate_all_datasets(
     results_folder: str = "./output/results",
     predictions_folder: str = "./output/predictions",
-    explanations_folder: str = "./output/explanations"
+    explanations_folder: str = "./output/explanations",
+    metadata_folder: str = "./output/metadata"
 ) -> Dict[str, Dict[str, Any]]:
     """
     Evaluate all datasets found in the predictions folder.
@@ -283,6 +284,7 @@ def evaluate_all_datasets(
         results_folder: Folder to save evaluation results
         predictions_folder: Folder containing prediction results
         explanations_folder: Folder containing explanation results
+        metadata_folder: Folder containing metadata for predictions and explanations
 
     Returns:
         Dictionary mapping dataset names to evaluation results
@@ -307,14 +309,49 @@ def evaluate_all_datasets(
             try:
                 logger.info(f"Processing dataset: {dataset_name}")
 
-                # Create dummy result dictionaries (normally these would come from pipeline.py)
-                prediction_result = {"name": dataset_name, "model": "unknown", "time": 0, "cost": 0}
-                explanation_result = {"name": dataset_name, "model": "unknown", "time": 0, "cost": 0}
+                # Try to load metadata first from the metadata folder
+                metadata_predictions_folder = os.path.join(metadata_folder, "predictions")
+                metadata_explanations_folder = os.path.join(metadata_folder, "explanations")
 
+                # Load prediction metadata if available
+                prediction_metadata_path = os.path.join(metadata_predictions_folder, f"{dataset_name}.json")
+                if os.path.exists(prediction_metadata_path):
+                    logger.info(f"Loading prediction metadata for {dataset_name}")
+                    try:
+                        with open(prediction_metadata_path, 'r', encoding='utf-8') as f:
+                            prediction_result = json.load(f)
+                        logger.info(f"Successfully loaded prediction metadata for {dataset_name}")
+                    except Exception as e:
+                        logger.error(f"Error loading prediction metadata: {str(e)}")
+                        prediction_result = {"name": dataset_name, "model": "unknown", "time": 0, "cost": 0}
+                else:
+                    logger.warning(f"No prediction metadata found for {dataset_name}, using defaults")
+                    prediction_result = {"name": dataset_name, "model": "unknown", "time": 0, "cost": 0}
+
+                # Load explanation metadata if available
+                explanation_metadata_path = os.path.join(metadata_explanations_folder, f"{dataset_name}.json")
+                if os.path.exists(explanation_metadata_path):
+                    logger.info(f"Loading explanation metadata for {dataset_name}")
+                    try:
+                        with open(explanation_metadata_path, 'r', encoding='utf-8') as f:
+                            explanation_result = json.load(f)
+                        logger.info(f"Successfully loaded explanation metadata for {dataset_name}")
+                    except Exception as e:
+                        logger.error(f"Error loading explanation metadata: {str(e)}")
+                        explanation_result = {"name": dataset_name, "model": "unknown", "time": 0, "cost": 0}
+                else:
+                    logger.warning(f"No explanation metadata found for {dataset_name}, using defaults")
+                    explanation_result = {"name": dataset_name, "model": "unknown", "time": 0, "cost": 0}
+
+                # Ensure dataset name is set correctly
+                prediction_result["name"] = dataset_name
+                explanation_result["name"] = dataset_name
+
+                # Run evaluation with the metadata
                 result = evaluate(
                     prediction_result,
                     explanation_result,
-                    save_result=True,
+                    save_result=False,
                     predictions_folder=predictions_folder,
                     explanations_folder=explanations_folder,
                     results_folder=results_folder
