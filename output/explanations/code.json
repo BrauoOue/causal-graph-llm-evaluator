@@ -1,0 +1,802 @@
+[
+  {
+    "id": 5,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "If reinvestment is high, it suggests net profit is high, which can occur if expenses are low relative to revenue.",
+    "reference_explanation": "Higher 'reinvestment' is computed purely based on the 'net_profit' exceeding 5000, which is determined primarily by the difference between 'revenue' and 'expenses'. However, 'reinvestment' being high does not necessarily imply that 'expenses' were low; it could also be due to high 'revenue'.",
+    "cost": 0.0
+  },
+  {
+    "id": 0,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Increasing 'bonus_points' affects only the specific student's score being updated, not all students' scores in 'scores'.",
+    "reference_explanation": "Increasing 'bonus_points' directly increases the score for all students because every student, regardless of whether they are top students or not, receives some amount of bonus points added to their score. There is a direct input-output relationship where input 'bonus_points' affects the output 'scores' of students.",
+    "cost": 0.0
+  },
+  {
+    "id": 4,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "If the 'revenue' field is removed, the code sets bonus to 0, changing its value from what it would be if 'revenue' were present.",
+    "reference_explanation": "The 'bonus' is directly calculated based on the 'revenue' values. Removing the 'revenue' field will cause 'bonus' to be set to 0, as the condition checking for 'revenue' in data will fail.",
+    "cost": 7.11e-05
+  },
+  {
+    "id": 1,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "The value of 'bonus_points' is fixed at 5, regardless of whether 'is_top_student' is true or false. Thus, knowing 'is_top_student' does not reveal the specific amount of 'bonus_points'.",
+    "reference_explanation": "Knowing whether 'is_top_student' is true or false does not specify the number of 'bonus_points'. The 'bonus_points' is a separate input that affects the score calculation but can't be deduced solely from knowing the status of 'is_top_student'.",
+    "cost": 7.304999999999999e-05
+  },
+  {
+    "id": 8,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Increasing inventory does not guarantee that the first purchase order will always be fulfilled, as it depends on the order quantity relative to the inventory amount at that time.",
+    "reference_explanation": "Increasing the initial inventory in the constructor of the OnlineStore class would allow larger orders to be fulfilled. Having a higher starting inventory means that unless the order quantity exceeds this new higher inventory, the purchase will be fulfilled.",
+    "cost": 0.0
+  },
+  {
+    "id": 6,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Setting 'revenue' to 15000 results in a total greater than 10000, which guarantees a bonus of 500 according to the function logic.",
+    "reference_explanation": "With the 'revenue' explicitly set to 15000, the condition 'revenue > 10000' will be satisfied, guaranteeing a 'bonus' of 500.",
+    "cost": 6.884999999999999e-05
+  },
+  {
+    "id": 3,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "A significant score increase could result from regular bonus points, not just from being a top student. The function applies different multipliers based on the top student status.",
+    "reference_explanation": "A significant increase in a student's score could be due to them being a top student and thus receiving twice the bonus points, or it could simply be due to a high value of 'bonus_points'. Without knowing the exact 'bonus_points' or comparing it to changes in the scores of other students, we cannot definitively conclude their top student status.",
+    "cost": 7.379999999999998e-05
+  },
+  {
+    "id": 2,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Setting 'is_top_student' to True for all students will double the bonus points added to their scores, thus raising the scores for each student.",
+    "reference_explanation": "Manually setting 'is_top_student' to True for all students results in all students receiving double the 'bonus_points' (due to the multiplicative factor of 2 in the score update operation specifically for top students). This intervention directly causes an increase in the scores of all students.",
+    "cost": 7.155e-05
+  },
+  {
+    "id": 7,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Setting 'reinvestment' to 0 does not confirm 'net_profit' was below 5000, as it could also be due to other factors like absence of expenses or revenue being low.",
+    "reference_explanation": "Setting 'reinvestment' to 0 manually does not provide information about the actual 'net_profit', as the intervention disrupts the natural causation from 'net_profit' to 'reinvestment'. The 'net_profit' could technically be anything, but the manual intervention overrides this.",
+    "cost": 7.289999999999998e-05
+  },
+  {
+    "id": 9,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The consecutive larger order cannot infer low initial inventory because the first order could have been fulfilled without depleting the inventory. The inventory amount after the first order is unknown.",
+    "reference_explanation": "A larger consecutive order might not be fulfilled, but this does not necessarily imply the initial inventory was low, but rather that the enough inventory was depleted by previous orders. The inventory state at the time of each purchase order depends on all previous transactions and the initial amount.",
+    "cost": 7.17e-05
+  },
+  {
+    "id": 10,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "After fulfilling the first order of 70, the inventory will be 30. The second order of 40 cannot be fulfilled due to insufficient inventory.",
+    "reference_explanation": "Service order plays a critical role. If smaller orders are processed first, it might conserve inventory for later orders. Servicing smaller orders first can potentially leave enough inventory for the next order resulting in 'Order fulfilled'. Hence, changing the order sequence acts as an intervention that can modify the outcomes.",
+    "cost": 0.0
+  },
+  {
+    "id": 11,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "The response message does not provide specific information about the original inventory amount, only that the order exceeds it. Thus, we cannot deduce the original inventory from the message alone.",
+    "reference_explanation": "The message 'Order too large, cannot fulfill' indicates that an order exceeds available inventory at that time but does not provide information about the original inventory count. Changes in this message don't relate or infer the initial inventory, just the status relative to current inventory and the order size.",
+    "cost": 7.214999999999999e-05
+  },
+  {
+    "id": 15,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The weather report could change due to other factors or methods not shown in the context. The increase methods are not the only way to alter temperature or humidity.",
+    "reference_explanation": "Changes in the weather report can occur through direct manipulation of temperature and humidity attributes outside of the prescribed increase methods, or through other interventions not specified, such as direct calls to adjust_humidity method. These options mean that the specific increase methods might not have been used to trigger the observed changes.",
+    "cost": 7.199999999999999e-05
+  },
+  {
+    "id": 13,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The humidity can decrease due to the temperature increase, but it is not guaranteed. Other factors could also affect humidity independently of temperature changes.",
+    "reference_explanation": "Though increasing the temperature can lead to reduced humidity, the decrease in reported humidity could be purely from manual adjustments (calling adjust_humidity directly) or setting it through increase_humidity. There might be no direct relationship between the observed humidity and prior temperature changes in this scenario.",
+    "cost": 7.08e-05
+  },
+  {
+    "id": 12,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The humidity only decreases when the temperature is increased, as the decrease is triggered by the increase_temperature method. Without that action, humidity remains unchanged.",
+    "reference_explanation": "The humidity decreases as a side effect of the temperature increasing due to the adjust_humidity method being called within increase_temperature. Without the increase_temperature call, there's no automatic reduction in humidity.",
+    "cost": 6.854999999999999e-05
+  },
+  {
+    "id": 14,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Manually setting the temperature to a higher value will change the temperature attribute, which is reported in the weather output.",
+    "reference_explanation": "Increasing the temperature through increase_temperature not only updates the temperature but also triggers adjust_humidity, thus altering the humidity, which is reflected in the reported weather.",
+    "cost": 6.675e-05
+  },
+  {
+    "id": 19,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "A reduction in final prices due to tax rate changes does not imply a change in base prices, as final prices are influenced by discounts and taxes applied to the existing base prices.",
+    "reference_explanation": "A reduction in final prices from tax rate intervention only reflects changes in the tax component and does not necessarily imply any alteration in base prices. Other elements like membership discounts still influence the final total independently of the base price.",
+    "cost": 7.035e-05
+  },
+  {
+    "id": 16,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Changing membership status from 'gold' to 'silver' reduces the discount from 10% to 5%, leading to higher final prices after tax is applied.",
+    "reference_explanation": "Switching the membership status from 'gold' to 'silver' would lead to a smaller discount (10% to 5%), resulting in higher after-discount prices, which in turn increases the final price as the tax paid on a higher amount would also be more.",
+    "cost": 7.155e-05
+  },
+  {
+    "id": 18,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Setting the tax rate in 'CA' to zero will reduce the final prices since tax is a component of the total price calculation.",
+    "reference_explanation": "By setting the tax rate to zero in 'CA', the total tax component of the final price calculation becomes zero, directly decreasing the final prices of products regardless of membership status or original product price.",
+    "cost": 6.84e-05
+  },
+  {
+    "id": 17,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The final price is influenced by both discounts and tax rates, making it insufficient to determine membership status solely based on price changes.",
+    "reference_explanation": "The final price alone doesn't necessarily indicate the membership status because it is also influenced by the base price and the tax rate based on the location. Similarly priced items might result from different combinations of these factors.",
+    "cost": 6.84e-05
+  },
+  {
+    "id": 20,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "If 'apply_correction' is set to False, the values in 'filtered_data' will not be modified; they will be the original values that meet the filter threshold.",
+    "reference_explanation": "Setting 'apply_correction' to False skips the data modification step (multiplication by 0.9), and the data is filtered without any changes. Therefore, 'filtered_data' will only contain values greater than the filter_threshold without any modification.",
+    "cost": 7.14e-05
+  },
+  {
+    "id": 24,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "If a user is assigned to 'Project Z', they meet the criteria for coffee access as it is listed among the allowed projects.",
+    "reference_explanation": "The `update_coffee_access` method is called after a user is assigned to a project. Inside this method, 'Project Z' is listed as one of the allowed projects that grant coffee machine access, thereby giving the user coffee machine access automatically.",
+    "cost": 7.005e-05
+  },
+  {
+    "id": 23,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The reduction in length of 'filtered_data' could be due to the increased 'filter_threshold' alone, not necessarily the 'apply_correction'.",
+    "reference_explanation": "While the enabling of 'apply_correction' does reduce each qualifying data element, the main driver for size reduction in 'filtered_data' when increasing 'filter_threshold' would be the threshold change itself. We cannot definitively conclude reduction in individual data element sizes due to 'apply_correction' alone caused the shorter data list, as it might be primarily due to fewer elements passing the increased threshold.",
+    "cost": 7.485e-05
+  },
+  {
+    "id": 21,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "If 'filtered_data' contains values less than those in 'data_set', it indicates that 'apply_correction' was enabled, as the values would be reduced by 10%.",
+    "reference_explanation": "If 'filtered_data' contains values less than the initial values, it implies data was modified post-filtering. Since values are multiplied by 0.9 only when 'apply_correction' is enabled and they are greater than the threshold, it suggests that 'apply_correction' was indeed enabled.",
+    "cost": 7.304999999999999e-05
+  },
+  {
+    "id": 25,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Granting coffee access indicates the user is assigned to either 'Project X' or 'Project Z', as these are the only projects that allow coffee access according to the code.",
+    "reference_explanation": "The only condition under which the `update_coffee_access` method grants access is when the user's `active_project` is either 'Project X' or 'Project Z'. Thereby, having coffee machine access implies being assigned to one of these projects.",
+    "cost": 7.14e-05
+  },
+  {
+    "id": 29,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "If the risk is 0.5, it indicates that the person must have symptoms, as the maximum risk without symptoms (0.4 for age > 50) is lower than 0.5.",
+    "reference_explanation": "From effect to cause without intervention - A risk of 0.5 could occur in two scenarios according to the code: a person over 50 without symptoms (0.4 risk from age + 0.0 from symptoms) or a younger person with symptoms (0.2 risk from age + 0.3 from symptoms). Therefore, the presence of symptoms cannot be solely inferred from the risk level.",
+    "cost": 0.0
+  },
+  {
+    "id": 27,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "If coffee access is revoked, it indicates the user is assigned to a project not in the allowed list ('Project X' or 'Project Z').",
+    "reference_explanation": "Given the current setup before the policy change, if a user's coffee access is revoked, it is a direct indication that their active project is no longer one of the projects ('Project X' or 'Project Z') previously permitting coffee access. An intervention that modifies this project assignment is the probable cause of this effect.",
+    "cost": 7.245e-05
+  },
+  {
+    "id": 26,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "With the policy change, only 'Project Y' members can access the coffee machine. Since 'Project X' is no longer in the allowed_projects list, the user loses coffee access.",
+    "reference_explanation": "Assuming the `allowed_projects` list has been updated as per the new policy to include only 'Project Y', a user assigned to 'Project X' would no longer meet the criteria for coffee access established in the `update_coffee_access` function.",
+    "cost": 7.185e-05
+  },
+  {
+    "id": 28,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "An older person (>50) with symptoms has a risk of 0.4 + 0.3 = 0.7, while a younger person (<=50) without symptoms has a risk of 0.2, making the older person's risk higher.",
+    "reference_explanation": "From cause to effect without intervention - Age and symptoms directly increase the risk without any external intervention, and combining both factors (being over 50 and having symptoms) maximizes the risk according to the code logic.",
+    "cost": 7.289999999999998e-05
+  },
+  {
+    "id": 22,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "Enabling 'apply_correction' reduces the values in 'filtered_data' further, potentially decreasing its size compared to just increasing 'filter_threshold'.",
+    "reference_explanation": "Increasing 'filter_threshold' filters out more lower value data, reducing the data size. Enabling 'apply_correction' means the remaining high values get reduced (multiplied by 0.9), potentially dropping additional values below the new 'filter_threshold'. Hence, both actions together can further reduce the size of 'filtered_data' compared to just increasing the 'filter_threshold'.",
+    "cost": 7.439999999999999e-05
+  },
+  {
+    "id": 30,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "A symptomatic person under 50 would have a risk of 0.4 (0.1 base + 0.3 for symptoms), while a symptomatic person over 50 would have a risk of 0.7 (0.1 base + 0.3 for symptoms).",
+    "reference_explanation": "From cause to effect with intervention - The intervention uniformly reduces the base risk to 0.1 regardless of age. Given this, the additional risk applied due to symptoms is the same (0.3) in both age groups, resulting in equal total risk.",
+    "cost": 0.0
+  },
+  {
+    "id": 32,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Increasing temperature may not always lead to higher visitors_satisfaction, as it depends on the mood (sunny or not) and comfort level. If mood is 'indifferent' and comfort is 'uncomfortable', satisfaction could decrease.",
+    "reference_explanation": "The increase in temperature influences visitors_satisfaction indirectly through its effect on comfort. However, satisfaction is also dependent on whether it is sunny or not (mood), and past a certain threshold (20 degrees), just increasing temperature will not affect comfort (already 'comfortable'). Thus, without knowing the condition 'is_sunny', one cannot guarantee that visitors_satisfaction will increase.",
+    "cost": 7.664999999999999e-05
+  },
+  {
+    "id": 34,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "With temperature above 20 degrees and sunny weather, both mood and comfort are optimal, leading to 0.9 * number_of_visitors for satisfaction. Thus, an increase in visitors will increase satisfaction.",
+    "reference_explanation": "By setting the temperature above 20 degrees (ensuring comfort) and making it sunny (ensuring a happy mood), both main factors affecting satisfaction are optimized. This setting guarantees that any increase in the number of visitors will proportionally increase visitors_satisfaction since both other factors encourage the highest satisfaction ratio (0.9).",
+    "cost": 7.439999999999999e-05
+  },
+  {
+    "id": 37,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The score only increases if the age is greater than 18 or if training is completed. A person younger than 18 will not receive the age bonus.",
+    "reference_explanation": "According to the code, if a person completes the training, their score increases by 20, regardless of their age. So, even if the person is younger than 18, the completion of training will still result in a score increase.",
+    "cost": 0.0
+  },
+  {
+    "id": 33,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The number of visitors does not directly imply it was a sunny day, as other factors can influence visitor numbers. The function calculates satisfaction based on mood and comfort, not solely on weather conditions.",
+    "reference_explanation": "While a higher visitors_satisfaction generally results from a higher mood, which is impacted by it being sunny, there are other factors (like temperature) that can also affect visitors_satisfaction. A high number of visitors increases satisfaction only, but this can also occur with just a 'comfortable' temperature irrespective of it being sunny. Hence, we cannot infer sunny weather purely based on high visitor satisfaction.",
+    "cost": 7.605e-05
+  },
+  {
+    "id": 35,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "High visitors_satisfaction does not directly imply successful interventions on weather and temperature, as other factors could influence satisfaction.",
+    "reference_explanation": "High visitor satisfaction could result from either an independently good weather, comfortable temperature, or both. Even though optimal intervention on both factors might be a likely reason for high satisfaction, it's not the only possibility. Other uncontrolled combinations (warm temperature or sunny conditions alone) could also lead to high satisfaction scores. Thus, consistent high satisfaction doesn't conclusively indicate successful intervention on both fronts.",
+    "cost": 7.304999999999999e-05
+  },
+  {
+    "id": 31,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Interventions can lower risk factors, leading to a decrease in assessed risk for older individuals despite their age. This is plausible within the model's framework.",
+    "reference_explanation": "From effect to cause with intervention - The implementation of an intervention that adjusts the base risk can directly cause a reduction in reported risk values compared to those calculated before the intervention, showing why the risk might be lower for an older individual on subsequent assessments.",
+    "cost": 7.05e-05
+  },
+  {
+    "id": 39,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "If training completion is mandated, every individual will receive a score increase of at least 20. If they are also over 18, the increase could be 30, but the minimum is 20.",
+    "reference_explanation": "By mandating training completion for everyone, it's guaranteed that each individual's score will increase at least by 20 points, as specified in the code. This is a minimum because additional points can be added if the person is older than 18.",
+    "cost": 7.199999999999999e-05
+  },
+  {
+    "id": 36,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "A score can increase due to age being over 18, not just from completing training. Therefore, an increased score does not imply training completion.",
+    "reference_explanation": "Score could be increased either by the person being older than 18 or by having completed the training. The sole fact that the score increased does not necessarily imply the training was completed.",
+    "cost": 6.84e-05
+  },
+  {
+    "id": 38,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "The score increase does not provide enough information to determine age, as it only specifies conditions for score changes without revealing age directly.",
+    "reference_explanation": "Setting the score to increase arbitrarily by 30 points does not relate directly to a person's age or whether they have completed the training. These factors are independent of an arbitrary increase; hence a person’s age still cannot be inferred from this new score increase alone.",
+    "cost": 7.02e-05
+  },
+  {
+    "id": 44,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "If the rate increases, the interest calculated as balance * rate / 100 will also increase, assuming the balance remains constant.",
+    "reference_explanation": "The function `calculate_interest` directly multiplies the `balance` with the `rate` to calculate the `interest`. Therefore, when the `rate` increases, the `interest` calculated from the balance will proportionally increase.",
+    "cost": 6.93e-05
+  },
+  {
+    "id": 43,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Given 'adjusted_value' is 300 and 'value' is 100, we can calculate scale_factor as 300 / 100 = 3. Thus, we can infer the scale_factor used.",
+    "reference_explanation": "Given the 'adjusted_value' formula as `value * scale_factor`, and knowing 'value' was 100, an 'adjusted_value' of 300 directly implies that the 'scale_factor' used had to be 3. This deduction is a straightforward calculation invoking the effect (adjusted_value = 300) to backtrack to the cause (scale_factor).",
+    "cost": 7.619999999999998e-05
+  },
+  {
+    "id": 42,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "The 'category' is determined solely by the 'value' field, not the 'scale_factor'. Changing 'scale_factor' does not affect the condition that assigns 'High' or 'Low'.",
+    "reference_explanation": "Changing 'scale_factor' influences only the 'adjusted_value' calculation and does not impact 'category' determination based on 'value'. 'Category' is solely determined by the 'value' in the data, irrespective of the 'scale_factor'.",
+    "cost": 7.185e-05
+  },
+  {
+    "id": 41,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "The condition checks if 'value' is greater than 100 to set 'category' to 'High', ensuring that 'value' must be above 100 for this assignment.",
+    "reference_explanation": "Within the function, 'category' is set to 'High' only when 'value' is greater than 100. Thus, observing 'category' as 'High' suggests that 'value' was indeed greater than 100. However, it assumes no external modifications to 'category' outside this function.",
+    "cost": 7.304999999999999e-05
+  },
+  {
+    "id": 47,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "The rate is determined independently of the balance adjustment; it remains constant regardless of any changes to the balance after interest is calculated.",
+    "reference_explanation": "Adding a function to manipulate the initial `balance` based on the final total does not impact the `rate` in the existing calculation model in `calculate_interest`. The `rate` is independently set and not dynamically influenced by the balance or its adjustments. Therefore, operations influencing the balance do not directly change how the rate is determined in the current setup.",
+    "cost": 7.289999999999998e-05
+  },
+  {
+    "id": 49,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The heat index status 'High heat index' indicates that the temperature exceeded 30 degrees, which was achieved by a recent increase of 10 degrees from 25 to 35 degrees.",
+    "reference_explanation": "The heat index being 'High heat index' depends on both high temperature and humidity. Simply observing 'High heat index' cannot conclusively determine that there was a specific increase in temperature without knowing the previous state, thus effect to cause relation here is not sufficient for inference.",
+    "cost": 0.0
+  },
+  {
+    "id": 46,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "If the rate is updated regularly based on external factors, it can lead to different interest calculations, thus affecting the eventual balance after interest is added.",
+    "reference_explanation": "By adding a new function that updates the rate based on external factors, which then influences the `interest` outcome through the `calculate_interest` function, this dynamically adjusts the `interest` added to the balance. Consequently, the final `balance` post the interest addition will be altered compared to without this rate adjustment mechanism.",
+    "cost": 7.26e-05
+  },
+  {
+    "id": 40,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "If 'value' is above 100, the condition in the code ensures that 'category' is set to 'High'.",
+    "reference_explanation": "The function checks if the 'value' is greater than 100, and if so, explicitly sets the 'category' to 'High'. There is a direct cause, 'value' > 100, leading to the effect, 'category' being 'High', without other interfering conditions within the defined function.",
+    "cost": 7.17e-05
+  },
+  {
+    "id": 48,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "After updating the temperature to 35 (25 + 10), both conditions for 'High heat index' (temperature > 30 and humidity > 40) are satisfied, indicating a potential change in status.",
+    "reference_explanation": "The method `update_temperature` increases the temperature attribute of the instance. If this updated temperature exceeds 30, and the humidity is already over 40, the `apply_heat_index` method would likely return 'High heat index', showing a direct cause (temperature increase) to effect (change in heat index status) relation.",
+    "cost": 7.47e-05
+  },
+  {
+    "id": 45,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "A decrease in interest does not necessarily indicate a decrease in balance; it could be due to a lower rate or other factors. The balance can remain the same or increase despite lower interest.",
+    "reference_explanation": "The interest calculation in the `calculate_interest` function is dependent only on the `balance` and the `rate`. A decrease in interest could be due to a decrease in the rate or an untouched balance. The balance is not influenced by the change in interest outright without other external adjustments; it does not automatically decrease when interest does.",
+    "cost": 7.409999999999999e-05
+  },
+  {
+    "id": 55,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The intervention ensuring people go outside does not imply it is sunny; they could go outside for other reasons regardless of weather conditions.",
+    "reference_explanation": "If an intervention ensures that 'willPeopleGoOutside' always returns true, it must be that both conditions (sunny and temperature above 25) are met. Therefore, intervention to achieve this outcome would require ensuring it is sunny along with a higher temperature.",
+    "cost": 0.0
+  },
+  {
+    "id": 51,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The heat index status could be 'Normal' due to a recent temperature increase followed by a decrease below 30, so we cannot conclude there was no recent increase.",
+    "reference_explanation": "If the temperature is manually set below 30, then, regardless of humidity, the heat index cannot be 'High'. Observing a 'Normal' heat index status after this manual setting strongly suggests that recent conditions (or interventions) ensured the temperature did not increase beyond the threshold, demonstrating causal inference through intervention.",
+    "cost": 0.0
+  },
+  {
+    "id": 50,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Increasing the temperature from 25 to 35 will result in a temperature above 30 with humidity still at 45, thus changing the heat index to 'High heat index'.",
+    "reference_explanation": "Manually invoking `update_temperature` with a positive delta directly changes the `temperature` attribute. Assuming the temperature surpasses 30 and humidity remains over 40, `apply_heat_index` will determine the heat index as 'High'. This demonstrates intervening to witness a change in effect directly stemming from the cause.",
+    "cost": 7.335e-05
+  },
+  {
+    "id": 52,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The weather is sunny and the temperature is 35 degrees, which is greater than 25. Therefore, people will go outside.",
+    "reference_explanation": "In the code, the temperature is adjusted to 30 or higher when it is sunny. Thus, setting it to 35 in sunny conditions keeps it at 35. As both sunny conditions and temperature above 25 are met, the method 'willPeopleGoOutside' returns true.",
+    "cost": 7.11e-05
+  },
+  {
+    "id": 54,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "If all days are set to be sunny, the temperature must still be above 25 degrees for people to go outside, as per the method's condition.",
+    "reference_explanation": "With an intervention setting every day sunny, the condition for sunniness in 'willPeopleGoOutside' is always met. However, people will only go outside if the temperature is also above 25 degrees, according to the conditions specified in the method.",
+    "cost": 7.08e-05
+  },
+  {
+    "id": 56,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "According to the WeatherSystem class, if the temperature increases above 25, the humidity will increase by 5. Thus, a significant temperature increase likely leads to increased humidity.",
+    "reference_explanation": "The method increaseHeat in WeatherSystem increases temperature and raises humidity if the temperature exceeds 25 degrees. Therefore, increasing temperature significantly can lead to increased humidity.",
+    "cost": 6.854999999999999e-05
+  },
+  {
+    "id": 53,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "People may not go outside even if it is sunny, for example, if the temperature is 25 or lower. Thus, a forecast of people not going outside does not necessarily imply it isn't sunny.",
+    "reference_explanation": "A negative forecast ('people not going outside') can be caused either by non-sunny weather or by a sunny day with a temperature of 25 or below. Hence, it is not sufficient to conclude the absence of sun solely based on people not going outside.",
+    "cost": 7.245e-05
+  },
+  {
+    "id": 57,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "The decrease in humidity does not necessarily imply a decrease in temperature, as humidity can change independently of temperature adjustments. The temperature only decreases if humidity falls below 45 after a decrease operation.",
+    "reference_explanation": "In the decreaseHumidity method, lowering humidity directly does not always imply a decrease in temperature. However, if humidity drops below 45, it will lead to a reduction in temperature. Without knowing if the threshold was crossed, we cannot directly conclude a reduction in temperature from a decrease in humidity without additional information.",
+    "cost": 7.335e-05
+  },
+  {
+    "id": 59,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Decreasing humidity can lead to a temperature reduction if humidity falls below 45%, triggering a temperature decrease of 3 degrees.",
+    "reference_explanation": "Actively invoking decreaseHumidity can lower humidity significantly, and if humidity drops below 45%, the condition within the method triggers a temperature reduction by 3 degrees. Thus, through intervention by reducing humidity, temperature can be indirectly decreased.",
+    "cost": 6.93e-05
+  },
+  {
+    "id": 58,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "If the temperature is always above 25 degrees, the humidity will increase by 5 units each time the heat is increased, as per the method's condition.",
+    "reference_explanation": "Keeping the temperature above 25 degrees due to an intervention (increaseHeat method) consistently triggers the humidity increase condition. This causal link from the method ensures that as long as the temperature remains above 25, the humidity increases.",
+    "cost": 7.02e-05
+  },
+  {
+    "id": 63,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "The reduction in disease risks cannot be conclusively attributed to increased exercise, as other factors may also contribute to this change.",
+    "reference_explanation": "Decreasing disease risk can result from various interventions such as reduced smoking or other health policies, not necessarily increased exercise. Without clear data on the specifics of the interventions, such a conclusion would be assumption-based",
+    "cost": 6.84e-05
+  },
+  {
+    "id": 65,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "If the result is true, the initial pressure must be greater than 100. Given the formula pressure = temperature * 1.2, this implies temperature must be greater than 83.33, thus above 83.",
+    "reference_explanation": "Though it's likely to be true before intervention since 83 would theoretically give a pressure of 100 when multiplied by 1.2, the intervention through `setTemperature` changes the pressure formula and result condition, allowing potentially different combinations of temperature and pressures to achieve a 'true' result.",
+    "cost": 0.0
+  },
+  {
+    "id": 60,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "Increasing age changes the base risk, but other factors like smoking and exercise can decrease the overall disease risk. Thus, risk does not necessarily increase.",
+    "reference_explanation": "Disease risk depends not only on age but also on smoking and exercise habits. Aging increases the base risk, but changes in smoking or exercise can mitigate or exacerbate this effect.",
+    "cost": 6.824999999999999e-05
+  },
+  {
+    "id": 62,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Encouraging exercise reduces disease risk by providing a negative adjustment to the risk calculation, thus lowering the overall risk.",
+    "reference_explanation": "Encouraging exercise affects the disease risk negatively (i.e., decreases it), as shown in the `recalculate_risk()` method where exercise reduces the risk by 0.1.",
+    "cost": 6.78e-05
+  },
+  {
+    "id": 61,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "A high disease risk can result from age or lack of exercise, not just smoking. Therefore, high risk does not necessarily imply the person is a smoker.",
+    "reference_explanation": "A high disease risk may be influenced by other factors like age and lack of exercise, not just smoking. Without knowing the specifics of age and exercise habits, you cannot infer smoking status solely from disease risk.",
+    "cost": 6.945e-05
+  },
+  {
+    "id": 64,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "In both the constructor and the setTemperature method, pressure is calculated based on temperature, indicating that an increase in temperature leads to an increase in pressure.",
+    "reference_explanation": "Directly from the code, the pressure is calculated based on the temperature (`this.pressure = (int) (temperature * 1.2)` initially, and `this.pressure = (int) (temperature * 1.1)` after intervention). In both cases, an increase in temperature directly causes an increase in pressure.",
+    "cost": 7.319999999999999e-05
+  },
+  {
+    "id": 67,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The result turned true after setting the temperature to 95, which indicates the new methodology was in effect, as the pressure threshold changed to 110.",
+    "reference_explanation": "Given the pressure-recalculation and the new threshold for the result set in `setTemperature`, the fact that the result is true after the intervention does not necessarily imply that the initial temperature-to-pressure calculation was still used. The new setting could be in place, and new conditions met.",
+    "cost": 7.17e-05
+  },
+  {
+    "id": 68,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "The mean is the average of the data points. If the new data points are consistent with the existing ones, the mean may not change. It only changes if the new data significantly alters the average.",
+    "reference_explanation": "Increasing the sample size doesn’t necessarily change the mean, as it depends on the values of the additional data points. If the new data points are similar to the existing mean, the overall mean might remain stable.",
+    "cost": 7.094999999999999e-05
+  },
+  {
+    "id": 66,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Setting the temperature to 150 results in pressure = 150 * 1.1 = 165, which exceeds 110.",
+    "reference_explanation": "By setting the temperature to 150, after the change in temperature setting formula from `setTemperature`, the pressure becomes `150 * 1.1 = 165`, which indeed is greater than 110.",
+    "cost": 6.884999999999999e-05
+  },
+  {
+    "id": 69,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Determining the variance only indicates the spread of the data, not the exact values. Different datasets can have the same variance but different values.",
+    "reference_explanation": "The message only indicates whether the variance exceeds 15 and does not provide specific information about the exact numbers within the input data, given that multiple configurations of data can lead to the same variance measure.",
+    "cost": 6.869999999999999e-05
+  },
+  {
+    "id": 74,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "If the discount is applied, the final price decreases only if the discount is greater than 0. If the discount is 0 or negative, the final price does not decrease.",
+    "reference_explanation": "The apply_discount method updates the discount and recalculates the final_price. As the discount rate increases, the amount subtracted from the price increases, thus decreasing the final_price.",
+    "cost": 0.0
+  },
+  {
+    "id": 70,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "If all values in 'input_data' are set to 20, the mean and variance will both be 0. Thus, the output will be 'Low variance'.",
+    "reference_explanation": "Setting all data points to the same value results in zero variance as there are no deviations from the mean, thus leading to the output 'Low variance'.",
+    "cost": 6.824999999999999e-05
+  },
+  {
+    "id": 72,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "When the price of a Product is increased, the final_price will also increase, assuming the discount remains the same or is not applied. The final_price is directly calculated from the price.",
+    "reference_explanation": "The final_price is recalculated whenever the price is increased, accounting for the current discount. If the discount remains constant, the final_price will increase proportionally to the price increase.",
+    "cost": 6.96e-05
+  },
+  {
+    "id": 77,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "A user can make a purchase without receiving a promotional email, as the purchase is determined by a random chance (30% probability) after receiving an email. Therefore, we cannot infer that a purchase guarantees an email was received.",
+    "reference_explanation": "According to the code, a user can only make a purchase if a promotional email has been sent to them, since the act of purchasing is only modified inside the send_promotional_email function.",
+    "cost": 0.0
+  },
+  {
+    "id": 78,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Sending emails only to subscribed users ensures that all recipients are interested, likely increasing engagement and purchases compared to including non-subscribers who may not respond.",
+    "reference_explanation": "The code already sends emails only to users who are subscribed. Additional conditions will not change the existing mechanism or increase purchases unless probability thresholds or user behaviors are also adjusted.",
+    "cost": 0.0
+  },
+  {
+    "id": 79,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The increase in purchases cannot be solely attributed to more subscribed users, as the purchase decision also depends on the random chance (30% likelihood) of making a purchase after receiving an email.",
+    "reference_explanation": "Since purchases in the provided code setup only occur when promotional emails are sent to subscribed users, changes in the number of purchases are closely linked and can be attributed to interventions in email dispatches to subscribed users.",
+    "cost": 0.0
+  },
+  {
+    "id": 75,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "The final_price can increase due to a price increase, regardless of the discount. A reduced discount does not necessarily cause an increase in final_price.",
+    "reference_explanation": "The increase in final_price after an intervention could also be due to a price increase through the increase_price method. Therefore, it does not necessarily imply that the discount was reduced.",
+    "cost": 6.824999999999999e-05
+  },
+  {
+    "id": 73,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "The final_price can decrease due to an increase in discount or a price increase that is less than the discount effect, not solely due to a price reduction.",
+    "reference_explanation": "A decrease in the final_price can also occur due to an increase in the discount rate. Therefore, a decrease in final_price does not necessarily mean that the price was reduced.",
+    "cost": 6.854999999999999e-05
+  },
+  {
+    "id": 71,
+    "correct_explanation": false,
+    "confidence": 0.2,
+    "predicted_explanation": "The code execution does not provide a mechanism to intervene or inspect 'input_data' after the output is printed. The values are not accessible post-execution.",
+    "reference_explanation": "Even with the knowledge of 'High variance,' the specific values in 'input_data' can vary widely; many different sets of numbers can result in a variance greater than 15.",
+    "cost": 6.869999999999999e-05
+  },
+  {
+    "id": 76,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "Receiving a promotional email does not guarantee a purchase, as the decision to purchase is probabilistic (30% chance of not purchasing).",
+    "reference_explanation": "The script does not guarantee a purchase even if a promotional email is sent. The decision is randomized with a probability condition (greater than 0.7) which introduces uncertainty.",
+    "cost": 6.78e-05
+  },
+  {
+    "id": 80,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The planned activity is determined by the initial weather. Changing the weather to 'sunny' results in a different activity, but it does not mean every weather change leads to a different planned activity.",
+    "reference_explanation": "In the `decide_activity` function, the planned activity directly depends on the weather condition; a sunny weather leads to planning a picnic, while rainy weather changes it to watching movies. Therefore, any change in the weather condition results in a change of the planned activity.",
+    "cost": 0.0
+  },
+  {
+    "id": 82,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "While modifying the weather to always be sunny ensures a picnic activity, the original weather could also lead to a picnic, resulting in potentially equal ratings. Thus, it does not guarantee a higher rating.",
+    "reference_explanation": "Based on the `activity_feedback` function, the feedback rating for a picnic (activity corresponding to sunny weather) is 8, which is higher than the rating for watching movies (5). By intervening to set the weather consistently sunny, the consequent activity is always a picnic, effectively ensuring a higher feedback rating.",
+    "cost": 0.0
+  },
+  {
+    "id": 83,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Changing the feedback does not influence the weather, as the weather is determined by a random function and is not affected by activities or their feedback.",
+    "reference_explanation": "Changing the feedback does not affect the weather since the weather is generated and determined independently (`assess_weather` function) before the activity or feedback are considered. The feedback is a reflection of the activity's enjoyment level based on the preset weather condition, but it doesn't influence the weather itself.",
+    "cost": 7.14e-05
+  },
+  {
+    "id": 85,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "We cannot assume 'units_sold' increased without considering 'current_inventory' or 'units_added' because both factors influence the final inventory calculation.",
+    "reference_explanation": "A decrease in 'new_inventory' can be due to an increase in 'units_sold', a decrease in 'units_added', or even a decrease in the initial 'current_inventory'. Without additional information or holding other variables constant, we cannot determine the specific cause from the effect observed.",
+    "cost": 7.155e-05
+  },
+  {
+    "id": 84,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Increasing 'units_sold' reduces 'new_inventory' since it subtracts from 'current_inventory', assuming no changes in 'current_inventory' and 'units_added'.",
+    "reference_explanation": "In the code, 'new_inventory' is calculated by subtracting 'sold_units' from 'current_inventory' and adding 'restocked_units'. Increasing 'units_sold' directly decreases 'new_inventory', because you subtract a larger number from the 'current_inventory'. This demonstrates how changing the cause (units sold) affects the effect (new inventory) without any intervention on other variables.",
+    "cost": 7.514999999999998e-05
+  },
+  {
+    "id": 81,
+    "correct_explanation": false,
+    "confidence": 0.9,
+    "predicted_explanation": "The user's enjoyment feedback does not influence or determine the weather; it is based on a random assessment of the weather conditions.",
+    "reference_explanation": "The user feedback on the activity (`Enjoyed` or `Relaxed`) is dependent on the type of activity they ended up doing (picnic or watching movies), which, in turn, depends on the weather. Therefore, feedback is a consequence, not a determinant of the weather.",
+    "cost": 7.08e-05
+  },
+  {
+    "id": 86,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "If 'units_added' is zero, an increase in 'units_sold' directly decreases 'new_inventory' since the formula subtracts sold units from current inventory.",
+    "reference_explanation": "Setting 'restocked_units' to zero simplifies the function to 'new_inventory = current_inventory - sold_units'. Any increase in 'units_sold' now directly reduces 'new_inventory', as no units are being added to counterbalance the sales. This is an instance of observing causation from the change in the cause to the effect with an intervention (setting restock to zero).",
+    "cost": 7.499999999999998e-05
+  },
+  {
+    "id": 87,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "If 'units_added' were zero, 'new_inventory' could remain unchanged even if 'units_sold' were greater than zero, as long as 'current_inventory' was equal to 'units_sold'.",
+    "reference_explanation": "The absence of change in 'new_inventory' can occur because the increase in 'units_sold' was exactly equal to the increase in 'current_inventory', balancing out the effects even if 'units_added' is zero. Thus, not observing a change in the effect does not necessarily indicate the absence of the cause.",
+    "cost": 7.439999999999999e-05
+  },
+  {
+    "id": 88,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Changing the weather from 'sunny' (base demand 120) to 'rainy' (base demand 80) results in a decrease in base demand by 40 units, assuming no other factors change.",
+    "reference_explanation": "The `calculate_demand` function sets higher base demand for sunny weather (120) compared to rainy (80) without considering other variables like holiday or marketing campaign. Thus, changing the weather to rainy will reduce the base demand irrespective of any interventions.",
+    "cost": 7.26e-05
+  },
+  {
+    "id": 89,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Final demand can increase due to other factors like holidays or marketing campaigns, not just sunny weather.",
+    "reference_explanation": "An increase in final_demand could be due to either favorable weather (sunny), a holiday that increases the base demand, or an effective marketing campaign. Since these factors are interdependent and not exclusive to sunny weather, the specific state of the weather cannot be conclusively determined from a rise in final_demand alone.",
+    "cost": 7.11e-05
+  },
+  {
+    "id": 90,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The marketing campaign increases demand by 20% only if it is implemented. If not, demand remains unchanged. Therefore, it does not always result in increased final demand.",
+    "reference_explanation": "The `marketing_effect` function increases the demand by 20% if there is a marketing campaign active, independent of other factors like weather or holiday. Holding those factors constant, initiating a marketing campaign will unequivocally increase the final_demand.",
+    "cost": 0.0
+  },
+  {
+    "id": 92,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "If it starts raining, the method openWindows() will return false, indicating that the windows will remain closed.",
+    "reference_explanation": "The method `openWindows` checks if it is raining. If it is, it will return false, keeping the windows closed.",
+    "cost": 6.585e-05
+  },
+  {
+    "id": 95,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The AC can only be in cooling mode if it is not raining and the temperature is above 25 degrees. Therefore, if the AC is in cooling mode, it confirms that it is not raining.",
+    "reference_explanation": "The air conditioning turns on cooling mode only if it's not raining and the temperature is above 25 degrees.",
+    "cost": 6.78e-05
+  },
+  {
+    "id": 94,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Since the temperature is 30 degrees and it is a non-rainy day, the conditions for turning on the AC are met, leading to cooling mode activation.",
+    "reference_explanation": "The `adjustAC` method checks for non-rainy conditions and temperatures above 25 degrees to turn on the air conditioning to cooling mode.",
+    "cost": 6.795e-05
+  },
+  {
+    "id": 93,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The windows can be closed for reasons other than rain, such as temperature being above 25 degrees. Thus, closed windows do not necessarily indicate that it is raining.",
+    "reference_explanation": "Windows being closed can also be due to the temperature being 25 degrees or below, not just because of rain.",
+    "cost": 6.705e-05
+  },
+  {
+    "id": 97,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The discounted price can increase due to factors other than a reduction in base_discount, such as changes in item_price or customer_loyalty_status. Therefore, we cannot conclude that base_discount was reduced.",
+    "reference_explanation": "An increase in 'discounted_price' might result from either a decrease in the 'base_discount' or a change in 'incremental_discount' through different 'customer_loyalty_status'. Without specific information about 'customer_loyalty_status' or other factors, a definite cause cannot be assigned solely to changes in 'base_discount'.",
+    "cost": 7.47e-05
+  },
+  {
+    "id": 96,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "An increase in 'base_discount' directly reduces the final discount applied to the item price, leading to a lower 'discounted_price'.",
+    "reference_explanation": "Increasing the 'base_discount' directly decreases the 'final_discount' percentage applied to the 'item_price', thereby reducing the 'discounted_price'. This relationship doesn't require any intervention on 'customer_loyalty_status'.",
+    "cost": 6.915e-05
+  },
+  {
+    "id": 99,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "The increase in 'discounted_price' cannot be solely attributed to changing 'customer_loyalty_status' to a lower category, as other factors could also influence the price.",
+    "reference_explanation": "An increase in 'discounted_price' can result from multiple possible interventions: decreasing 'base_discount', lowering 'customer_loyalty_status', or external factors altering 'item_price' itself. Without direct observation or data about 'customer_loyalty_status', we cannot conclusively attribute the increased 'discounted_price' to a decrease in discount via changing loyalty status alone.",
+    "cost": 7.499999999999998e-05
+  },
+  {
+    "id": 98,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Setting 'customer_loyalty_status' to 'none' results in an incremental_discount of 0, which decreases the final_discount compared to having a status that provides a discount.",
+    "reference_explanation": "Setting 'customer_loyalty_status' to 'none' results in 'incremental_discount' being zero. This intervention directly affects the 'final_discount', which now equals only the 'base_discount' since 'incremental_discount' is eliminated, reducing the overall discount.",
+    "cost": 7.214999999999999e-05
+  },
+  {
+    "id": 91,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "A decrease in final_demand does not necessarily imply no holiday, as other factors like weather and marketing can also affect demand.",
+    "reference_explanation": "A decrease in final_demand could result from multiple factors such as poorer weather conditions or the absence of a marketing campaign. The presence or absence of a holiday cannot be definitively inferred just based on a decrease in final demand, as other factors could also contribute to this decrease.",
+    "cost": 7.065e-05
+  }
+]

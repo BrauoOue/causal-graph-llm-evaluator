@@ -1,0 +1,17 @@
+{
+  "dataset": "text",
+  "predictions_model": "gpt-4o-mini",
+  "total_predictions": 100,
+  "correct_predictions": 70,
+  "valid_choice_predictions": 100,
+  "prediction_accuracy": 0.7,
+  "predictions_execution_time": 33.5813410282135,
+  "predictions_total_cost": 0.04194315000000001,
+  "explanations_model": "gpt-4o-mini",
+  "total_explanations": 100,
+  "correct_explanations": 32,
+  "explanations_accuracy": 0.32,
+  "average_explanation_confidence": 0.867,
+  "explanations_execution_time": 25.50243854522705,
+  "explanations_total_cost": 0.022616249999999984
+}

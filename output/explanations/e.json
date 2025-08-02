@@ -1,0 +1,802 @@
+[
+  {
+    "id": 0,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Light rain creates ripples on water surfaces, making it likely that tourists observe this phenomenon. The other option is unlikely as rain typically moistens plant roots.",
+    "reference_explanation": "Precipitation reaches soil surfaces.",
+    "cost": 0.0
+  },
+  {
+    "id": 5,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Full automation typically enhances production efficiency and flexibility, allowing the factory to produce a variety of products rather than just focusing on purchasing machines.",
+    "reference_explanation": "Automation refers to intensive use of machinery in production.",
+    "cost": 0.0
+  },
+  {
+    "id": 2,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Parents likely stopped him due to the immediate danger posed by running towards hippos, which are known to be aggressive. The other option does not suggest a pressing reason for intervention.",
+    "reference_explanation": "Hippos are among the megafaunal species dangerous to humans.",
+    "cost": 6.585e-05
+  },
+  {
+    "id": 6,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Understanding pixels as building blocks is crucial for photographers when editing images, as they manipulate these elements to enhance visual quality.",
+    "reference_explanation": "Pixels are the basic building blocks of all digital images.",
+    "cost": 6.374999999999999e-05
+  },
+  {
+    "id": 8,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Vulnerable plants, including shrubs, require ongoing protection to survive and thrive, especially during their life cycle stages.",
+    "reference_explanation": "Shrubs remain vulnerable throughout their life cycle.",
+    "cost": 0.0
+  },
+  {
+    "id": 4,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Studying drugs typically aligns with a background in pharmacology, suggesting that Susan's major is the most relevant cause for her focus on this subject.",
+    "reference_explanation": "Pharmacology is the science of drugs.",
+    "cost": 6.434999999999999e-05
+  },
+  {
+    "id": 3,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Shamans typically conduct sacred ceremonies in specific, often secluded locations, such as caves, to enhance spiritual focus and connection. This makes moving to a cave a likely effect of starting their ceremonies.",
+    "reference_explanation": "Caves are sacred ceremonies sites utilized by the shamans.",
+    "cost": 6.629999999999999e-05
+  },
+  {
+    "id": 1,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Since Susan wants to buy a restricted pesticide, the most likely effect is that she successfully purchased a specific pesticide, such as rotenone, which is known to be a restricted pesticide.",
+    "reference_explanation": "Rotenone is a restricted-use pesticide.",
+    "cost": 6.539999999999999e-05
+  },
+  {
+    "id": 7,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Greeting orcas likely elicits a response, such as spouting water, as they are social animals. The other option about vipers is unrelated to the context.",
+    "reference_explanation": "Orcas are very social animals.",
+    "cost": 6.465e-05
+  },
+  {
+    "id": 9,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Eating a lot of eggs can lead to high cholesterol levels, which is a known risk factor for gallstones. Therefore, this is the most likely effect of Tom's egg consumption.",
+    "reference_explanation": "Gallstones are lumps composed mainly of cholesterol.",
+    "cost": 6.539999999999999e-05
+  },
+  {
+    "id": 11,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Hallucinogens can lead to unpredictable and potentially harmful psychological effects, which may put the patient in a dangerous state rather than simply causing sleep.",
+    "reference_explanation": "Hallucinogens are particularly dangerous.",
+    "cost": 6.39e-05
+  },
+  {
+    "id": 12,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Figs thrive in high temperatures, which likely leads to sweeter fruit due to increased sugar concentration. The other option does not relate to the effect of temperature on figs.",
+    "reference_explanation": "Figs are mostly tropical plants naturally growing wild in south-east Asian jungles.",
+    "cost": 6.599999999999999e-05
+  },
+  {
+    "id": 14,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Different wavelengths of sunlight correspond to different colors, which combine to create the spectrum of colors seen in sunlight on Earth.",
+    "reference_explanation": "Sunshine strikes the earth in rays of varying wavelengths.",
+    "cost": 6.374999999999999e-05
+  },
+  {
+    "id": 13,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The presence of bulrushes suggests a natural environment, likely near water, which could be found at the mouth of a cave. The other option is unrelated to the context.",
+    "reference_explanation": "Bulrushes line the mouth of a cave.",
+    "cost": 6.539999999999999e-05
+  },
+  {
+    "id": 10,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Linkage typically involves membrane proteins; if they are damaged, linkage cannot occur. Senescence relates to aging but does not directly explain the failure of linkage.",
+    "reference_explanation": "Linkage occurs via integral membrane proteins.",
+    "cost": 6.45e-05
+  },
+  {
+    "id": 16,
+    "correct_explanation": false,
+    "confidence": 0.9,
+    "predicted_explanation": "Causalgia is a type of pain associated with nerve injury, indicating that the most likely cause is a nerve injury rather than learning about plants.",
+    "reference_explanation": "Causalgia occurs after a nerve injury.",
+    "cost": 6.434999999999999e-05
+  },
+  {
+    "id": 17,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "If Jack keeps the goats alone, they may not receive adequate care or social interaction, leading to stress or health issues, which can cause a poor appetite.",
+    "reference_explanation": "Goats are herd animals so depend on the companionship of other goats.",
+    "cost": 6.539999999999999e-05
+  },
+  {
+    "id": 15,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Coleus is often recommended for glaucoma management, making it a likely effect of Tom's condition. Obesity is not directly related to glaucoma.",
+    "reference_explanation": "Coleus is used in treatments to relieve glaucoma pressure within the eye.",
+    "cost": 6.494999999999999e-05
+  },
+  {
+    "id": 18,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Integral membrane proteins from the tonoplast are typically referred to as tonoplast intrinsic proteins (TIPs), indicating their specific origin and function in plant cells.",
+    "reference_explanation": "TIPs are integral membrane proteins in the tonoplast.",
+    "cost": 6.479999999999999e-05
+  },
+  {
+    "id": 19,
+    "correct_explanation": false,
+    "confidence": 0.9,
+    "predicted_explanation": "The direct consequence of many pupils joining the class is an increase in class size, which is a straightforward effect of more students being present.",
+    "reference_explanation": "Pupils change size.",
+    "cost": 6.36e-05
+  },
+  {
+    "id": 21,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Being badly wounded often implies a severe injury that could lead to death, making it a more likely effect than simply bearing scars.",
+    "reference_explanation": "Wounds lead to scars.",
+    "cost": 0.0
+  },
+  {
+    "id": 22,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Estrogen dysfunction typically leads to low estrogen levels, which would be diagnosed by doctors. The other option suggests a recovery that is not directly linked to the dysfunction itself.",
+    "reference_explanation": "Progestins help to regulate the effects of estrogens.",
+    "cost": 0.0
+  },
+  {
+    "id": 25,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Choosing a branch of systematics implies a decision about a specific area of study, making 'She chooses taxonomy' the most relevant effect.",
+    "reference_explanation": "Taxonomy is one of the three branches of systematics.",
+    "cost": 6.45e-05
+  },
+  {
+    "id": 20,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The meat mixture dissolves, indicating it is a processed form that can break down in water, unlike whole meat chunks.",
+    "reference_explanation": "Mixture dissolves in water.",
+    "cost": 6.33e-05
+  },
+  {
+    "id": 24,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The significant increase in productivity is likely due to the adoption of robots, which enhance efficiency and output in production processes.",
+    "reference_explanation": "Innovation contributes to productivity growth.",
+    "cost": 6.299999999999999e-05
+  },
+  {
+    "id": 23,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The high sense of fineness in gold typically correlates with its cost. Therefore, it is likely that Lucy's acquisition of the gold was due to her significant financial investment.",
+    "reference_explanation": "Fineness describes the purity of gold.",
+    "cost": 6.524999999999999e-05
+  },
+  {
+    "id": 27,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Turning off all devices suggests a deliberate action to minimize energy use, making this the most likely cause.",
+    "reference_explanation": "Devices use energy.",
+    "cost": 6.225e-05
+  },
+  {
+    "id": 26,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The term 'interacted' suggests a more general and likely cause of separation, as it encompasses various types of interactions that can lead to separation, unlike 'reacted,' which implies a specific chemical change.",
+    "reference_explanation": "Solutes chromatographically interact with the micelles to achieve separation.",
+    "cost": 6.675e-05
+  },
+  {
+    "id": 28,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "Light does not zigzag because it travels in a straight line when passing through homogeneously refractive media, where the refractive index is consistent.",
+    "reference_explanation": "Rays are rectilinear in homogeneously refractive media.",
+    "cost": 6.524999999999999e-05
+  },
+  {
+    "id": 29,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The orchid entwined on a tree suggests it grew from a planted source, likely Jack's orchids, rather than being affected by Tom cutting down a tree.",
+    "reference_explanation": "Orchids are an epiphyte.",
+    "cost": 6.465e-05
+  },
+  {
+    "id": 34,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Climbing for fun typically leads to feelings of exhilaration due to the physical activity and achievement involved, rather than focusing on nutritional aspects like carbohydrate supplementation.",
+    "reference_explanation": "Climbing cause exhilaration.",
+    "cost": 6.404999999999998e-05
+  },
+  {
+    "id": 32,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Having antigens indicates Tom's immune system has encountered a virus, suggesting he can effectively respond to it, leading to better health outcomes during infections.",
+    "reference_explanation": "Antigen induces immune responses.",
+    "cost": 6.39e-05
+  },
+  {
+    "id": 31,
+    "correct_explanation": false,
+    "confidence": 0.2,
+    "predicted_explanation": "Opening the faucet to use water typically indicates a need for hygiene, such as washing hands, rather than needing a bottle of water.",
+    "reference_explanation": "Washers use water.",
+    "cost": 6.33e-05
+  },
+  {
+    "id": 30,
+    "correct_explanation": false,
+    "confidence": 0.2,
+    "predicted_explanation": "Heavy snow typically leads to colder indoor temperatures, prompting people to light fireplaces for warmth and comfort.",
+    "reference_explanation": "Fireplaces catch fire.",
+    "cost": 6.225e-05
+  },
+  {
+    "id": 33,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Bananas are yellow due to the presence of pigments like xanthophylls, which are responsible for their color. This makes the second option a direct effect of the first statement.",
+    "reference_explanation": "Xanthophylls are also yellow.",
+    "cost": 6.524999999999999e-05
+  },
+  {
+    "id": 36,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "An atom with a covalence of seven indicates it requires seven additional electrons to achieve a stable electron configuration, aligning with the octet rule.",
+    "reference_explanation": "Covalence is the number of electrons an atom needs to gain to produce a stable outer shell.",
+    "cost": 6.599999999999999e-05
+  },
+  {
+    "id": 35,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The mention of vertebrates suggests a focus on evolutionary biology, which aligns with researching nervous system evolution rather than seawater.",
+    "reference_explanation": "Vertebrates mark the culmination of nervous system evolution.",
+    "cost": 6.39e-05
+  },
+  {
+    "id": 38,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Her familiarity with the relationship of all the angels suggests formal education in angelology, which specifically covers such topics.",
+    "reference_explanation": "Angelology is the study of angels.",
+    "cost": 6.314999999999999e-05
+  },
+  {
+    "id": 37,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Mummification is primarily aimed at preserving the bodies for the afterlife, ensuring they remain intact over time.",
+    "reference_explanation": "Mummification is the process of drying out a dead body to prevent it from rotting.",
+    "cost": 6.479999999999999e-05
+  },
+  {
+    "id": 39,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The context suggests providing twigs as a substitute for food, indicating a lack of proper food supply, likely due to forgetting to buy it.",
+    "reference_explanation": "Hares consume twigs.",
+    "cost": 6.374999999999999e-05
+  },
+  {
+    "id": 43,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Smooth metabolism is often linked to sufficient levels of glutathione, which plays a crucial role in detoxification and metabolic processes. The other option relates to immune response, not metabolism directly.",
+    "reference_explanation": "Metabolism occurs predominantly by conjugation with glutathione.",
+    "cost": 6.599999999999999e-05
+  },
+  {
+    "id": 42,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The presence of a piece of mango on the grass is likely to attract ants, as they are known to seek out food sources like fruit.",
+    "reference_explanation": "Mangos attract ants.",
+    "cost": 6.36e-05
+  },
+  {
+    "id": 40,
+    "correct_explanation": false,
+    "confidence": 0.2,
+    "predicted_explanation": "Jerry's interest in beagles likely stems from a broader interest in dog studies, particularly those related to longevity, rather than a specific observation about a dog's physical traits.",
+    "reference_explanation": "Beagles are one the oldest dogs living.",
+    "cost": 6.494999999999999e-05
+  },
+  {
+    "id": 44,
+    "correct_explanation": false,
+    "confidence": 0.2,
+    "predicted_explanation": "Heavy rain would naturally fill the reservoir, making it the most likely cause of it being full today.",
+    "reference_explanation": "Cisterns contain rainwater.",
+    "cost": 6.27e-05
+  },
+  {
+    "id": 45,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The stress and emotional toll of seeking infertility treatments can lead to psychological issues, including insomnia, rather than happiness from travel.",
+    "reference_explanation": "Infertility causes psychological pain.",
+    "cost": 6.33e-05
+  },
+  {
+    "id": 48,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Bait making typically involves organic materials, such as fresh vegetables, rather than alloys, which are not relevant to the task.",
+    "reference_explanation": "Bait uses fresh vegetables.",
+    "cost": 6.33e-05
+  },
+  {
+    "id": 46,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Selling rose seeds is likely a direct result of her planting and cultivating roses, which generates the seeds she sells. The husband's belief about wealth is less directly related to her business.",
+    "reference_explanation": "Roses produce seeds.",
+    "cost": 6.465e-05
+  },
+  {
+    "id": 47,
+    "correct_explanation": false,
+    "confidence": 0.9,
+    "predicted_explanation": "Inflamed baby teeth are typically caused by dental issues such as toothaches or infections, making this the more relevant choice compared to the unrelated amniocentesis.",
+    "reference_explanation": "Girls have baby teeth.",
+    "cost": 6.434999999999999e-05
+  },
+  {
+    "id": 49,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Touching toxic materials can lead to serious health issues, potentially requiring medical intervention or surgery, making this the most likely effect.",
+    "reference_explanation": "Operations involve toxic materials.",
+    "cost": 6.314999999999999e-05
+  },
+  {
+    "id": 41,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Nonnative plants in the garden likely prompt the gardener to assess their impact on the ecosystem and garden design, leading to consideration of their management.",
+    "reference_explanation": "Gardeners consider invasive plants.",
+    "cost": 6.39e-05
+  },
+  {
+    "id": 54,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Swamps often have unstable surfaces and may contain harmful substances or wildlife, making it unsafe to touch. This is a more direct consequence of being near a swamp compared to meeting ducks.",
+    "reference_explanation": "Marsh attracts ducks.",
+    "cost": 0.0
+  },
+  {
+    "id": 55,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Buying a big bag of milk suggests a need for a staple ingredient, commonly associated with breakfast foods, indicating a desire for a healthy meal.",
+    "reference_explanation": "Cheese uses milk.",
+    "cost": 0.0
+  },
+  {
+    "id": 56,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The context indicates that Harry received treatment involving needles, which is characteristic of acupuncture, commonly found in massage shops offering Chinese therapies.",
+    "reference_explanation": "Acupuncture is a chinese technique of puncturing the body with very fine needles to relieve pain.",
+    "cost": 6.524999999999999e-05
+  },
+  {
+    "id": 50,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Distributing tasks typically indicates a collaborative effort, which aligns with preparing a presentation where roles need to be assigned.",
+    "reference_explanation": "Preparation includes distribution.",
+    "cost": 6.255e-05
+  },
+  {
+    "id": 51,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Doves and pigeons are known to drink water by taking continuous draughts, especially when thirsty, rather than washing their faces in the water.",
+    "reference_explanation": "Doves drink water like pigeons in a continuous draught.",
+    "cost": 6.509999999999998e-05
+  },
+  {
+    "id": 52,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Tom's inability to control his sphincter due to a spine problem directly leads to incontinence, making this the most likely effect.",
+    "reference_explanation": "Sphincters control anuses.",
+    "cost": 6.39e-05
+  },
+  {
+    "id": 53,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Rabbits typically seek out shelters for protection and safety, making it more likely that the hutch was found by a rabbit rather than a hobo due to hunger.",
+    "reference_explanation": "Hutches provide shelter.",
+    "cost": 6.45e-05
+  },
+  {
+    "id": 57,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Leaving the room suddenly suggests a strong urge or need, which aligns with the phrase 'he had to smoke'.",
+    "reference_explanation": "Smokers leave rooms.",
+    "cost": 6.285e-05
+  },
+  {
+    "id": 58,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Burying the seed of dogwoods is an action that typically leads to the growth of the tree, making it the most likely effect.",
+    "reference_explanation": "Dogwoods grow readily from seed.",
+    "cost": 6.39e-05
+  },
+  {
+    "id": 59,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Nephrolithiasis refers to kidney stones, indicating that the checkup revealed the presence of a stone in the kidney, which is the direct cause of the diagnosis.",
+    "reference_explanation": "Nephrolithiasis is the medical term for the presence of stones in the kidney.",
+    "cost": 6.644999999999999e-05
+  },
+  {
+    "id": 62,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The term 'rectilinear waves' is more relevant to rays, which are typically associated with wave propagation in refractive media, indicating a focus on wave behavior.",
+    "reference_explanation": "Rays are rectilinear in homogeneously refractive media.",
+    "cost": 0.0
+  },
+  {
+    "id": 61,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Pineapples require specific growing conditions, and planting them in direct sunlight can lead to overheating and dehydration, causing them to die.",
+    "reference_explanation": "Pineapple grows well in partial shade.",
+    "cost": 6.404999999999998e-05
+  },
+  {
+    "id": 63,
+    "correct_explanation": true,
+    "confidence": 0.85,
+    "predicted_explanation": "Tom is calculating quantity, which typically involves stoichiometry to determine the relationships between reactants and products in chemical reactions.",
+    "reference_explanation": "Stoichiometry is the calculation of quantities in a chemical equation.",
+    "cost": 6.419999999999999e-05
+  },
+  {
+    "id": 60,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The statement suggests a lack of engagement with libertarianism, which is more likely due to ignorance of the topic rather than a desire to hide personal beliefs.",
+    "reference_explanation": "Libertarianism is a political philosophy.",
+    "cost": 6.465e-05
+  },
+  {
+    "id": 64,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Cat scratch encephalopathy can lead to various health issues, including adenitis, which is inflammation of the glands. This makes the second option more likely as a direct effect of the condition.",
+    "reference_explanation": "Adenitis is present in all cases of cat scratch encephalopathy.",
+    "cost": 6.659999999999999e-05
+  },
+  {
+    "id": 65,
+    "correct_explanation": false,
+    "confidence": 0.2,
+    "predicted_explanation": "The context suggests that the subject is related to medicinal use, making kudzu's medicinal properties the likely cause for its prevalence in medicines.",
+    "reference_explanation": "Kudzu has requirements.",
+    "cost": 6.36e-05
+  },
+  {
+    "id": 66,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "High natality directly contributes to population increase through reproduction, making it the most likely cause of the large population increase.",
+    "reference_explanation": "Natality adds to the number in a population by reproduction.",
+    "cost": 6.39e-05
+  },
+  {
+    "id": 67,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Analyzing soil composition typically leads to the discovery of various elements present in the soil, making this the most likely effect of the action.",
+    "reference_explanation": "Soil contains many different elements.",
+    "cost": 6.374999999999999e-05
+  },
+  {
+    "id": 69,
+    "correct_explanation": false,
+    "confidence": 0.2,
+    "predicted_explanation": "The phrase 'time flies' often reflects a sense of urgency or change, which can lead individuals like Tom to become more outgoing as they seek to make the most of their time.",
+    "reference_explanation": "Expression increases over time.",
+    "cost": 6.479999999999999e-05
+  },
+  {
+    "id": 68,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Cicadas are not native to Antarctica, so the absence of their sounds is likely due to the geographical location rather than the time of day.",
+    "reference_explanation": "Cicadas exist on every continent but Antarctica.",
+    "cost": 6.45e-05
+  },
+  {
+    "id": 75,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Using a knife to cut toenails can lead to injuries or complications, so avoiding troubles suggests he managed to do it safely.",
+    "reference_explanation": "Toenails are the knife of a foot.",
+    "cost": 0.0
+  },
+  {
+    "id": 73,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "The recommendations likely came from the manager's advice, which would provide valuable guidance and support, leading to significant help.",
+    "reference_explanation": "Guidelines include recommendations.",
+    "cost": 0.0
+  },
+  {
+    "id": 76,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Since Ted and Robin are madly in love, it is natural to refer to them as lovers. The decision to have a baby is a more complex choice that may not directly follow from their feelings.",
+    "reference_explanation": "Pregnancy is the ultimate intimacy possible between human beings.",
+    "cost": 0.0
+  },
+  {
+    "id": 77,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The ability to maintain posture without falling is primarily due to an individual's sense of balance, which is a personal attribute rather than a skill like yoga.",
+    "reference_explanation": "Balance is the ability to maintain posture without the urge to fall over.",
+    "cost": 6.509999999999998e-05
+  },
+  {
+    "id": 72,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Communicating via the heart suggests emotional honesty, leading others to perceive his sincerity. This is more likely than betrayal, which contradicts heartfelt communication.",
+    "reference_explanation": "Heart is a kind of emotion.",
+    "cost": 6.404999999999998e-05
+  },
+  {
+    "id": 70,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Spermatids are found in the testes, which are part of the male reproductive system. The lumina of the seminiferous tubules in the testes contain spermatids, making this choice more relevant than the stomach.",
+    "reference_explanation": "Spermatids are present surrounding the lumina.",
+    "cost": 6.72e-05
+  },
+  {
+    "id": 71,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The dazzling rays suggest a shiny, reflective surface, which is likely due to gold foil wrapping rather than the cost of the gift itself.",
+    "reference_explanation": "Foil reflects rays.",
+    "cost": 6.345e-05
+  },
+  {
+    "id": 74,
+    "correct_explanation": false,
+    "confidence": 0.2,
+    "predicted_explanation": "His mother's request to calm down suggests Tom was experiencing strong emotions, likely due to winning, which aligns with being extremely happy.",
+    "reference_explanation": "Dispassion is the having overcome one's desires.",
+    "cost": 6.39e-05
+  },
+  {
+    "id": 79,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Lucy experienced an allergic reaction to the fragrance, indicating she is sensitive to certain chemicals commonly found in such products.",
+    "reference_explanation": "Fragrances are chemicals.",
+    "cost": 6.285e-05
+  },
+  {
+    "id": 78,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The realization of it being a tree with small leaves suggests she identified a specific type of tree, likely a poplar, which is known for its small leaves.",
+    "reference_explanation": "Poplars are a type of tree with small leaves.",
+    "cost": 6.524999999999999e-05
+  },
+  {
+    "id": 84,
+    "correct_explanation": false,
+    "confidence": 1.0,
+    "predicted_explanation": "Tom's repeated attempts at the exam indicate persistence, and ultimately obtaining the qualification certificate signifies his success in achieving the goal of becoming an optometrist.",
+    "reference_explanation": "Optometrists are state-licensed health care professionals.",
+    "cost": 0.0
+  },
+  {
+    "id": 83,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "The presence of many merlins in the forest suggests a healthy population, making it likely for observers to witness their hunting behavior.",
+    "reference_explanation": "Merlins are usually solitary hunters.",
+    "cost": 6.345e-05
+  },
+  {
+    "id": 82,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Eating meat is often associated with higher protein intake, which can lead to increased energy levels. The other option does not logically connect to the enjoyment of eating meat.",
+    "reference_explanation": "Meat is a high energy food source.",
+    "cost": 6.479999999999999e-05
+  },
+  {
+    "id": 81,
+    "correct_explanation": false,
+    "confidence": 0.1,
+    "predicted_explanation": "Kittens are playful and often scratch during play. This is a common interaction between kittens and their owners, making it a likely effect of having a kitten.",
+    "reference_explanation": "Kitties have paws.",
+    "cost": 6.419999999999999e-05
+  },
+  {
+    "id": 80,
+    "correct_explanation": false,
+    "confidence": 0.0,
+    "predicted_explanation": "The swelling in his hand is likely due to a bee sting, which suggests he was interacting with bees, possibly in a mischievous manner.",
+    "reference_explanation": "Conversations are a phenomenon of language.",
+    "cost": 6.419999999999999e-05
+  },
+  {
+    "id": 85,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Aerosols can affect visibility and contribute to phenomena like haze or colorful sunsets, which may be perceived as 'burning clouds'. This is more directly related to aerosols than a gradual warming effect.",
+    "reference_explanation": "Aerosols also lead to cloud burning in the subtropical area.",
+    "cost": 6.675e-05
+  },
+  {
+    "id": 86,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Smoking can lead to premature aging and skin damage, making Lucy appear older than her peers. This is a common effect of long-term smoking.",
+    "reference_explanation": "Tobacco also causes premature aging especially in women.",
+    "cost": 6.45e-05
+  },
+  {
+    "id": 89,
+    "correct_explanation": true,
+    "confidence": 0.9,
+    "predicted_explanation": "The repulsion by an inducing magnetic field indicates that the product exhibits diamagnetic properties, as diamagnetic materials are repelled by magnetic fields.",
+    "reference_explanation": "Diamagnetism is when the substance is repelled by an inducing magnetic field.",
+    "cost": 6.524999999999999e-05
+  },
+  {
+    "id": 87,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "A hungry parakeet is likely to be fed by its owner, as they are responsible for its care. The other option about the boa is unrelated to the parakeet's hunger.",
+    "reference_explanation": "Parakeets can eat many kinds of vegetables.",
+    "cost": 6.585e-05
+  },
+  {
+    "id": 88,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Optic atrophy typically leads to vision loss or impairment, making it likely that a doctor would inform Jack about the risk of losing his sight.",
+    "reference_explanation": "Blindness can result from atrophe of the optic nerve.",
+    "cost": 6.479999999999999e-05
+  },
+  {
+    "id": 92,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The phrase 'hurt by the latter's teeth' suggests an injury caused by biting, which aligns with the scenario of a monster being bitten by a Tyrannosaurus, rather than a bug being thrown.",
+    "reference_explanation": "Tyrannosauruses possess teeth.",
+    "cost": 6.615e-05
+  },
+  {
+    "id": 91,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Feeling lonely often leads individuals to seek companionship, making it likely that Marry would go to accompany Tom.",
+    "reference_explanation": "People accompany people.",
+    "cost": 6.24e-05
+  },
+  {
+    "id": 90,
+    "correct_explanation": false,
+    "confidence": 0.2,
+    "predicted_explanation": "The action of picking mint leaves suggests a culinary purpose, indicating that John needed them for a dish rather than a scientific or experimental reason.",
+    "reference_explanation": "Mint has leaves.",
+    "cost": 6.33e-05
+  },
+  {
+    "id": 93,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "A stuffy nose often leads individuals to seek relief, making it likely that Tom would carry a decongestant for symptom management.",
+    "reference_explanation": "Decongestants treat nasal congestion.",
+    "cost": 6.39e-05
+  },
+  {
+    "id": 94,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Gigantism is primarily caused by excessive growth hormone secretion, often due to a pituitary gland tumor during childhood, leading to abnormal growth.",
+    "reference_explanation": "Gigantism is caused by excessive secretion of during childhood.",
+    "cost": 6.465e-05
+  },
+  {
+    "id": 96,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "Seeing the man who committed the murders implies she has observed a crucial event, making her a witness to the crime.",
+    "reference_explanation": "Witnesses have experience.",
+    "cost": 6.285e-05
+  },
+  {
+    "id": 98,
+    "correct_explanation": false,
+    "confidence": 0.1,
+    "predicted_explanation": "Tom's new idea to earn money suggests a potential for profit, making it more likely that he would gain profits rather than just receiving a one-time payment from a recycling station.",
+    "reference_explanation": "Interest is the price of money.",
+    "cost": 6.494999999999999e-05
+  },
+  {
+    "id": 95,
+    "correct_explanation": false,
+    "confidence": 0.8,
+    "predicted_explanation": "Isobars represent lines of equal air pressure, indicating Tom's intent to mark these specific locations rather than those related to water.",
+    "reference_explanation": "Isobars are lines connecting points with the equal air pressure.",
+    "cost": 6.45e-05
+  },
+  {
+    "id": 99,
+    "correct_explanation": false,
+    "confidence": 0.9,
+    "predicted_explanation": "The boyfriend's immediate call to comfort her suggests he was alerted to her distress, likely triggered by the crying emoticon.",
+    "reference_explanation": "Emoticons are combinations of characters used to represent various emotions.",
+    "cost": 6.419999999999999e-05
+  },
+  {
+    "id": 97,
+    "correct_explanation": false,
+    "confidence": 0.7,
+    "predicted_explanation": "The context suggests a learning environment, and the phrase 'Whites are my teachers' implies a historical connection to free speech, making this the more relevant cause.",
+    "reference_explanation": "Whites are the people who invented free speech.",
+    "cost": 6.494999999999999e-05
+  }
+]

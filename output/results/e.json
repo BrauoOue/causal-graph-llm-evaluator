@@ -1,0 +1,17 @@
+{
+  "dataset": "e",
+  "predictions_model": "gpt-4o-mini",
+  "total_predictions": 100,
+  "correct_predictions": 88,
+  "valid_choice_predictions": 99,
+  "prediction_accuracy": 0.88,
+  "predictions_execution_time": 31.387613773345947,
+  "predictions_total_cost": 0.020011949999999997,
+  "explanations_model": "gpt-4o-mini",
+  "total_explanations": 100,
+  "correct_explanations": 5,
+  "explanations_accuracy": 0.05,
+  "average_explanation_confidence": 0.7105000000000004,
+  "explanations_execution_time": 33.851057291030884,
+  "explanations_total_cost": 0.011511299999999999
+}

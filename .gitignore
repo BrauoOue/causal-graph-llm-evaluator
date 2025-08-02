@@ -5,4 +5,4 @@ venv/
 predictions.json
 __pycache__/
 predictions_parallel.json
-output/
+logs/

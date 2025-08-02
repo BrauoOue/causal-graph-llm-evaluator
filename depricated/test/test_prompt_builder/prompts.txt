@@ -1,0 +1,142 @@
+--- Prompt 1 ---
+You are an expert in causal reasoning.
+Based on the following situation, identify the most likely effect of the given event.
+
+Context:
+There is a light rain today.
+
+Question:
+What is the most likely effect?
+
+Choices:
+- The roots of many plants are not moistened by rain.
+- Tourists have seen many ripples.
+
+--- Prompt 2 ---
+You are an expert in causal reasoning.
+Based on the following situation, identify the most likely effect of the given event.
+
+Context:
+Susan wants to buy a restricted pesticide.
+
+Question:
+What is the most likely effect?
+
+Choices:
+- She bought rotenone.
+- He decided to buy amylase.
+
+--- Prompt 3 ---
+You are an expert in reasoning about mathematical, logical, or computational scenarios.
+Based on the following situation, identify the most likely effect of the given event.
+
+Context:
+def update_scores(scores, bonus_points, student, is_top_student):
+    if is_top_student:
+        scores[student] += (bonus_points * 2)
+    else:
+        scores[student] += bonus_points
+
+    return scores
+
+scores_dict = {'Alice': 90, 'Bob': 85, 'Charlie': 92}
+bonus = 5
+is_top = 'Alice'
+update_scores(scores_dict, bonus, is_top, is_top == 'Alice')",
+
+If we manually set 'is_top_student' to True for all students and reevaluate 'update_scores', will this raise scores?
+
+Question:
+Answer the yes/no question contained in the context.
+
+Choices:
+- Yes
+- No
+
+--- Prompt 4 ---
+You are an expert in reasoning about mathematical, logical, or computational scenarios.
+Based on the following situation, identify the most likely cause of the given event.
+
+Context:
+def update_scores(scores, bonus_points, student, is_top_student):
+    if is_top_student:
+        scores[student] += (bonus_points * 2)
+    else:
+        scores[student] += bonus_points
+
+    return scores
+
+scores_dict = {'Alice': 90, 'Bob': 85, 'Charlie': 92}
+bonus = 5
+is_top = 'Alice'
+update_scores(scores_dict, bonus, is_top, is_top == 'Alice')",
+
+If we observe that a student's score increased significantly, can we conclude that this student was definitely designated as a top student?
+
+Question:
+Answer the yes/no question contained in the context.
+
+Choices:
+- Yes
+- No
+
+--- Prompt 5 ---
+You are an expert in reasoning about mathematical, logical, or computational scenarios.
+Based on the following situation, identify the most likely effect of the given event.
+
+Context:
+Consider a control system where the dynamic behavior is governed by the differential equation \\(\\dot{x} = Mx + Nu\\), with \\(M\\) and \\(N\\) as constant matrices and \\(u\\) the control input. We test the impact of applying a linear transformation \\(T(v) = P v\\) where \\(P\\) is another constant matrix, on the control input \\(u(t)\\) over time \\(t\\).
+
+If the transformation \\(T(u)\\) is initially applied to the control input \\(u_0\\) and the system is then evolved under \\(\\dot{x} = Mx + Nu\\) with no further alterations to \\(u(t)\\), will \\(x(t)\\) at a later time \\(t = T\\) be affected solely by the transformation\\(T\\)?
+
+Question:
+Answer the yes/no question contained in the context.
+
+Choices:
+- Yes
+- No
+
+--- Prompt 6 ---
+You are an expert in reasoning about mathematical, logical, or computational scenarios.
+Based on the following situation, identify the most likely cause of the given event.
+
+Context:
+Consider a control system where the dynamic behavior is governed by the differential equation \\(\\dot{x} = Mx + Nu\\), with \\(M\\) and \\(N\\) as constant matrices and \\(u\\) the control input. We test the impact of applying a linear transformation \\(T(v) = P v\\) where \\(P\\) is another constant matrix, on the control input \\(u(t)\\) over time \\(t\\).
+
+Given the system's state \\(x(T)\\) at time \\(T\\), can we conclusively deduce if the transformation \\(T\\) was applied only to the initial control input \\(u_0\\) without further modifications?
+
+Question:
+Answer the yes/no question contained in the context.
+
+Choices:
+- Yes
+- No
+
+--- Prompt 7 ---
+You are an expert in reasoning about mathematical, logical, or computational scenarios.
+Based on the following situation, identify the most likely cause of the given event.
+
+Context:
+Imagine a self-contained, hypothetical world with only the following conditions, and without any unmentioned factors or causal relationships: Gender has a direct effect on smoking and lung cancer. Smoking has a direct effect on tar deposit. Tar deposit has a direct effect on lung cancer. Gender is unobserved. For nonsmokers and with no tar deposit, the probability of lung cancer is 46%. For nonsmokers and with high tar deposit, the probability of lung cancer is 77%. For smokers and with no tar deposit, the probability of lung cancer is 17%. For smokers and with high tar deposit, the probability of lung cancer is 43%. For nonsmokers, the probability of high tar deposit is 18%. For smokers, the probability of high tar deposit is 64%. If a person has lung cancer, was it likely due to them being a nonsmoker?
+
+Question:
+Answer the yes/no question contained in the context.
+
+Choices:
+- Yes
+- No
+
+--- Prompt 8 ---
+You are an expert in reasoning about mathematical, logical, or computational scenarios.
+Based on the following situation, identify the most likely cause of the given event.
+
+Context:
+Imagine a self-contained, hypothetical world with only the following conditions, and without any unmentioned factors or causal relationships: Gender has a direct effect on smoking and lung cancer. Smoking has a direct effect on tar deposit. Tar deposit has a direct effect on lung cancer. Gender is unobserved. For nonsmokers and with no tar deposit, the probability of lung cancer is 46%. For nonsmokers and with high tar deposit, the probability of lung cancer is 77%. For smokers and with no tar deposit, the probability of lung cancer is 17%. For smokers and with high tar deposit, the probability of lung cancer is 43%. For nonsmokers, the probability of high tar deposit is 18%. For smokers, the probability of high tar deposit is 64%. Assuming an intervention increases the tar deposits in nonsmokers, will this lead to a likely increase in lung cancer rates among them?
+
+Question:
+Answer the yes/no question contained in the context.
+
+Choices:
+- Yes
+- No
+
