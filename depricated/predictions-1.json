@@ -1,0 +1,13 @@
+[
+  {
+    "id": 0,
+    "predicted_answer": "Yes",
+    "correct_answer": "Yes",
+    "is_correct": true,
+    "explanation": "Bonus points are added to all students' scores.",
+    "correct_explanation": "Increasing 'bonus_points' directly increases the score for all students because every student, regardless of whether they are top students or not, receives some amount of bonus points added to their score. There is a direct input-output relationship where input 'bonus_points' affects the output 'scores' of students.",
+    "confidence": 0.9,
+    "question_type": "effect",
+    "cost": 0.00029350000000000003
+  }
+]

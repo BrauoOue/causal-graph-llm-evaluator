@@ -279,7 +279,7 @@ Please provide your response in the exact JSON format specified above."""
                                  batch_size: int = 15,
                                  max_workers: int = 10,
                                  save_results: bool = True,
-                                 output_folder: str = "./output",
+                                 output_folder: str = "./output/predictions",
                                  dataset_name='predictions_parallel',
                                  manual_prompt: Optional[str] = None) -> float:
         """

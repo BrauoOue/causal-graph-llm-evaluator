@@ -33,7 +33,7 @@ def evaluate(prediction_result: Dict[str, Any],
 
     explanation_model = explanation_result["model"]
     explanation_time = explanation_result["time"]
-    explanation_cost = explanation_result["cost"],
+    explanation_cost = explanation_result["cost"]
 
     valid_choice_count = 0
     correct_predictions_count = 0

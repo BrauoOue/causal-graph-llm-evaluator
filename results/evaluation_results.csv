@@ -1,5 +1,0 @@
-File,Model,Time_taken,Cost,Accuracy,Exact_Match_Accuracy,Avg_Fuzzy_Match_Score,Valid_Choices,Avg_Response_Time,Total_Predictions
-code.json,gpt-4o-mini,26.59218668937683,0.0000,0.79,0.79,0.00,1.00,0.00,100
-e.json,gpt-4o-mini,24.802048683166504,0.0000,0.87,0.87,0.00,0.99,0.00,100
-math.json,gpt-4o-mini,27.46671772003174,0.0000,0.75,0.75,0.00,0.87,0.00,100
-text.json,gpt-4o-mini,23.88201379776001,0.0000,0.68,0.68,0.00,1.00,0.00,100

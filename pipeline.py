@@ -6,7 +6,7 @@ from evaluate import evaluate
 from typing import List, Dict, Any, Optional
 
 from agent import CausalReasoningAgent
-from conversion import Mapping, BuilderDataset
+from conversion import DatasetMapping, BuilderDataset
 from explanation_evaluation_agent import ExplanationEvaluationAgent
 
 
@@ -30,7 +30,7 @@ def load_pd_files(folder: str) -> Dict[str, pd.DataFrame]:
     return datasets
 
 
-def standardize(data: Dict[str, pd.DataFrame], mapping_dict: Dict[str, Mapping]) -> Dict[str, pd.DataFrame]:
+def standardize(data: Dict[str, pd.DataFrame], mapping_dict: Dict[str, DatasetMapping]) -> Dict[str, pd.DataFrame]:
     results = {}
     for dataframe_name in data:
         mapping = mapping_dict[dataframe_name]
@@ -44,7 +44,6 @@ def standardize(data: Dict[str, pd.DataFrame], mapping_dict: Dict[str, Mapping])
 def predict(
         datasets: Dict[str, pd.DataFrame],
         agent: CausalReasoningAgent,
-        manual_prompt: str
 ):
     """
     Process datasets with the specified template type.
@@ -52,7 +51,6 @@ def predict(
     Args:
         datasets (Dict[str, List[Dict[str, Any]]]): Loaded datasets.
         agent (AbstractAgent): The agent to process data.
-        manual_prompt (str): The manual prompt to use with "manual" mode.
 
     Returns:
         List[Dict[str, Any]]: Results including predictions.
@@ -61,8 +59,15 @@ def predict(
 
     for dataset_file_name in datasets:
         dataset_info = dict()
-        dataset_info["name"] = dataset_file_name
         dataset_name = dataset_file_name.split('.')[0]
+        dataset_info["name"] = dataset_name
+
+        print(f"You are not processing the: {dataset_name} dataset.")
+        manual_prompt = input("Enter your custom prompt (or press Enter to use automatic prompt generation): ").strip()
+        # manual_prompt = None
+        if not manual_prompt:
+            manual_prompt = None
+
 
         time_start = time.time()
 
@@ -87,16 +92,17 @@ def evaluate_explanation(dataset_names: List[str],
 
     for dataset_file_name in dataset_names:
         dataset_eval_info = dict()
-        dataset_eval_info["name"] = dataset_file_name
         dataset_name = dataset_file_name.split('.')[0]
+        dataset_eval_info["name"] = dataset_name
+
 
         time_start = time.time()
 
-        df = agent.load_predictions(dataset_name)
+        df = agent.load_predictions(dataset_name=dataset_name)
 
         cost = agent.evaluate_dataset_parallel(df,
                                                save_results=True,
-                                               dataset_name=dataset_name),
+                                               dataset_name=dataset_name)
 
         time_end = time.time()
 
@@ -119,35 +125,31 @@ def main():
     print("Loading datasets...")
     data = load_pd_files(raw_data_folder)
 
-    agent = CausalReasoningAgent(max_tokens=10000)
-
-    manual_prompt = input("Enter your custom prompt (or press Enter to use automatic prompt generation): ").strip()
-    if not manual_prompt:
-        manual_prompt = None
+    agent = CausalReasoningAgent(max_tokens=1000)
 
     print("Converting data to standardized datasets...")
 
     mapping_dict = {
-        "code.jsonl": Mapping(context="Code", question="Question", question_type="Question Type", choices=None,
-                              label="Ground Truth", explanation="Explanation"),
-        "math.jsonl": Mapping(context="Mathematical Scenario", question="Question", question_type="Question Type",
-                              choices=None, label="Ground Truth", explanation="Explanation"),
-        "text.jsonl": Mapping(context="Scenario and Question", question=None, question_type="Question Type",
-                              choices=None, label="Ground Truth", explanation="Explanation"),
-        "e.jsonl": Mapping(context="premise", question=None, question_type="ask-for",
-                           choices=["hypothesis1", "hypothesis2"], label="label", explanation="conceptual_explanation"),
+        "code.jsonl": DatasetMapping(context="Code", question="Question", question_type="Question Type", choices=None,
+                                     label="Ground Truth", explanation="Explanation"),
+        "math.jsonl": DatasetMapping(context="Mathematical Scenario", question="Question", question_type="Question Type",
+                                     choices=None, label="Ground Truth", explanation="Explanation"),
+        "text.jsonl": DatasetMapping(context="Scenario and Question", question=None, question_type="Question Type",
+                                     choices=None, label="Ground Truth", explanation="Explanation"),
+        "e.jsonl": DatasetMapping(context="premise", question=None, question_type="ask-for",
+                                  choices=["hypothesis1", "hypothesis2"], label="label", explanation="conceptual_explanation"),
     }
     datasets = standardize(data, mapping_dict)
 
     print("Making Predictions...")
-    predictions_results = predict(datasets, agent, manual_prompt=manual_prompt)
+    predictions_results = predict(datasets, agent)
 
     explanation_agent = ExplanationEvaluationAgent(max_tokens=1000)
 
-    explanation_eval_results = evaluate_explanation(dataset_names=list(datasets.keys()),
+    explanation_results = evaluate_explanation(dataset_names=list(datasets.keys()),
                                                     agent=explanation_agent                                                    )
 
-    for predictions_result, explanation_result in zip(predictions_results, explanation_eval_results):
+    for predictions_result, explanation_result in zip(predictions_results, explanation_results):
         evaluate(predictions_result, explanation_result)
 
 

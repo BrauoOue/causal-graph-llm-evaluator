@@ -344,7 +344,7 @@ Please provide your evaluation in the exact JSON format specified above."""
     @staticmethod
     def load_predictions(predictions_folder="./output/predictions",dataset_name: str="predictions") -> pd.DataFrame:
         """Load predictions from JSON file and return as DataFrame"""
-        filename = os.path.join(predictions_folder, dataset_name)
+        filename = os.path.join(predictions_folder, f"{dataset_name}.json")
         with open(filename, 'r', encoding='utf-8') as f:
             data = json.load(f)
         return pd.DataFrame(data)
