@@ -230,7 +230,6 @@ Please provide your response in the exact JSON format specified above."""
         for attempt in range(max_retries):
             try:
                 result = self.predict_single(row,manual_prompt)
-                result["index"] = idx
                 return result
             except Exception as e:
                 if "rate limit" in str(e).lower() and attempt < max_retries - 1:
