@@ -2,6 +2,7 @@
 
 A comprehensive evaluation framework for testing and benchmarking the causal reasoning capabilities of large language models (LLMs). This project provides tools for generating, evaluating, and analyzing causal explanations across multiple datasets and model configurations.
 
+
 ## Overview
 
 The Causal Graph LLM Evaluator helps researchers and practitioners assess how well language models understand and explain causal relationships across different domains (code, mathematics, and natural language). The framework includes:
@@ -57,7 +58,7 @@ causal-graph-llm-evaluator/
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/causal-graph-llm-evaluator.git
+   git clone https://github.com/BrauoOue/causal-graph-llm-evaluator.git
    cd causal-graph-llm-evaluator
    ```
 
@@ -123,6 +124,75 @@ Results are stored in the `output` directory:
 - `metadata/`: Execution metrics (time, cost)
 - `results/`: Final evaluation results and analysis
 
+## Disclaimer - Pre-computed Results
+
+**Important Note**: The `output/` folder contains 100 pre-computed results from a sample run of the evaluation pipeline. These are provided as examples so users can immediately explore the output format and structure without running the full pipeline. The `eda.ipynb` notebook contains exploratory data analysis (EDA) of these pre-computed results along with basic visualizations and insights.
+
+### Output Folder Structure Explained
+
+The output directory contains four main types of files for each dataset:
+
+#### 1. Predictions (`output/predictions/`)
+Contains the raw predictions made by the causal reasoning agent for each dataset. Each file includes:
+
+- **id**: Unique identifier for each question/sample
+- **predicted_answer**: The answer the agent predicted
+- **correct_answer**: The actual correct answer
+- **is_correct**: Boolean indicating whether the prediction was correct
+- **is_valid_choice**: Boolean indicating whether the answer was among the valid choices
+- **explanation**: The agent's reasoning behind the prediction
+- **correct_explanation**: The reference/correct explanation
+- **confidence**: The agent's confidence level in the prediction (0-1)
+- **question_type**: Whether the question asked for a "cause" or "effect"
+- **cost**: API cost for this specific prediction
+
+#### 2. Explanations (`output/explanations/`)
+Contains the evaluation of explanation quality for each dataset:
+
+- **id**: Unique identifier matching the predictions
+- **correct_explanation**: Boolean indicating whether the evaluation agent determined the given explanation and reference explanation are semantically and logically equivalent
+- **confidence**: Confidence level of the explanation evaluation (0-1)
+- **predicted_explanation**: The original explanation from the prediction agent
+- **reference_explanation**: The ground truth explanation
+- **cost**: API cost for this explanation evaluation
+
+#### 3. Results (`output/results/`)
+Contains aggregated metrics and summary statistics for each dataset:
+
+- **dataset**: Name of the dataset being evaluated (e.g., "code", "math", "text", "e")
+- **predictions_model**: The LLM model used for generating predictions (e.g., "gpt-4o-mini")
+- **total_predictions**: Total number of predictions made for this dataset
+- **correct_predictions**: Number of predictions that matched the correct answer
+- **valid_choice_predictions**: Number of predictions that were valid choices (within the given options)
+- **prediction_accuracy**: Ratio of correct predictions to total predictions (0.0 to 1.0)
+- **predictions_execution_time**: Total time taken to generate all predictions (in seconds)
+- **predictions_total_cost**: Total API cost for generating predictions (in USD)
+- **explanations_model**: The LLM model used for evaluating explanations
+- **total_explanations**: Total number of explanations evaluated
+- **correct_explanations**: Number of explanations deemed semantically/logically correct
+- **explanations_accuracy**: Ratio of correct explanations to total explanations (0.0 to 1.0)
+- **average_explanation_confidence**: Mean confidence score across all explanation evaluations (0.0 to 1.0)
+- **explanations_execution_time**: Total time taken to evaluate all explanations (in seconds)
+- **explanations_total_cost**: Total API cost for explanation evaluations (in USD)
+
+#### 4. Metadata (`output/metadata/`)
+Contains execution metadata for both predictions and explanations:
+
+**Predictions metadata fields:**
+- **name**: Dataset name identifier
+- **cost**: Total API cost incurred for prediction generation (in USD)
+- **time**: Total execution time for prediction generation (in seconds)
+- **model**: LLM model used for predictions
+
+**Explanations metadata fields:**
+- **name**: Dataset name identifier  
+- **cost**: Total API cost incurred for explanation evaluation (in USD)
+- **time**: Total execution time for explanation evaluation (in seconds)
+- **model**: LLM model used for explanation evaluation
+
+These pre-computed results demonstrate the framework's capabilities across different domains (code, mathematics, text, and e-care datasets) and provide immediate insights into model performance without requiring API calls.
+
+
 ## Logging
 
 Logs are stored in the `logs` directory with color-coded console output for easy monitoring:
@@ -139,7 +209,7 @@ This project was developed for the course **Intro To Data Science** (Вовед 
 - **GogoPro27** (Gorazd Filipovski)
 - **Andrea-44** (Andrea Stevanoska)
 - **IamMistake** (Nikola Jagurinoski)
-- **borismoko** (Boris)
+- **borismoko** (Boris Smokovski)
 
 ### Instructors
 - Prof. Sonja Gievska

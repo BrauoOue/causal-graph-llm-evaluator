@@ -34,7 +34,7 @@ from typing import List, Dict, Any
 import pandas as pd
 
 from modules.agent import CausalReasoningAgent
-from modules.conversion import DatasetMapping, BuilderDataset
+from modules.conversion import DatasetMapping, DatasetBuilder
 from modules.evaluate import evaluate
 from modules.explanation_evaluation_agent import ExplanationEvaluationAgent
 from modules.logger import get_logger, set_log_level
@@ -158,7 +158,7 @@ def standardize(data: Dict[str, pd.DataFrame], mapping_dict: Dict[str, DatasetMa
 
             logger.debug(f"Standardizing {dataframe_name} with {len(data[dataframe_name])} rows")
             mapping = mapping_dict[dataframe_name]
-            result = BuilderDataset.convert(data[dataframe_name], mapping)
+            result = DatasetBuilder.convert(data[dataframe_name], mapping)
             result['id'] = result.index
             results[dataframe_name] = result
             logger.info(f"Standardized {dataframe_name}: {len(result)} rows processed")

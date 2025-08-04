@@ -104,7 +104,7 @@ def handle_question(q_type: str) -> str:
     return result
 
 
-class BuilderDataset:
+class DatasetBuilder:
     """
     A utility class for converting datasets to a standardized format.
 
@@ -206,5 +206,5 @@ if __name__ == '__main__':
 
     for df, mapping, name in zip(dfs, mappings, names):
         logger.info(f"Processing the: '{name}' dataset")
-        result = BuilderDataset.convert(df, mapping)
+        result = DatasetBuilder.convert(df, mapping)
         result.to_csv(f"./data/datasets/{name}_dataset.csv", index_label="id")
