@@ -207,7 +207,7 @@ This project was developed for the course **Intro To Data Science** (Вовед 
 ### Development Team
 - **Itonkdong** (Viktor Kostadinoski)
 - **GogoPro27** (Gorazd Filipovski)
-- **Andrea-44** (Andrea Stevanoska)
+- **Andrea-444** (Andrea Stevanoska)
 - **IamMistake** (Nikola Jagurinoski)
 - **borismoko** (Boris Smokovski)
 
